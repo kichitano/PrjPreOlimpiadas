@@ -1,0 +1,1 @@
+PkgNegocio.ClsHintText
