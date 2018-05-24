@@ -36,15 +36,9 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         cmbNroPartido = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -65,7 +59,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -190,6 +183,12 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jButton96 = new javax.swing.JButton();
         jButton97 = new javax.swing.JButton();
         jButton98 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -223,7 +222,7 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
@@ -232,13 +231,12 @@ public class FrmMinifutbol extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtArbitro)
                     .addComponent(cmbSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbNroPartido, 0, 91, Short.MAX_VALUE))
-                .addGap(44, 44, 44))
+                    .addComponent(cmbNroPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -250,7 +248,7 @@ public class FrmMinifutbol extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -260,9 +258,9 @@ public class FrmMinifutbol extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,37 +269,25 @@ public class FrmMinifutbol extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 931, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 130));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tiempo.png"))); // NOI18N
-        jLabel1.setText("2");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 173, 126, 74));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 90, 74));
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("15:00");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 178, -1, -1));
-
-        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel4.setFont(new java.awt.Font("Arial Narrow", 1, 48)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tiempo.png"))); // NOI18N
-        jLabel4.setText("1");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 173, 126, 74));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("MARCADOR");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -316,39 +302,421 @@ public class FrmMinifutbol extends javax.swing.JFrame {
             .addGap(0, 47, Short.MAX_VALUE)
         );
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("MARCADOR");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(23, 23, 23))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, 140));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 320, 70));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 41, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 41, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 41, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 41, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 41, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 41, -1));
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 41, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 41, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 41, -1));
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 41, -1));
+
+        jLabel9.setText("Nombre");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 98, -1));
+
+        jLabel10.setText("Nombre");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 98, -1));
+
+        jLabel11.setText("Nombre");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 98, -1));
+
+        jLabel12.setText("Nombre");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 98, -1));
+
+        jLabel13.setText("Nombre");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 98, -1));
+
+        jLabel14.setText("Nombre");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 98, -1));
+
+        jLabel16.setText("Nombre");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 98, -1));
+
+        jLabel17.setText("Nombre");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 98, -1));
+
+        jLabel18.setText("Nombre");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 98, -1));
+
+        jLabel19.setText("Nombre");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 590, 98, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 40, -1));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 40, -1));
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 40, -1));
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 40, -1));
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 40, -1));
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 40, -1));
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 40, -1));
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 40, -1));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 40, -1));
+
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 40, -1));
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 40, -1));
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 40, -1));
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 40, -1));
+
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 40, -1));
+
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 40, -1));
+
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 40, -1));
+
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 40, -1));
+
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 40, -1));
+
+        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 40, -1));
+
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 40, -1));
+
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 40, -1));
+
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 40, -1));
+
+        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 40, -1));
+
+        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 40, -1));
+
+        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 40, -1));
+
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 40, -1));
+
+        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 40, -1));
+
+        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 40, -1));
+
+        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 40, -1));
+
+        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 40, -1));
+
+        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 40, -1));
+
+        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 40, -1));
+
+        jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, 40, -1));
+
+        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 40, -1));
+
+        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, 40, -1));
+
+        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 40, -1));
+        getContentPane().add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 41, -1));
+
+        jLabel30.setText("Nombre");
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 98, -1));
+
+        jLabel31.setText("Nombre");
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, 98, -1));
+        getContentPane().add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 41, -1));
+
+        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, 40, -1));
+
+        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 560, 40, -1));
+
+        jButton41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 40, -1));
+
+        jButton42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 40, -1));
+
+        jButton43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 40, -1));
+
+        jButton44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 40, -1));
+
+        jButton45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 40, -1));
+
+        jButton46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton46, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 40, -1));
+
+        jButton47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton47, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 40, -1));
+
+        jButton48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 530, 40, -1));
+
+        jButton49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton49, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 40, -1));
+
+        jButton50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton50, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 40, -1));
+        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 590, 41, -1));
+        getContentPane().add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 41, -1));
+
+        jLabel32.setText("Nombre");
+        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 98, -1));
+
+        jLabel20.setText("Nombre");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 590, 98, -1));
+
+        jButton51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton51, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 590, 40, -1));
+
+        jButton52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton52, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 40, -1));
+
+        jButton53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton53, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 560, 40, -1));
+
+        jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton54, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 590, 40, -1));
+
+        jButton55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton55, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, 40, -1));
+
+        jButton56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton56, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 560, 40, -1));
+
+        jButton57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton57, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 560, 40, -1));
+
+        jButton58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton58, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 590, 40, -1));
+
+        jButton59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton59, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 40, -1));
+
+        jButton60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton60, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 530, 40, -1));
+
+        jButton61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton61, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 530, 40, -1));
+
+        jButton62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton62, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 530, 40, -1));
+
+        jLabel33.setText("Nombre");
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, 98, -1));
+        getContentPane().add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 41, -1));
+        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 41, -1));
+
+        jLabel21.setText("Nombre");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 98, -1));
+
+        jLabel22.setText("Nombre");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 98, -1));
+        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 41, -1));
+        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 41, -1));
+
+        jLabel23.setText("Nombre");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 98, -1));
+
+        jButton63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton63, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, 40, -1));
+
+        jButton64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton64, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 470, 40, -1));
+
+        jButton65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton65, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, 40, -1));
+
+        jButton66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton66, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 40, -1));
+
+        jButton67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton67, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 470, 40, -1));
+
+        jButton68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton68, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 40, -1));
+
+        jButton69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton69, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 440, 40, -1));
+
+        jButton70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton70, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 470, 40, -1));
+
+        jButton71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton71, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 500, 40, -1));
+
+        jButton72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton72, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, 40, -1));
+
+        jButton73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton73, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, 40, -1));
+
+        jButton74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton74, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 40, -1));
+
+        jButton75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton75, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, 40, -1));
+
+        jButton76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton76, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 410, 40, -1));
+
+        jButton77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton77, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 410, 40, -1));
+
+        jButton78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton78, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 410, 40, -1));
+
+        jLabel24.setText("Nombre");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 98, -1));
+        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 41, -1));
+        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 41, -1));
+
+        jLabel25.setText("Nombre");
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 98, -1));
+        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, 41, -1));
+        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 41, -1));
+
+        jLabel26.setText("Nombre");
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 98, -1));
+
+        jLabel27.setText("Nombre");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 98, -1));
+        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 41, -1));
+        getContentPane().add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 41, -1));
+
+        jLabel28.setText("Nombre");
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 98, -1));
+
+        jLabel29.setText("Nombre");
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 98, -1));
+
+        jButton79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton79, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 350, 40, -1));
+
+        jButton80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton80, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 380, 40, -1));
+
+        jButton81.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton81, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 380, 40, -1));
+
+        jButton82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton82, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 40, -1));
+
+        jButton83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton83, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, 40, -1));
+
+        jButton84.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton84, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 350, 40, -1));
+
+        jButton85.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton85, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 350, 40, -1));
+
+        jButton86.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton86, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 380, 40, -1));
+
+        jButton87.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton87, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 320, 40, -1));
+
+        jButton88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton88, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 320, 40, -1));
+
+        jButton89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton89, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, 40, -1));
+
+        jButton90.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton90, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 320, 40, -1));
+
+        jButton91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton91, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, 40, -1));
+
+        jButton92.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton92, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, 40, -1));
+
+        jButton93.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton93, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 290, 40, -1));
+
+        jButton94.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton94, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 290, 40, -1));
+
+        jButton95.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
+        getContentPane().add(jButton95, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 260, 40, -1));
+
+        jButton96.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
+        getContentPane().add(jButton96, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, 40, -1));
+
+        jButton97.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
+        getContentPane().add(jButton97, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 40, -1));
+
+        jButton98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
+        getContentPane().add(jButton98, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 40, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("MARCADOR");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -360,423 +728,47 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
+            .addGap(0, 47, Short.MAX_VALUE)
         );
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("MARCADOR");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel5)
-                .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(23, 23, 23))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 41, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 41, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, 41, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, 41, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 630, 41, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 660, 41, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 41, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 750, 41, -1));
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 448, 41, -1));
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 422, 41, -1));
-
-        jLabel9.setText("Nombre");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 425, 98, -1));
-
-        jLabel10.setText("Nombre");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 451, 98, -1));
-
-        jLabel11.setText("Nombre");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 98, -1));
-
-        jLabel12.setText("Nombre");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, 98, -1));
-
-        jLabel13.setText("Nombre");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 570, 98, -1));
-
-        jLabel14.setText("Nombre");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, 98, -1));
-
-        jLabel16.setText("Nombre");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 630, 98, -1));
-
-        jLabel17.setText("Nombre");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 660, 98, -1));
-
-        jLabel18.setText("Nombre");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 98, -1));
-
-        jLabel19.setText("Nombre");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 750, 98, -1));
-
-        jButton1.setText("jButton1");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 11, -1, -1));
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 40, -1));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 40, -1));
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, 40, -1));
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 40, -1));
-
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, 40, -1));
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 40, -1));
-
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 40, -1));
-
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, 40, -1));
-
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, 40, -1));
-
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, 40, -1));
-
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 480, 40, -1));
-
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 40, -1));
-
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 510, 40, -1));
-
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, 40, -1));
-
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, 40, -1));
-
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 40, -1));
-
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 570, 40, -1));
-
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, 40, -1));
-
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 40, -1));
-
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 40, -1));
-
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 40, -1));
-
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 510, 40, -1));
-
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 540, 40, -1));
-
-        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 570, 40, -1));
-
-        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 600, 40, -1));
-
-        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 600, 40, -1));
-
-        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 630, 40, -1));
-
-        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 630, 40, -1));
-
-        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 660, 40, -1));
-
-        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 660, 40, -1));
-
-        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 660, 40, -1));
-
-        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 630, 40, -1));
-
-        jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 600, 40, -1));
-
-        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 600, 40, -1));
-
-        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 630, 40, -1));
-
-        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 660, 40, -1));
-        getContentPane().add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 690, 41, -1));
-
-        jLabel30.setText("Nombre");
-        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 690, 98, -1));
-
-        jLabel31.setText("Nombre");
-        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 720, 98, -1));
-        getContentPane().add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 720, 41, -1));
-
-        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 750, 40, -1));
-
-        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 720, 40, -1));
-
-        jButton41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton41, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 690, 40, -1));
-
-        jButton42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton42, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 690, 40, -1));
-
-        jButton43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 720, 40, -1));
-
-        jButton44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 750, 40, -1));
-
-        jButton45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 750, 40, -1));
-
-        jButton46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton46, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 720, 40, -1));
-
-        jButton47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton47, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 720, 40, -1));
-
-        jButton48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 690, 40, -1));
-
-        jButton49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton49, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 690, 40, -1));
-
-        jButton50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton50, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 750, 40, -1));
-        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 750, 41, -1));
-        getContentPane().add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 720, 41, -1));
-
-        jLabel32.setText("Nombre");
-        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 720, 98, -1));
-
-        jLabel20.setText("Nombre");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 750, 98, -1));
-
-        jButton51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton51, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 750, 40, -1));
-
-        jButton52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton52, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 720, 40, -1));
-
-        jButton53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton53, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 720, 40, -1));
-
-        jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton54, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 750, 40, -1));
-
-        jButton55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton55, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 750, 40, -1));
-
-        jButton56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton56, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 720, 40, -1));
-
-        jButton57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton57, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 720, 40, -1));
-
-        jButton58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton58, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 750, 40, -1));
-
-        jButton59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton59, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 690, 40, -1));
-
-        jButton60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton60, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 690, 40, -1));
-
-        jButton61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton61, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 690, 40, -1));
-
-        jButton62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton62, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 690, 40, -1));
-
-        jLabel33.setText("Nombre");
-        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 690, 98, -1));
-        getContentPane().add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 690, 41, -1));
-        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 660, 41, -1));
-
-        jLabel21.setText("Nombre");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 660, 98, -1));
-
-        jLabel22.setText("Nombre");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 630, 98, -1));
-        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 630, 41, -1));
-        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 600, 41, -1));
-
-        jLabel23.setText("Nombre");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 600, 98, -1));
-
-        jButton63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton63, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 600, 40, -1));
-
-        jButton64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton64, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 630, 40, -1));
-
-        jButton65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton65, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 660, 40, -1));
-
-        jButton66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton66, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 660, 40, -1));
-
-        jButton67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton67, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 630, 40, -1));
-
-        jButton68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton68, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 600, 40, -1));
-
-        jButton69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton69, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 600, 40, -1));
-
-        jButton70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton70, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 40, -1));
-
-        jButton71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton71, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 660, 40, -1));
-
-        jButton72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton72, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 660, 40, -1));
-
-        jButton73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton73, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 630, 40, -1));
-
-        jButton74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton74, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 600, 40, -1));
-
-        jButton75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton75, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, 40, -1));
-
-        jButton76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton76, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 570, 40, -1));
-
-        jButton77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton77, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 570, 40, -1));
-
-        jButton78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton78, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 570, 40, -1));
-
-        jLabel24.setText("Nombre");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 570, 98, -1));
-        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 41, -1));
-        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 41, -1));
-
-        jLabel25.setText("Nombre");
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 98, -1));
-        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 41, -1));
-        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 480, 41, -1));
-
-        jLabel26.setText("Nombre");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 480, 98, -1));
-
-        jLabel27.setText("Nombre");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 450, 98, -1));
-        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 41, -1));
-        getContentPane().add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 41, -1));
-
-        jLabel28.setText("Nombre");
-        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 98, -1));
-
-        jLabel29.setText("Nombre");
-        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 98, -1));
-
-        jButton79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton79, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 510, 40, -1));
-
-        jButton80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton80, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 40, -1));
-
-        jButton81.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton81, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 540, 40, -1));
-
-        jButton82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton82, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, 40, -1));
-
-        jButton83.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton83, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 510, 40, -1));
-
-        jButton84.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton84, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 510, 40, -1));
-
-        jButton85.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton85, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, 40, -1));
-
-        jButton86.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton86, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 540, 40, -1));
-
-        jButton87.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton87, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 40, -1));
-
-        jButton88.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton88, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 480, 40, -1));
-
-        jButton89.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton89, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, 40, -1));
-
-        jButton90.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton90, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 40, -1));
-
-        jButton91.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton91, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 450, 40, -1));
-
-        jButton92.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton92, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 40, -1));
-
-        jButton93.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton93, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 450, 40, -1));
-
-        jButton94.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton94, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, 40, -1));
-
-        jButton95.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton95, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 420, 40, -1));
-
-        jButton96.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton96, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 420, 40, -1));
-
-        jButton97.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton97, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, 40, -1));
-
-        jButton98.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton98, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 40, -1));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, 70));
+
+        jLabel5.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jLabel5.setText("2");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
+
+        jLabel34.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jLabel34.setText("1");
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -820,7 +812,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbNroPartido;
     private javax.swing.JComboBox<String> cmbSerie;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -944,6 +935,7 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -957,7 +949,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
