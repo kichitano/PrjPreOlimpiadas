@@ -48,6 +48,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         txtPuntaje = new javax.swing.JTextField();
+        lblEquipoParticipante = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -166,8 +167,11 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 70));
         getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 100, -1));
 
+        lblEquipoParticipante.setText("jLabel9");
+        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 40, 20));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, 410));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 900, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,7 +229,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    public static javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JTextField txtArbitro;
-    private javax.swing.JTextField txtPuntaje;
+    public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 }

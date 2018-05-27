@@ -14,7 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import PkgPresentacion.FrmLanzamientoCanasta.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Corei7
@@ -92,7 +93,14 @@ public class ClsMetodosVariados {
          try {
              PreparedStatement pst;
              pst = connection.prepareCall(insertar);
-             //pst.setInt(1, txtPuntaje.getText());
+             pst.setString(1, PkgPresentacion.FrmLanzamientoCanasta.lblEquipoParticipante.getText());
+             pst.setString(2, PkgPresentacion.FrmLanzamientoCanasta.txtPuntaje.getText());
+         int registro = pst.executeUpdate();
+         if(registro > 0){
+             JOptionPane.showMessageDialog(null, "Puntaje registrado..!","Bien",JOptionPane.QUESTION_MESSAGE);
+         }else{
+              JOptionPane.showMessageDialog(null, "Puntaje NO registrado..!","Atención",JOptionPane.ERROR_MESSAGE);
+         }
          }catch(Exception e){
              
          }
