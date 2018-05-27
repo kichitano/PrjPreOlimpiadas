@@ -39,16 +39,15 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        txtP3 = new javax.swing.JTextField();
+        txtP5 = new javax.swing.JTextField();
+        txtP6 = new javax.swing.JTextField();
+        txtP7 = new javax.swing.JTextField();
+        txtP8 = new javax.swing.JTextField();
+        txtP9 = new javax.swing.JTextField();
+        txtP4 = new javax.swing.JTextField();
+        txtP2 = new javax.swing.JTextField();
+        txtP1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -58,7 +57,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -95,45 +93,35 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
-        jTextField21 = new javax.swing.JTextField();
+        txtP10 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jButton39 = new javax.swing.JButton();
+        txtP11 = new javax.swing.JTextField();
         jButton40 = new javax.swing.JButton();
         jButton41 = new javax.swing.JButton();
         jButton42 = new javax.swing.JButton();
         jButton43 = new javax.swing.JButton();
-        jButton44 = new javax.swing.JButton();
-        jButton45 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
         jButton48 = new javax.swing.JButton();
         jButton49 = new javax.swing.JButton();
-        jButton50 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
+        txtP11E2 = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jButton51 = new javax.swing.JButton();
         jButton52 = new javax.swing.JButton();
         jButton53 = new javax.swing.JButton();
-        jButton54 = new javax.swing.JButton();
-        jButton55 = new javax.swing.JButton();
         jButton56 = new javax.swing.JButton();
         jButton57 = new javax.swing.JButton();
-        jButton58 = new javax.swing.JButton();
         jButton59 = new javax.swing.JButton();
         jButton60 = new javax.swing.JButton();
         jButton61 = new javax.swing.JButton();
         jButton62 = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        txtP10E2 = new javax.swing.JTextField();
+        txtP9E2 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
+        txtP8E2 = new javax.swing.JTextField();
+        txtP7E2 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jButton63 = new javax.swing.JButton();
         jButton64 = new javax.swing.JButton();
@@ -152,15 +140,15 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jButton77 = new javax.swing.JButton();
         jButton78 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
+        txtP6E2 = new javax.swing.JTextField();
+        txtP5E2 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
+        txtP4E2 = new javax.swing.JTextField();
+        txtP3E2 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
+        txtP2E2 = new javax.swing.JTextField();
+        txtP1E2 = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jButton79 = new javax.swing.JButton();
@@ -331,16 +319,15 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 320, 70));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 41, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 41, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 41, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 41, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 41, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 41, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 41, -1));
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 41, -1));
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 41, -1));
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 41, -1));
+        getContentPane().add(txtP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 41, -1));
+        getContentPane().add(txtP5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 41, -1));
+        getContentPane().add(txtP6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 41, -1));
+        getContentPane().add(txtP7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 41, -1));
+        getContentPane().add(txtP8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 41, -1));
+        getContentPane().add(txtP9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 41, -1));
+        getContentPane().add(txtP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 41, -1));
+        getContentPane().add(txtP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 41, -1));
+        getContentPane().add(txtP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 41, -1));
 
         jLabel9.setText("Nombre");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 98, -1));
@@ -368,9 +355,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
 
         jLabel18.setText("Nombre");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 98, -1));
-
-        jLabel19.setText("Nombre");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 590, 98, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 40, -1));
@@ -479,17 +463,14 @@ public class FrmMinifutbol extends javax.swing.JFrame {
 
         jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
         getContentPane().add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 40, -1));
-        getContentPane().add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 41, -1));
+        getContentPane().add(txtP10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 41, -1));
 
         jLabel30.setText("Nombre");
         getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, 98, -1));
 
         jLabel31.setText("Nombre");
         getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 560, 98, -1));
-        getContentPane().add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 41, -1));
-
-        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 590, 40, -1));
+        getContentPane().add(txtP11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 41, -1));
 
         jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
         getContentPane().add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 560, 40, -1));
@@ -503,12 +484,6 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jButton43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
         getContentPane().add(jButton43, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, 40, -1));
 
-        jButton44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton44, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 590, 40, -1));
-
-        jButton45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 590, 40, -1));
-
         jButton46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
         getContentPane().add(jButton46, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 40, -1));
 
@@ -520,20 +495,10 @@ public class FrmMinifutbol extends javax.swing.JFrame {
 
         jButton49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
         getContentPane().add(jButton49, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 530, 40, -1));
-
-        jButton50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton50, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 40, -1));
-        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 590, 41, -1));
-        getContentPane().add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 41, -1));
+        getContentPane().add(txtP11E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 41, -1));
 
         jLabel32.setText("Nombre");
         getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 560, 98, -1));
-
-        jLabel20.setText("Nombre");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 590, 98, -1));
-
-        jButton51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
-        getContentPane().add(jButton51, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 590, 40, -1));
 
         jButton52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-en-variante-de-futbol (1).png"))); // NOI18N
         getContentPane().add(jButton52, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 40, -1));
@@ -541,20 +506,11 @@ public class FrmMinifutbol extends javax.swing.JFrame {
         jButton53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
         getContentPane().add(jButton53, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 560, 40, -1));
 
-        jButton54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
-        getContentPane().add(jButton54, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 590, 40, -1));
-
-        jButton55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
-        getContentPane().add(jButton55, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, 40, -1));
-
         jButton56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-amarilla.png"))); // NOI18N
         getContentPane().add(jButton56, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 560, 40, -1));
 
         jButton57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
         getContentPane().add(jButton57, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 560, 40, -1));
-
-        jButton58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tarjeta-roja.png"))); // NOI18N
-        getContentPane().add(jButton58, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 590, 40, -1));
 
         jButton59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/balon-de-futbol.png"))); // NOI18N
         getContentPane().add(jButton59, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 530, 40, -1));
@@ -570,16 +526,16 @@ public class FrmMinifutbol extends javax.swing.JFrame {
 
         jLabel33.setText("Nombre");
         getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, 98, -1));
-        getContentPane().add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 41, -1));
-        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 41, -1));
+        getContentPane().add(txtP10E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 41, -1));
+        getContentPane().add(txtP9E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 41, -1));
 
         jLabel21.setText("Nombre");
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 98, -1));
 
         jLabel22.setText("Nombre");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 470, 98, -1));
-        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 41, -1));
-        getContentPane().add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 41, -1));
+        getContentPane().add(txtP8E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 41, -1));
+        getContentPane().add(txtP7E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 41, -1));
 
         jLabel23.setText("Nombre");
         getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 98, -1));
@@ -634,21 +590,21 @@ public class FrmMinifutbol extends javax.swing.JFrame {
 
         jLabel24.setText("Nombre");
         getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 98, -1));
-        getContentPane().add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 41, -1));
-        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 41, -1));
+        getContentPane().add(txtP6E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 41, -1));
+        getContentPane().add(txtP5E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 41, -1));
 
         jLabel25.setText("Nombre");
         getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 98, -1));
-        getContentPane().add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, 41, -1));
-        getContentPane().add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 41, -1));
+        getContentPane().add(txtP4E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 350, 41, -1));
+        getContentPane().add(txtP3E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 41, -1));
 
         jLabel26.setText("Nombre");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 98, -1));
 
         jLabel27.setText("Nombre");
         getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 98, -1));
-        getContentPane().add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 41, -1));
-        getContentPane().add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 41, -1));
+        getContentPane().add(txtP2E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 41, -1));
+        getContentPane().add(txtP1E2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 41, -1));
 
         jLabel28.setText("Nombre");
         getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 98, -1));
@@ -842,28 +798,20 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
-    private javax.swing.JButton jButton44;
-    private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton49;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton50;
-    private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton54;
-    private javax.swing.JButton jButton55;
     private javax.swing.JButton jButton56;
     private javax.swing.JButton jButton57;
-    private javax.swing.JButton jButton58;
     private javax.swing.JButton jButton59;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton60;
@@ -918,9 +866,7 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -949,30 +895,28 @@ public class FrmMinifutbol extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField txtArbitro;
+    private javax.swing.JTextField txtP1;
+    private javax.swing.JTextField txtP10;
+    private javax.swing.JTextField txtP10E2;
+    private javax.swing.JTextField txtP11;
+    private javax.swing.JTextField txtP11E2;
+    private javax.swing.JTextField txtP1E2;
+    private javax.swing.JTextField txtP2;
+    private javax.swing.JTextField txtP2E2;
+    private javax.swing.JTextField txtP3;
+    private javax.swing.JTextField txtP3E2;
+    private javax.swing.JTextField txtP4;
+    private javax.swing.JTextField txtP4E2;
+    private javax.swing.JTextField txtP5;
+    private javax.swing.JTextField txtP5E2;
+    private javax.swing.JTextField txtP6;
+    private javax.swing.JTextField txtP6E2;
+    private javax.swing.JTextField txtP7;
+    private javax.swing.JTextField txtP7E2;
+    private javax.swing.JTextField txtP8;
+    private javax.swing.JTextField txtP8E2;
+    private javax.swing.JTextField txtP9;
+    private javax.swing.JTextField txtP9E2;
     // End of variables declaration//GEN-END:variables
 }
