@@ -19,7 +19,6 @@ public class ClsApoderado {
     String apeMaterno;
     String nombres;
     char estadoApoderado;
-    int idEquipo;
 
     public int getIdApoderado() {
         return idApoderado;
@@ -83,16 +82,5 @@ public class ClsApoderado {
 
     public void setEstadoApoderado(char estadoApoderado) {
         this.estadoApoderado = estadoApoderado;
-    }
-
-    public int getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(int idEquipo) {
-        this.idEquipo = idEquipo;
-    }
-    
-    
-    
+    }   
 }

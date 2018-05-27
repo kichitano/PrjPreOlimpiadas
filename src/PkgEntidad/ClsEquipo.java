@@ -14,7 +14,7 @@ public class ClsEquipo {
     int nroEquipo;
     String nombreEquipo;
     String detalleEquipo;
-    String estadoEquipo;
+    char estadoEquipo;
 
     public String getDetalleEquipo() {
         return detalleEquipo;
@@ -22,14 +22,6 @@ public class ClsEquipo {
 
     public void setDetalleEquipo(String detalleEquipo) {
         this.detalleEquipo = detalleEquipo;
-    }
-
-    public String getEstadoEquipo() {
-        return estadoEquipo;
-    }
-
-    public void setEstadoEquipo(String estadoEquipo) {
-        this.estadoEquipo = estadoEquipo;
     }
 
     public int getIdEquipo() {
@@ -54,6 +46,14 @@ public class ClsEquipo {
 
     public void setNombreEquipo(String nombreEquipo) {
         this.nombreEquipo = nombreEquipo;
+    }
+
+    public char getEstadoEquipo() {
+        return estadoEquipo;
+    }
+
+    public void setEstadoEquipo(char estadoEquipo) {
+        this.estadoEquipo = estadoEquipo;
     }
 
    

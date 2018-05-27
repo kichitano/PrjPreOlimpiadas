@@ -27,15 +27,17 @@ public class ClsTenisMesa {
         if(idSerie != 0){
             try (Connection connection = metodosVariados.MtdConexion()){
                 PreparedStatement pst;
-                String sql = "select ptmesa.idPartidoTenisMesa, ptmesa.idApoderado, ptmesa.idEquipoLocal, \n" +
-                    "ptmesa.idEquipoVisitante, ptmesa.ronda, ptmesa.estadoPartido\n" +
-                    "from tbPartidoTenisMesa ptmesa \n" +
-                    "inner join tbEquipo eq on ptmesa.idEquipoLocal = eq.idEquipo\n" +
-                    "inner join tbApoderado apo on eq.idEquipo = apo.idEquipo\n" +
-                    "inner join tbAnio anio on apo.idAnio = anio.idAnio\n" +
-                    "inner join tbSerie ser on anio.idSerie = ser.idSerie\n" +
-                    "where ser.idSerie = ? group by ptmesa.idEquipoLocal,ptmesa.idEquipoVisitante, ptmesa.idPartidoTenisMesa,ptmesa.idApoderado, ptmesa.idEquipoLocal, \n" +
-                    "ptmesa.idEquipoVisitante, ptmesa.ronda, ptmesa.estadoPartido";
+                String sql = "select ptmesa.idPartidoTenisMesa, \n" +
+"		ptmesa.idApoderado,\n" +
+"		ptmesa.idEquipoLocal,\n" +
+"		ptmesa.idEquipoVisitante,\n" +
+"		ptmesa.ronda, \n" +
+"		ptmesa.estadoPartido,\n" +
+"		ser.descripcionSerie \n" +
+"                    from tbPartidoTenisMesa ptmesa \n" +
+"                    inner join tbEquipo eq on ptmesa.idEquipoLocal = eq.idEquipo\n" +
+"                    inner join tbSerie ser on eq.idSerie = ser.idSerie\n" +
+"                    where ser.idSerie = ?";
                 pst = connection.prepareCall(sql);
                 pst.setInt(1, idSerie);
                 ResultSet rs = pst.executeQuery();

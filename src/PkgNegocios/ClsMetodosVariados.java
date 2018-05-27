@@ -40,7 +40,7 @@ public class ClsMetodosVariados {
         try (Connection connection = MtdConexion()) {
             PreparedStatement pst;
             String sql="SELECT dbo.tbApoderado.idApoderado, dbo.tbApoderado.idAnio, dbo.tbApoderado.idDisciplina, dbo.tbApoderado.dni, "
-                    + "dbo.tbApoderado.apePaterno, dbo.tbApoderado.apeMaterno, dbo.tbApoderado.nombres, dbo.tbApoderado.estado,dbo.tbApoderado.idEquipo,"
+                    + "dbo.tbApoderado.apePaterno, dbo.tbApoderado.apeMaterno, dbo.tbApoderado.nombres, dbo.tbApoderado.estado,"
                     + " dbo.tbUsuario.idUsuario, dbo.tbUsuario.nombUsuario, dbo.tbUsuario.estadoUsuario FROM dbo.tbApoderado INNER JOIN dbo.tbUsuario "
                     + "ON dbo.tbApoderado.idApoderado = dbo.tbUsuario.idApoderado WHERE dbo.tbUsuario.nombUsuario = ? AND dbo.tbUsuario.passUsuario = ? AND dbo.tbUsuario.estadoUsuario != 0";
             pst = connection.prepareStatement(sql);
@@ -57,10 +57,9 @@ public class ClsMetodosVariados {
                 usuario.setApeMaterno(rs.getString(6));
                 usuario.setNombres(rs.getString(7));
                 usuario.setEstadoApoderado(rs.getString(8).charAt(0));
-                usuario.setIdEquipo(rs.getInt(9));
-                usuario.setIdUsuario(rs.getInt(10));
-                usuario.setNombUsuario(rs.getString(11));
-                usuario.setEstadoUsuario(rs.getString(12).charAt(0));
+                usuario.setIdUsuario(rs.getInt(9));
+                usuario.setNombUsuario(rs.getString(10));
+                usuario.setEstadoUsuario(rs.getString(11).charAt(0));
                 paso = true;
             }
             else
