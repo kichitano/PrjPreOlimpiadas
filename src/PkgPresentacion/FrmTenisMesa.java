@@ -5,12 +5,21 @@
  */
 package PkgPresentacion;
 
+import PkgNegocios.ClsMetodosVariados;
+import PkgNegocios.ClsTenisMesa;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author proxc
  */
-public class FrmTenisMesa extends javax.swing.JFrame {
-
+public final class FrmTenisMesa extends javax.swing.JFrame{
+    ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
+    
+    int opt = 1;
+    
     /**
      * Creates new form Home_Data
      */
@@ -18,6 +27,7 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         initComponents();
         cmbSerie.setEnabled(true);
         BloquearControles();
+        MtdSerie();
     }
 
     /**
@@ -38,6 +48,8 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         txtArbitro = new javax.swing.JTextField();
         cmbSerie = new javax.swing.JComboBox<>();
         cmbNroPartido = new javax.swing.JComboBox<>();
+        LblCarga1 = new java.awt.Label();
+        LblCarga2 = new java.awt.Label();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -87,46 +99,74 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Serie:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel2.setText("N° de Partido:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Arbitro:");
 
-        cmbSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opcion" }));
+        cmbSerie.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSerieItemStateChanged(evt);
+            }
+        });
+        cmbSerie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbSerieMouseReleased(evt);
+            }
+        });
+        cmbSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSerieActionPerformed(evt);
+            }
+        });
 
-        cmbNroPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNroPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opcion" }));
+
+        LblCarga1.setText("label1");
+
+        LblCarga2.setText("label1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cmbNroPartido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtArbitro)
-                    .addComponent(cmbSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbNroPartido, 0, 91, Short.MAX_VALUE))
-                .addGap(44, 44, 44))
+                    .addComponent(cmbSerie, 0, 175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LblCarga1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LblCarga2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LblCarga1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbNroPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(cmbNroPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LblCarga2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -141,7 +181,7 @@ public class FrmTenisMesa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -412,6 +452,30 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbSerieMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbSerieMouseReleased
+        
+    }//GEN-LAST:event_cmbSerieMouseReleased
+
+    private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
+        if(cmbSerie.getItemAt(0).equals("Seleccionar opcion")){
+            opt = 1;
+            cmbNroPartido.removeAllItems();
+            cmbNroPartido.addItem("Seleccionar opcion");
+            cmbNroPartido.setEnabled(false);
+        }
+        try {
+            LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+            opt = 2;
+            MtdPartido();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmTenisMesa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbSerieItemStateChanged
+
+    private void cmbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSerieActionPerformed
+        
+    }//GEN-LAST:event_cmbSerieActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,14 +505,35 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmTenisMesa().setVisible(true);
-            }
-        });
     }
+    
+    // METODOS DE CARGA
+    
+    public void MtdSerie(){
+        try{
+            for(int i = 0; i < metodosVariados.listaSerie().size(); i++){
+                cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
+            }
+        }catch(SQLException e){
+            Logger.getLogger(FrmTenisMesa.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    public void MtdPartido(){
+        ClsTenisMesa tenisMesa = new ClsTenisMesa();
+        cmbNroPartido.removeAllItems();
+        cmbNroPartido.addItem("Seleccionar opcion");
+        try{
+            for(int i = 0; i < tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).size(); i++){
+                cmbNroPartido.addItem(String.valueOf(tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).get(i).getIdPartidoTenisMesa()));
+            }
+            cmbNroPartido.setEnabled(true);
+        }catch(NumberFormatException | SQLException e){ }        
+    }
+    
+    
+    // BLOQUEAR COMPONENTES
+    
     public void BloquearControles(){
         cmbNroPartido.setEnabled(false);
         txtArbitro.setEnabled(false);
@@ -469,8 +554,13 @@ public class FrmTenisMesa extends javax.swing.JFrame {
         
         btnValidarEquipo1.setEnabled(false);
         btnValidarEquipo2.setEnabled(false);
+        
+        LblCarga1.setVisible(false);
+        LblCarga2.setVisible(false);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Label LblCarga1;
+    private java.awt.Label LblCarga2;
     private javax.swing.JButton btnValidarEquipo1;
     private javax.swing.JButton btnValidarEquipo2;
     private javax.swing.JComboBox<String> cmbNroPartido;

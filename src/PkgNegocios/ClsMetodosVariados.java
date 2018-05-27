@@ -5,12 +5,15 @@
  */
 package PkgNegocios;
 
+import PkgEntidad.ClsSerie;
 import PkgEntidad.ClsUsuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,7 +28,7 @@ public class ClsMetodosVariados {
         Connection con = null;
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=dbPreOlimpiada;user=sa;password=123456"; 
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=dbPreOlimpiada;user=sa;password=123"; 
             con = DriverManager.getConnection(url);
         }catch(ClassNotFoundException e){ }
         return con;
@@ -66,5 +69,22 @@ public class ClsMetodosVariados {
             }
         }
         return paso;
+    }
+    
+    public List<ClsSerie> listaSerie() throws SQLException{
+        List<ClsSerie> lista = new ArrayList<>();
+        try (Connection connection = MtdConexion()){
+            PreparedStatement pst;
+            String sql = "SELECT * from dbo.tbSerie";
+            pst = connection.prepareCall(sql);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                ClsSerie serie = new ClsSerie();
+                serie.setIdSerie(rs.getInt(1));
+                serie.setDescripcionSerie(rs.getString(2));
+                lista.add(serie);
+            }
+        }        
+        return lista;
     }
 }

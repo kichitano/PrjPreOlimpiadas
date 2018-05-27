@@ -9,7 +9,10 @@ package PkgEntidad;
  *
  * @author Vera
  */
-public class ClsSerie extends ClsAnio {
+public class ClsSerie{
+    
+    int idSerie;
+    String descripcionSerie;
 
     public int getIdSerie() {
         return idSerie;
@@ -25,8 +28,5 @@ public class ClsSerie extends ClsAnio {
 
     public void setDescripcionSerie(String descripcionSerie) {
         this.descripcionSerie = descripcionSerie;
-    }
-    int idSerie;
-    String descripcionSerie;
-  
+    }  
 }

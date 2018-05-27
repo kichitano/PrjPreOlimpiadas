@@ -1,0 +1,56 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package PkgNegocios;
+import PkgEntidad.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ *
+ * @author Corei7
+ */
+public class ClsTenisMesa {
+
+    ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
+    
+    public ClsTenisMesa() {
+    }
+    
+    public List<ClsPartidoTenisMesa> listaPartidos(int idSerie) throws SQLException{
+        List<ClsPartidoTenisMesa> lista = new ArrayList<>();
+        if(idSerie != 0){
+            try (Connection connection = metodosVariados.MtdConexion()){
+                PreparedStatement pst;
+                String sql = "select ptmesa.idPartidoTenisMesa, ptmesa.idApoderado, ptmesa.idEquipoLocal, \n" +
+                    "ptmesa.idEquipoVisitante, ptmesa.ronda, ptmesa.estadoPartido\n" +
+                    "from tbPartidoTenisMesa ptmesa \n" +
+                    "inner join tbEquipo eq on ptmesa.idEquipoLocal = eq.idEquipo\n" +
+                    "inner join tbApoderado apo on eq.idEquipo = apo.idEquipo\n" +
+                    "inner join tbAnio anio on apo.idAnio = anio.idAnio\n" +
+                    "inner join tbSerie ser on anio.idSerie = ser.idSerie\n" +
+                    "where ser.idSerie = ? group by ptmesa.idEquipoLocal,ptmesa.idEquipoVisitante, ptmesa.idPartidoTenisMesa,ptmesa.idApoderado, ptmesa.idEquipoLocal, \n" +
+                    "ptmesa.idEquipoVisitante, ptmesa.ronda, ptmesa.estadoPartido";
+                pst = connection.prepareCall(sql);
+                pst.setInt(1, idSerie);
+                ResultSet rs = pst.executeQuery();
+                while(rs.next()){
+                    ClsPartidoTenisMesa partidoTenisMesa = new ClsPartidoTenisMesa();
+                    partidoTenisMesa.setIdPartidoTenisMesa(rs.getInt(1));
+                    partidoTenisMesa.setIdApoderado(rs.getInt(2));
+                    partidoTenisMesa.setIdEquipoLocal(rs.getInt(3));
+                    partidoTenisMesa.setIdEquipoVisitante(rs.getInt(4));
+                    partidoTenisMesa.setRonda(rs.getInt(5));
+                    partidoTenisMesa.setEstadoPartido(rs.getString(6).charAt(0));
+                    lista.add(partidoTenisMesa);
+                }
+            }        
+        }
+        return lista;
+    }
+}
