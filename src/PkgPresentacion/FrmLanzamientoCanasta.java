@@ -5,22 +5,49 @@
  */
 package PkgPresentacion;
 
+import PkgEntidad.ClsCircuitoBasket;
+import PkgNegocios.ClsMetodosVariados;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vera
  */
 public class FrmLanzamientoCanasta extends javax.swing.JFrame {
-
+    ClsMetodosVariados mtdos = new ClsMetodosVariados();
     /**
      * Creates new form FrmLanzamientoCanasta
      */
     public FrmLanzamientoCanasta() {
         initComponents();
-        btnCanasta.setBorderPainted(false);
-        btnCanasta.setFocusPainted(false);
-        btnCanasta.setContentAreaFilled(false);
+//        btnCanasta.setBorderPainted(false);
+//        btnCanasta.setFocusPainted(false);
+//        btnCanasta.setContentAreaFilled(false);
     }
+   public void Registrar() throws SQLException{
+         String insertar = "insert into tbCircuitoBasket (idEquipo, puntajeEquipo) values (?,?)";
 
+         try {
+             PreparedStatement pst;
+             pst = mtdos.MtdConexion().prepareCall(insertar);
+             pst.setString(1, lblEquipoParticipante.getText());
+             pst.setString(2, txtPuntaje.getText());
+            int registro = pst.executeUpdate();
+            if(registro > 0){
+                JOptionPane.showMessageDialog(null, "Puntaje registrado..!","Bien",JOptionPane.QUESTION_MESSAGE);
+            }else{
+                 JOptionPane.showMessageDialog(null, "Puntaje NO registrado..!","Atención",JOptionPane.ERROR_MESSAGE);
+            }
+         }catch(Exception e){
+             
+         }
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,6 +181,11 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
         btnCanasta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnCanasta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCanastaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
@@ -167,7 +199,9 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 70));
         getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 100, -1));
 
-        lblEquipoParticipante.setText("jLabel9");
+        lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
+        lblEquipoParticipante.setText("1");
         getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 40, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
@@ -175,6 +209,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCanastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanastaActionPerformed
+        try {
+            mtdos.Registrar();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCanastaActionPerformed
 
     /**
      * @param args the command line arguments

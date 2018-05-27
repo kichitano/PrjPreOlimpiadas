@@ -6,6 +6,7 @@
 package PkgNegocios;
 
 import PkgEntidad.ClsEquipo;
+import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsUsuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,14 +94,21 @@ public class ClsMetodosVariados {
          try {
              PreparedStatement pst;
              pst = connection.prepareCall(insertar);
-             pst.setString(1, PkgPresentacion.FrmLanzamientoCanasta.lblEquipoParticipante.getText());
-             pst.setString(2, PkgPresentacion.FrmLanzamientoCanasta.txtPuntaje.getText());
-         int registro = pst.executeUpdate();
-         if(registro > 0){
-             JOptionPane.showMessageDialog(null, "Puntaje registrado..!","Bien",JOptionPane.QUESTION_MESSAGE);
-         }else{
-              JOptionPane.showMessageDialog(null, "Puntaje NO registrado..!","Atención",JOptionPane.ERROR_MESSAGE);
-         }
+             ResultSet rs = pst.executeQuery();
+              while(rs.next()){
+                ClsCircuitoBasket eq = new ClsCircuitoBasket();
+                eq.setIdEquipo(rs.getInt(1));
+                eq.setPuntajeEquipo(rs.getInt(2));
+              
+            }
+//             pst.setString(1, PkgPresentacion.FrmLanzamientoCanasta.lblEquipoParticipante.getText());
+//             pst.setString(2, PkgPresentacion.FrmLanzamientoCanasta.txtPuntaje.getText());
+      //   int registro = pst.executeUpdate();
+//         if(registro > 0){
+//             JOptionPane.showMessageDialog(null, "Puntaje registrado..!","Bien",JOptionPane.QUESTION_MESSAGE);
+//         }else{
+//              JOptionPane.showMessageDialog(null, "Puntaje NO registrado..!","Atención",JOptionPane.ERROR_MESSAGE);
+//         }
          }catch(Exception e){
              
          }
