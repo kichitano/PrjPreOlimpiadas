@@ -15,7 +15,15 @@ public class ClsEquipo {
     String nombreEquipo;
     String detalleEquipo;
     String estadoEquipo;
+    int idSerie;
 
+    public int getIdSerie() {
+        return idSerie;
+    }
+
+    public void setIdSerie(int idSerie) {
+        this.idSerie = idSerie;
+    }
     public String getDetalleEquipo() {
         return detalleEquipo;
     }

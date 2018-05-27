@@ -5,12 +5,15 @@
  */
 package PkgNegocios;
 
+import PkgEntidad.ClsEquipo;
 import PkgEntidad.ClsUsuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -67,4 +70,31 @@ public class ClsMetodosVariados {
         }
         return paso;
     }
+     public List<ClsEquipo> listaEquipos() throws SQLException{
+        List<ClsEquipo> lista = new ArrayList<>();
+        try (Connection connection = MtdConexion()){
+            PreparedStatement pst;
+            String sql = "SELECT * FROM dbo.tbEquipo";
+            pst = connection.prepareCall(sql);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                ClsEquipo eq = new ClsEquipo();
+                eq.setIdEquipo(rs.getInt(1));
+                eq.setDetalleEquipo(rs.getString(2));
+                lista.add(eq);
+            }
+        }        
+        return lista;
+    }
+     public void Registrar() throws SQLException{
+         String insertar = "insert into tbCircuitoBasket (idEquipo, puntajeEquipo,posicionEquipo) values (?,?,?)";
+        Connection connection = MtdConexion();
+         try {
+             PreparedStatement pst;
+             pst = connection.prepareCall(insertar);
+             //pst.setInt(1, txtPuntaje.getText());
+         }catch(Exception e){
+             
+         }
+     }
 }
