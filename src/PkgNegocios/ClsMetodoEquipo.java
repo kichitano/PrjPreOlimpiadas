@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -24,26 +22,24 @@ public class ClsMetodoEquipo {
     public ClsMetodoEquipo() {
     }
     
-    public List<ClsEquipo> listaEquipos(int idEquipo) throws SQLException{
-        List<ClsEquipo> lista = new ArrayList<>();
+    public ClsEquipo Equipo(int idEquipo) throws SQLException{
+        ClsEquipo equipo = new ClsEquipo();
         if(idEquipo != 0){
             try (Connection connection = metodosVariados.MtdConexion()){
                 PreparedStatement pst;
-                String sql = "Select * from tbEquipo";
+                String sql = "select * from tbEquipo where idEquipo = ?";
                 pst = connection.prepareCall(sql);
                 pst.setInt(1, idEquipo);
                 ResultSet rs = pst.executeQuery();
                 while(rs.next()){
-                    ClsEquipo equipo = new ClsEquipo();
                     equipo.setIdEquipo(rs.getInt(1));
                     equipo.setNombreEquipo(rs.getString(2));
                     equipo.setDetalleEquipo(rs.getString(3));
                     equipo.setEstadoEquipo(rs.getString(4).charAt(0));
-                    lista.add(equipo);
                 }
             }        
         }
-        return lista;
+        return equipo;
     }
     
 }
