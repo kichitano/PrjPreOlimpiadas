@@ -42,7 +42,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
-        DeshabilitarControles();
+      //  DeshabilitarControles();
         MtdSerie();
         
         bsklog = new ClsCircuitoBasketLog();
@@ -94,7 +94,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         txtPosicion.setVisible(false);
         lblEquipoParticipante.setVisible(false);
         LblCarga1.setVisible(false);
-        LblCarga2.setVisible(false);
     }
    
     public void MtdSerie(){
@@ -106,24 +105,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    public void MtdPartido(){
-        cmbNroPartido.removeAllItems();
-        cmbNroPartido.addItem("Seleccionar opcion");
-        try{
-            for(int i = 0; i < tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).size(); i++){
-                cmbNroPartido.addItem(String.valueOf(tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).get(i).getIdPartidoTenisMesa()));
-            }
-            cmbNroPartido.setEnabled(true);
-        }catch(NumberFormatException | SQLException e){ }        
-    }
     
-    public void MtdEquipos() throws SQLException{
-        equipos = new ArrayList<>();
-        ClsPartidoTenisMesa ptenismesa = new ClsPartidoTenisMesa();
-        ptenismesa = tenisMesa.partidoTenisMesa(Integer.parseInt(LblCarga2.getText()));
-        metodoEquipo = new ClsMetodosEquipo();
-        equipos.add(metodoEquipo.Equipo(ptenismesa.getIdEquipoLocal()));
-    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,11 +115,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtArbitro = new javax.swing.JTextField();
         cmbSerie = new javax.swing.JComboBox<>();
-        cmbNroPartido = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         etiquetaTiempo = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -156,7 +135,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnDetener = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
-        LblCarga2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -175,12 +153,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel1.setText("Serie:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel2.setText("N° de Partido:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel3.setText("Arbitro:");
-
         cmbSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opción" }));
         cmbSerie.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -188,23 +160,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             }
         });
 
-        cmbNroPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opción" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtArbitro)
-                    .addComponent(cmbSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbNroPartido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(94, 94, 94)
+                .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         jPanel3Layout.setVerticalGroup(
@@ -214,15 +178,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbNroPartido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -246,7 +202,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, -1));
@@ -344,9 +300,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         LblCarga1.setText("jLabel9");
         getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
 
-        LblCarga2.setText("jLabel9");
-        getContentPane().add(LblCarga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, -1, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -370,9 +323,9 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
        if(cmbSerie.getItemAt(0).equals("Seleccionar opcion")){
             opt = 1;
-            cmbNroPartido.removeAllItems();
-            cmbNroPartido.addItem("Seleccionar opcion");
-            cmbNroPartido.setEnabled(false);
+//            cmbNroPartido.removeAllItems();
+//            cmbNroPartido.addItem("Seleccionar opcion");
+//            cmbNroPartido.setEnabled(false);
         }
         try {
             LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
@@ -381,7 +334,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
             /* ----------------------------------- */
             opt = 2;
-            MtdPartido();
+          
         } catch (SQLException ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -459,22 +412,18 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
-    private javax.swing.JLabel LblCarga2;
     private javax.swing.JButton btnCanasta;
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
-    private javax.swing.JComboBox<String> cmbNroPartido;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -484,7 +433,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JTable tblPosiciones;
-    private javax.swing.JTextField txtArbitro;
     private javax.swing.JTextField txtPosicion;
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
