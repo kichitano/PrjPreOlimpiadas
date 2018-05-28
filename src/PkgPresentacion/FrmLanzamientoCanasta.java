@@ -6,9 +6,14 @@
 package PkgPresentacion;
 
 import PkgEntidad.ClsCircuitoBasket;
+import PkgEntidad.ClsEquipo;
 import PkgLogico.ClsCircuitoBasketLog;
+import PkgNegocios.ClsMetodosVariados;
 import PkgPresentacion.ModeloTablaCircuitoBasket;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -17,8 +22,20 @@ import javax.swing.JOptionPane;
 public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     PkgLogico.ClsCircuitoBasketLog bsklog;
     PkgEntidad.ClsCircuitoBasket bskent;
+    
+    ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
+    int opt = 1;
+    List<ClsEquipo> equipos;
+    ClsEquipo equipo;
+//    ClsTenisMesa tenisMesa = new ClsTenisMesa();
+//    ClsMetodoEquipo metodoEquipo;
+    
     public FrmLanzamientoCanasta() {
         initComponents();
+        cmbSerie.setEnabled(true);
+      //  BloquearControles();
+        MtdSerie();
+        
         bsklog = new ClsCircuitoBasketLog();
         ListarTabla();
     }
@@ -32,7 +49,16 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         txtPuntaje.setText("");
        
     }
-
+   
+    public void MtdSerie(){
+        try{
+            for(int i = 0; i < metodosVariados.listaSerie().size(); i++){
+                cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
+            }
+        }catch(SQLException e){
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,6 +86,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPosiciones = new javax.swing.JTable();
         txtPosicion = new javax.swing.JTextField();
+        LblCarga1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -84,9 +111,11 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel3.setText("Arbitro:");
 
-        cmbSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmbNroPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSerie.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSerieItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -208,6 +237,9 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         txtPosicion.setText("1ER PUESTO");
         getContentPane().add(txtPosicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 440, 90, -1));
 
+        LblCarga1.setText("jLabel9");
+        getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 410, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -227,6 +259,22 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_btnCanastaActionPerformed
+
+    private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
+       if(cmbSerie.getItemAt(0).equals("Seleccionar opcion")){
+            opt = 1;
+            cmbNroPartido.removeAllItems();
+            cmbNroPartido.addItem("Seleccionar opcion");
+            cmbNroPartido.setEnabled(false);
+        }
+        try {
+            LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+            opt = 2;
+         //   MtdPartido();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbSerieItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -264,6 +312,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LblCarga1;
     private javax.swing.JButton btnCanasta;
     private javax.swing.JComboBox<String> cmbNroPartido;
     private javax.swing.JComboBox<String> cmbSerie;

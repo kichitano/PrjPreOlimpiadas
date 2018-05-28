@@ -6,6 +6,7 @@
 package PkgNegocios;
 
 import PkgEntidad.ClsEquipo;
+import PkgEntidad.ClsSerie;
 import PkgEntidad.ClsUsuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -89,32 +90,22 @@ public class ClsMetodosVariados {
             }
         }        
         return lista;
-    }
-     public void Registrar() throws SQLException{
-         String insertar = "insert into tbCircuitoBasket (idEquipo, puntajeEquipo,posicionEquipo) values (?,?,?)";
-        Connection connection = MtdConexion();
-         try {
-             PreparedStatement pst;
-             pst = connection.prepareCall(insertar);
-             ResultSet rs = pst.executeQuery();
-              while(rs.next()){
-                ClsCircuitoBasket eq = new ClsCircuitoBasket();
-//                eq.setIdEquipo(rs.getInt(1));
-//                eq.setPuntajeEquipo(rs.getInt(2));
-//              
+    }    
+     public List<ClsSerie> listaSerie() throws SQLException{
+        List<ClsSerie> lista = new ArrayList<>();
+        try (Connection connection = MtdConexion()){
+            PreparedStatement pst;
+            String sql = "SELECT * from dbo.tbSerie";
+            pst = connection.prepareCall(sql);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                ClsSerie serie = new ClsSerie();
+                serie.setIdSerie(rs.getInt(1));
+                serie.setDescripcionSerie(rs.getString(2));
+                lista.add(serie);
             }
-//             pst.setString(1, PkgPresentacion.FrmLanzamientoCanasta.lblEquipoParticipante.getText());
-//             pst.setString(2, PkgPresentacion.FrmLanzamientoCanasta.txtPuntaje.getText());
-      //   int registro = pst.executeUpdate();
-//         if(registro > 0){
-//             JOptionPane.showMessageDialog(null, "Puntaje registrado..!","Bien",JOptionPane.QUESTION_MESSAGE);
-//         }else{
-//              JOptionPane.showMessageDialog(null, "Puntaje NO registrado..!","Atención",JOptionPane.ERROR_MESSAGE);
-//         }
-         }catch(Exception e){
-             
-         }
-     }
-     
+        }        
+        return lista;
+    }
    
 }
