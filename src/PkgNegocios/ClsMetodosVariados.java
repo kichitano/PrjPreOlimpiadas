@@ -6,7 +6,6 @@
 package PkgNegocios;
 
 import PkgEntidad.ClsEquipo;
-import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsUsuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +15,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import PkgPresentacion.FrmLanzamientoCanasta.*;
+import java.sql.CallableStatement;
 import javax.swing.JOptionPane;
+import PkgNegocios.ClsConexion;
 /**
  *
  * @author Corei7
@@ -24,6 +25,7 @@ import javax.swing.JOptionPane;
 public class ClsMetodosVariados {
 
     public ClsMetodosVariados() {
+        
     }
         
     public Connection MtdConexion() throws SQLException{
@@ -97,9 +99,9 @@ public class ClsMetodosVariados {
              ResultSet rs = pst.executeQuery();
               while(rs.next()){
                 ClsCircuitoBasket eq = new ClsCircuitoBasket();
-                eq.setIdEquipo(rs.getInt(1));
-                eq.setPuntajeEquipo(rs.getInt(2));
-              
+//                eq.setIdEquipo(rs.getInt(1));
+//                eq.setPuntajeEquipo(rs.getInt(2));
+//              
             }
 //             pst.setString(1, PkgPresentacion.FrmLanzamientoCanasta.lblEquipoParticipante.getText());
 //             pst.setString(2, PkgPresentacion.FrmLanzamientoCanasta.txtPuntaje.getText());
@@ -113,4 +115,6 @@ public class ClsMetodosVariados {
              
          }
      }
+     
+   
 }
