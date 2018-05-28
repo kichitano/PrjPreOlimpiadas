@@ -305,10 +305,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
     private void btnCanastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanastaActionPerformed
       
-      PkgEntidad.ClsCircuitoBasket bskent = new PkgEntidad.ClsCircuitoBasket
-              (Integer.valueOf(lblEquipoParticipante.getText()),
-              Integer.valueOf(txtPuntaje.getText()), 
-              txtPosicion.getText());
+      PkgEntidad.ClsCircuitoBasket bskent = null;
+        try {
+            bskent = new PkgEntidad.ClsCircuitoBasket
+                      (Integer.valueOf(metodosVariados.listaEquipos().get(cmbEquipos.getSelectedIndex()).getIdEquipo()),
+                              Integer.valueOf(txtPuntaje.getText()),
+                              txtPosicion.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         boolean resp = bsklog.AgregarCircuitoBasket(bskent);
         if (resp == false) {
             JOptionPane.showMessageDialog(null, "Dato Agregdo");
