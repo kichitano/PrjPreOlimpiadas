@@ -13,12 +13,15 @@ import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
 import PkgNegocios.ClsTenisMesa;
 import PkgPresentacion.ModeloTablaCircuitoBasket;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 /**
  *
  * @author Vera
@@ -36,13 +39,47 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     
     public FrmLanzamientoCanasta() {
         initComponents();
+        setLocationRelativeTo(null);
+        t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
-      //  BloquearControles();
+        DeshabilitarControles();
         MtdSerie();
         
         bsklog = new ClsCircuitoBasketLog();
         ListarTabla();
     }
+    /* ------------- CRONOMETRO ----------------------------------------------------------*/
+    private Timer t;
+    private int h, m, s, cs;
+    private ActionListener acciones = new ActionListener(){
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            ++cs; 
+            if(cs==100){
+                cs = 0;
+                ++s;
+            }
+            if(s==60) 
+            {
+                s = 0;
+                ++m;
+            }
+            if(m==60)
+            {
+                m = 0;
+                ++h;
+            }
+            actualizarLabel();
+        }
+        
+    };
+    
+    private void actualizarLabel() {
+        String tiempo = (h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
+        etiquetaTiempo.setText(tiempo);
+    }
+    /*-------------------------------------------------------------------------------------------------*/
    private void ListarTabla() {
         List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
         tblPosiciones.setModel(new ModeloTablaCircuitoBasket(listas));
@@ -52,6 +89,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     public void Limpiar() {
         txtPuntaje.setText("");
        
+    }
+    public void DeshabilitarControles(){
+        txtPosicion.setVisible(false);
+        lblEquipoParticipante.setVisible(false);
+        LblCarga1.setVisible(false);
+        LblCarga2.setVisible(false);
     }
    
     public void MtdSerie(){
@@ -95,7 +138,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         cmbSerie = new javax.swing.JComboBox<>();
         cmbNroPartido = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        etiquetaTiempo = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnCanasta = new javax.swing.JButton();
@@ -105,10 +148,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         txtPuntaje = new javax.swing.JTextField();
         lblEquipoParticipante = new javax.swing.JLabel();
         cmbEquipos = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPosiciones = new javax.swing.JTable();
         txtPosicion = new javax.swing.JTextField();
+        btnPausar = new javax.swing.JButton();
+        btnIniciar = new javax.swing.JButton();
+        btnDetener = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         LblCarga2 = new javax.swing.JLabel();
 
@@ -206,11 +252,11 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/temporizador.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
-        jLabel6.setText("02:00");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
+        etiquetaTiempo.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        etiquetaTiempo.setText("00:00:00:00");
+        getContentPane().add(etiquetaTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, 70));
@@ -228,7 +274,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jLabel7.setText("Equipos Participantes");
+        jLabel7.setText("Equipo Participante");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
@@ -250,9 +296,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         });
         getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 160, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 410));
-
         tblPosiciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -270,6 +313,33 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         txtPosicion.setText("1ER PUESTO");
         getContentPane().add(txtPosicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 440, 90, -1));
+
+        btnPausar.setText("Pausar");
+        btnPausar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPausarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPausar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, -1, -1));
+
+        btnIniciar.setText("Iniciar");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+
+        btnDetener.setText("Detener");
+        btnDetener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetenerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 410));
 
         LblCarga1.setText("jLabel9");
         getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
@@ -325,6 +395,33 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbEquiposItemStateChanged
 
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        t.start();
+        btnIniciar.setEnabled(false);
+        btnIniciar.setText("Reanudar");
+        btnPausar.setEnabled(true);
+        btnDetener.setEnabled(true);
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausarActionPerformed
+        t.stop();
+        btnIniciar.setEnabled(true);
+        btnPausar.setEnabled(false);
+    }//GEN-LAST:event_btnPausarActionPerformed
+
+    private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
+        if(t.isRunning()) 
+        {
+            t.stop();
+            btnIniciar.setEnabled(true);
+        }
+        btnIniciar.setText("Iniciar");
+        btnPausar.setEnabled(false);
+        btnDetener.setEnabled(false);
+        h=0; m=0; s=0; cs=0;
+        actualizarLabel();
+    }//GEN-LAST:event_btnDetenerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -364,9 +461,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel LblCarga1;
     private javax.swing.JLabel LblCarga2;
     private javax.swing.JButton btnCanasta;
+    private javax.swing.JButton btnDetener;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbNroPartido;
     private javax.swing.JComboBox<String> cmbSerie;
+    private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel19;
@@ -376,7 +477,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
