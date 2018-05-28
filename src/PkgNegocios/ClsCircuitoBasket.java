@@ -7,8 +7,10 @@ package PkgNegocios;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -16,9 +18,10 @@ import java.util.List;
  */
 public class ClsCircuitoBasket {
     ClsConexion conexion = new ClsConexion();
+    Connection con = null;
     
     public boolean AgregarCircuitoBasket(PkgEntidad.ClsCircuitoBasket bsk) {
-        Connection con = null;
+        
         CallableStatement cstm = null;
         boolean resp = true;
        
@@ -40,7 +43,7 @@ public class ClsCircuitoBasket {
     }
     
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
-        Connection con = null;
+       
         CallableStatement cstm = null;
         ResultSet rs = null;
         List<PkgEntidad.ClsCircuitoBasket> lista = null;
@@ -63,5 +66,22 @@ public class ClsCircuitoBasket {
             conexion.Cerrar2(cstm, rs);
         }
         return lista;
+    }
+    public DefaultComboBoxModel getValues(int idSerie){
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        try{
+             con = conexion.getConecion();
+             String sql = "select detalleEquipo from tbEquipo where idSerie ='"+idSerie+"'";
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             while(rs.next()){
+                 modelo.addElement(rs.getString(1));
+             }
+             con.close();
+             rs.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return modelo;
     }
 }

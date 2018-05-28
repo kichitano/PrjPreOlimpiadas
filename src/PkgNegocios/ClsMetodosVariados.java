@@ -15,14 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import PkgPresentacion.FrmLanzamientoCanasta.*;
-import java.sql.CallableStatement;
-import javax.swing.JOptionPane;
-import PkgNegocios.ClsConexion;
-/**
- *
- * @author Corei7
- */
+
+
 public class ClsMetodosVariados {
 
     public ClsMetodosVariados() {

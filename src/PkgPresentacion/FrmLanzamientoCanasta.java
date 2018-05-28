@@ -7,10 +7,14 @@ package PkgPresentacion;
 
 import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsEquipo;
+import PkgEntidad.ClsPartidoTenisMesa;
 import PkgLogico.ClsCircuitoBasketLog;
+import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
+import PkgNegocios.ClsTenisMesa;
 import PkgPresentacion.ModeloTablaCircuitoBasket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +31,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     int opt = 1;
     List<ClsEquipo> equipos;
     ClsEquipo equipo;
-//    ClsTenisMesa tenisMesa = new ClsTenisMesa();
-//    ClsMetodoEquipo metodoEquipo;
+    ClsTenisMesa tenisMesa = new ClsTenisMesa();
+    ClsMetodosEquipo metodoEquipo;
     
     public FrmLanzamientoCanasta() {
         initComponents();
@@ -59,6 +63,24 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    public void MtdPartido(){
+        cmbNroPartido.removeAllItems();
+        cmbNroPartido.addItem("Seleccionar opcion");
+        try{
+            for(int i = 0; i < tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).size(); i++){
+                cmbNroPartido.addItem(String.valueOf(tenisMesa.listaPartidos(Integer.parseInt(LblCarga1.getText())).get(i).getIdPartidoTenisMesa()));
+            }
+            cmbNroPartido.setEnabled(true);
+        }catch(NumberFormatException | SQLException e){ }        
+    }
+    
+    public void MtdEquipos() throws SQLException{
+        equipos = new ArrayList<>();
+        ClsPartidoTenisMesa ptenismesa = new ClsPartidoTenisMesa();
+        ptenismesa = tenisMesa.partidoTenisMesa(Integer.parseInt(LblCarga2.getText()));
+        metodoEquipo = new ClsMetodosEquipo();
+        equipos.add(metodoEquipo.Equipo(ptenismesa.getIdEquipoLocal()));
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,11 +104,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         txtPuntaje = new javax.swing.JTextField();
         lblEquipoParticipante = new javax.swing.JLabel();
+        cmbEquipos = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPosiciones = new javax.swing.JTable();
         txtPosicion = new javax.swing.JTextField();
         LblCarga1 = new javax.swing.JLabel();
+        LblCarga2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,11 +135,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jLabel3.setText("Arbitro:");
 
+        cmbSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opción" }));
         cmbSerie.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbSerieItemStateChanged(evt);
             }
         });
+
+        cmbNroPartido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar opción" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -131,7 +158,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtArbitro)
                     .addComponent(cmbSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbNroPartido, 0, 91, Short.MAX_VALUE))
+                    .addComponent(cmbNroPartido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44))
         );
         jPanel3Layout.setVerticalGroup(
@@ -159,8 +186,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 417, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 383, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -201,8 +228,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jLabel7.setText("Participantes");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
+        jLabel7.setText("Equipos Participantes");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, 70));
@@ -214,7 +241,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
         lblEquipoParticipante.setText("3");
-        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 40, 20));
+        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 40, 20));
+
+        cmbEquipos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbEquiposItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 160, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 410));
@@ -238,7 +272,10 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(txtPosicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 440, 90, -1));
 
         LblCarga1.setText("jLabel9");
-        getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 410, -1, -1));
+        getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
+
+        LblCarga2.setText("jLabel9");
+        getContentPane().add(LblCarga2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 410, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,12 +306,24 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         }
         try {
             LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+            /*Metodo para cargar combo de equipos*/
+            PkgNegocios.ClsCircuitoBasket bsk = new PkgNegocios.ClsCircuitoBasket();
+            cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
+            /* ----------------------------------- */
             opt = 2;
-         //   MtdPartido();
+            MtdPartido();
         } catch (SQLException ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbSerieItemStateChanged
+
+    private void cmbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEquiposItemStateChanged
+        try {
+            lblEquipoParticipante.setText(String.valueOf(metodosVariados.listaEquipos().get(cmbEquipos.getSelectedIndex()).getIdEquipo()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbEquiposItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -313,7 +362,9 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
+    private javax.swing.JLabel LblCarga2;
     private javax.swing.JButton btnCanasta;
+    private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbNroPartido;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel jLabel1;
