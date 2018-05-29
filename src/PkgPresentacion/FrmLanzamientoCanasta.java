@@ -9,19 +9,23 @@ import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsEquipo;
 import PkgEntidad.ClsPartidoTenisMesa;
 import PkgLogico.ClsCircuitoBasketLog;
+import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
 import PkgNegocios.ClsTenisMesa;
 import PkgPresentacion.ModeloTablaCircuitoBasket;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Vera
@@ -42,9 +46,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
-      //  DeshabilitarControles();
-        MtdSerie();
-        
+        DeshabilitarControles();
+        MtdSerie(); 
         bsklog = new ClsCircuitoBasketLog();
         ListarTabla();
     }
@@ -82,16 +85,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     /*-------------------------------------------------------------------------------------------------*/
    private void ListarTabla() {
         List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
-        tblPosiciones.setModel(new ModeloTablaCircuitoBasket(listas));
+        tblPosiciones.setModel(new ModeloTablaCircuitoBasket(listas)); //Lista posicion
         tblPosiciones.getRowSorter();
     }
-
+   
     public void Limpiar() {
         txtPuntaje.setText("");
        
     }
     public void DeshabilitarControles(){
-        txtPosicion.setVisible(false);
         lblEquipoParticipante.setVisible(false);
         LblCarga1.setVisible(false);
     }
@@ -105,7 +107,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,7 +130,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         cmbEquipos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPosiciones = new javax.swing.JTable();
-        txtPosicion = new javax.swing.JTextField();
         btnPausar = new javax.swing.JButton();
         btnIniciar = new javax.swing.JButton();
         btnDetener = new javax.swing.JButton();
@@ -267,9 +267,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 350, 240));
 
-        txtPosicion.setText("1ER PUESTO");
-        getContentPane().add(txtPosicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 440, 90, -1));
-
         btnPausar.setText("Pausar");
         btnPausar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,21 +301,47 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCanastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanastaActionPerformed
-      
-      PkgEntidad.ClsCircuitoBasket bskent = null;
+        ClsConexion conexion = new ClsConexion();
+        Connection con = conexion.getConecion();    
+        PkgEntidad.ClsCircuitoBasket bskent = null;
+        int id;String posicion;
         try {
             bskent = new PkgEntidad.ClsCircuitoBasket
                       (Integer.valueOf(metodosVariados.listaEquipos().get(cmbEquipos.getSelectedIndex()).getIdEquipo()),
-                              Integer.valueOf(txtPuntaje.getText()),
-                              txtPosicion.getText());
+                              Integer.valueOf(txtPuntaje.getText())
+                              );
         } catch (SQLException ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean resp = bsklog.AgregarCircuitoBasket(bskent);
+        boolean resp = bsklog.AgregarCircuitoBasket(bskent,con);
         if (resp == false) {
             JOptionPane.showMessageDialog(null, "Dato Agregdo");
             ListarTabla();
+            
+//            //Obtener el idInsertado
+//            id = Integer.parseInt(lblEquipoParticipante.getText());
+//            System.out.println("idEquipo:" +id) ;
+//            //Obtener Posicion
+//            posicion = ObtenerPosicionEquipo(id);
+//            System.out.println("Posicion:" +posicion) ;
+//            
+        
+            List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            bsklog.BorrarDatosBasket();
+            for(PkgEntidad.ClsCircuitoBasket cb : listas)
+            {
+                bsklog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    );
+            }
+            
             Limpiar();
+            
         } else {
             JOptionPane.showMessageDialog(null, "Dato no Agregdo");
         }
@@ -438,7 +461,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JTable tblPosiciones;
-    private javax.swing.JTextField txtPosicion;
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 }

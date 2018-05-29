@@ -17,10 +17,10 @@ public class ClsCircuitoBasket {
     public ClsCircuitoBasket() {
     }
 
-    public ClsCircuitoBasket(int idEquipo, int puntajeEquipo, String posicionEquipo) {
+    public ClsCircuitoBasket(int idEquipo, int puntajeEquipo) {
         this.idEquipo = idEquipo;
         this.puntajeEquipo = puntajeEquipo;
-        this.posicionEquipo = posicionEquipo;
+        
     }
     public int getIdEquipo() {
         return idEquipo;

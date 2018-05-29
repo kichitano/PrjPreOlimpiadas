@@ -6,10 +6,14 @@
 package PkgNegocios;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -20,30 +24,66 @@ public class ClsCircuitoBasket {
     ClsConexion conexion = new ClsConexion();
     Connection con = null;
     
-    public boolean AgregarCircuitoBasket(PkgEntidad.ClsCircuitoBasket bsk) {
+    public boolean AgregarCircuitoBasket(PkgEntidad.ClsCircuitoBasket bsk, Connection _Con) {
         
         CallableStatement cstm = null;
         boolean resp = true;
        
         try {
-             con = conexion.getConecion();
-            con.setAutoCommit(false);
-            cstm = con.prepareCall("insert into tbCircuitoBasket (idEquipo, puntajeEquipo, posicionEquipo) values (?,?,?);");
+            //con = conexion.getConecion();
+            _Con.setAutoCommit(false);
+            cstm = _Con.prepareCall("insert into tbCircuitoBasket (idEquipo, puntajeEquipo) values (?,?);");
             cstm.setInt(1, bsk.getIdEquipo());
             cstm.setInt(2, bsk.getPuntajeEquipo());
-            cstm.setString(3, bsk.getPosicionEquipo());
             resp = cstm.execute();
-            con.commit();
+            _Con.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            conexion.Cerrar1(con, cstm);
+            //conexion.Cerrar1(con, cstm);
         }
         return resp;
     }
     
+    public int BorrarDatosBasket()
+    {
+        con = conexion.getConecion();
+        int id = 0;        
+        PreparedStatement pst = null;
+        String sqlQuery = "delete tbCircuitoBasket"; 
+        try 
+        {
+            pst = con.prepareStatement(sqlQuery); 
+            pst.executeUpdate();
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(ClsCircuitoBasket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    public void InsertarPosicion(int _IdEquipo, int _PuntajeEquipo ,String _PosicionEquipo)
+    {
+        con = conexion.getConecion();
+        PreparedStatement pst = null;
+        String sqlQuery = "insert into tbCircuitoBasket values (?,?,?)";
+        try
+        {
+            pst = con.prepareStatement(sqlQuery);
+            pst.setInt(1, _IdEquipo);
+            pst.setInt(2, _PuntajeEquipo);
+            pst.setString(3, _PosicionEquipo);
+            pst.executeUpdate();
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+    
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
-       
+        int cont=1;
         CallableStatement cstm = null;
         ResultSet rs = null;
         List<PkgEntidad.ClsCircuitoBasket> lista = null;
@@ -57,8 +97,9 @@ public class ClsCircuitoBasket {
                 bsk = new PkgEntidad.ClsCircuitoBasket();
                 bsk.setIdEquipo(rs.getInt("idEquipo"));
                 bsk.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
-                bsk.setPosicionEquipo(rs.getString("posicionEquipo"));
+                bsk.setPosicionEquipo(cont+" puesto");
                 lista.add(bsk);
+                cont++;
             }
         } catch (Exception e) {
             e.printStackTrace();
