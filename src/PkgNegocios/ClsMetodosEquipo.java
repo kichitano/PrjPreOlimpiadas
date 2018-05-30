@@ -23,7 +23,7 @@ public class ClsMetodosEquipo {
     
     public ClsMetodosEquipo() {
     }
-    
+    /*
     public ClsEquipo Equipo(int idEquipo) throws SQLException{
         ClsEquipo equipo = new ClsEquipo();
         if(idEquipo != 0){
@@ -44,6 +44,6 @@ public class ClsMetodosEquipo {
         }
         return equipo;
     }
-    
+    */
     
 }

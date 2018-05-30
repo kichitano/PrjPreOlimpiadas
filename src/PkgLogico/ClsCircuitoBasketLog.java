@@ -5,8 +5,10 @@
  */
 package PkgLogico;
 
+import PkgEntidad.ClsEquipo;
 import PkgNegocios.ClsCircuitoBasket;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class ClsCircuitoBasketLog {
 
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
       return bsk.listado();
+    }
+    public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
+        return bsk.listaEquipos(_idSerie);
     }
     
     public int BorrarDatosBasket() {

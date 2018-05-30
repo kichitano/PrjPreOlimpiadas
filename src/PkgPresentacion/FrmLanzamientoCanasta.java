@@ -7,13 +7,10 @@ package PkgPresentacion;
 
 import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsEquipo;
-import PkgEntidad.ClsPartidoTenisMesa;
 import PkgLogico.ClsCircuitoBasketLog;
 import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
-import PkgNegocios.ClsTenisMesa;
-import PkgPresentacion.ModeloTablaCircuitoBasket;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -22,10 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Vera
@@ -38,8 +34,10 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     int opt = 1;
     List<ClsEquipo> equipos;
     ClsEquipo equipo;
-    ClsTenisMesa tenisMesa = new ClsTenisMesa();
-    ClsMetodosEquipo metodoEquipo;
+    ClsCircuitoBasketLog circuitoBasketLog = new ClsCircuitoBasketLog();
+    ClsMetodosEquipo metodoEquipo;    
+    ArrayList<Integer> arrayIdEquipos = new ArrayList();
+    
     
     public FrmLanzamientoCanasta() {
         initComponents();
@@ -265,7 +263,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblPosiciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 350, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 350, 230));
 
         btnPausar.setText("Pausar");
         btnPausar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,10 +305,10 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         int id;String posicion;
         try {
             bskent = new PkgEntidad.ClsCircuitoBasket
-                      (Integer.valueOf(metodosVariados.listaEquipos().get(cmbEquipos.getSelectedIndex()).getIdEquipo()),
+                      (Integer.valueOf(arrayIdEquipos.get(cmbEquipos.getSelectedIndex())),
                               Integer.valueOf(txtPuntaje.getText())
                               );
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
         boolean resp = bsklog.AgregarCircuitoBasket(bskent,con);
@@ -337,11 +335,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                         cb.getIdEquipo(),
                         cb.getPuntajeEquipo(),
                         cb.getPosicionEquipo()
-                    );
+                    ); 
             }
             
             Limpiar();
-            
+            try {
+                MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Dato no Agregdo");
         }
@@ -357,9 +359,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         }
         try {
             LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+ 
             /*Metodo para cargar combo de equipos*/
             PkgNegocios.ClsCircuitoBasket bsk = new PkgNegocios.ClsCircuitoBasket();
-            cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
+            MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
+            
+            //cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
+           
             /* ----------------------------------- */
             opt = 2;
           
@@ -370,8 +376,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
     private void cmbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEquiposItemStateChanged
         try {
-            lblEquipoParticipante.setText(String.valueOf(metodosVariados.listaEquipos().get(cmbEquipos.getSelectedIndex()).getIdEquipo()));
-        } catch (SQLException ex) {
+            
+            //valida combo vacio
+            if(cmbEquipos.getSelectedIndex() != -1)
+            {
+                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
+                lblEquipoParticipante.setText(String.valueOf(idEquipo));
+            }
+            
+        } catch (Exception ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbEquiposItemStateChanged
@@ -463,4 +476,44 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JTable tblPosiciones;
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
+
+    private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
+        List<ClsEquipo> listaEquipo = circuitoBasketLog.listaEquipos(_idSerie);
+        cmbEquipos.removeAllItems();
+        arrayIdEquipos.clear();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+        boolean carga = true;
+        
+        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+        List<ClsCircuitoBasket> listaPuntaje = bsklog.listado();
+        for(ClsEquipo e : listaEquipo) //recorre equipos completo
+        {
+            for(ClsCircuitoBasket cb : listaPuntaje) //recorre equipos con puntaje
+            {
+                if(e.getIdEquipo() == cb.getIdEquipo()) //2 != 4 // 2 = 2
+                {                    
+                    carga = false;                    
+                }          
+            } 
+            if(carga)
+            {
+                dcmEquipos.addElement(e.getDetalleEquipo());
+                arrayIdEquipos.add(e.getIdEquipo());
+            }
+            carga = true;
+        }
+            
+        cmbEquipos.setModel(dcmEquipos);
+        
+//        for(int i = 0; i < lista.size(); i++){
+//            cmbEquipos.addItem(lista.get(i).getDetalleEquipo());
+//            /*
+//            try{
+//                if(!(lista.get(i).getIdEquipo() == Integer.parseInt(tblPosiciones.getValueAt(i, 0).toString()))){
+//                    cmbEquipos.addItem(lista.get(i).getDetalleEquipo());
+//                }
+//            }catch(Exception e){}
+//            */
+//        }
+    }
 }
