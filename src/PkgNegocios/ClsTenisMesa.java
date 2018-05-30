@@ -47,17 +47,12 @@ public class ClsTenisMesa {
         if(idSerie != 0){
             try (Connection connection = metodosVariados.MtdConexion()){
                 PreparedStatement pst;
-                String sql = "select ptmesa.idPartidoTenisMesa, \n" +
-"		ptmesa.idApoderado,\n" +
-"		ptmesa.idEquipoLocal,\n" +
-"		ptmesa.idEquipoVisitante,\n" +
-"		ptmesa.ronda, \n" +
-"		ptmesa.estadoPartido,\n" +
-"		ser.descripcionSerie \n" +
-"                    from tbPartidoTenisMesa ptmesa \n" +
-"                    inner join tbEquipo eq on ptmesa.idEquipoLocal = eq.idEquipo\n" +
-"                    inner join tbSerie ser on eq.idSerie = ser.idSerie\n" +
-"                    where ser.idSerie = ? AND ptmesa.estadoPartido = P";
+                String sql = "select ptmesa.*\n" +
+"        from tbPartidoTenisMesa ptmesa \n" +
+"        inner join tbEquipo eq on ptmesa.idEquipoLocal = eq.idEquipo\n" +
+"		inner join tbAnio an on eq.idAnio = an.idAnio\n" +
+"        inner join tbSerie ser on an.idSerie = ser.idSerie\n" +
+"        where an.idSerie = ? AND ptmesa.estadoPartido = 'P'";
                 pst = connection.prepareCall(sql);
                 pst.setInt(1, idSerie);
                 ResultSet rs = pst.executeQuery();

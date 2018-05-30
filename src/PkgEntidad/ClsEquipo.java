@@ -11,10 +11,10 @@ package PkgEntidad;
  */
 public class ClsEquipo {
     int idEquipo;
-    int nroEquipo;
     String nombreEquipo;
     String detalleEquipo;
     char estadoEquipo;
+    int idAnio;
 
     public String getDetalleEquipo() {
         return detalleEquipo;
@@ -30,14 +30,6 @@ public class ClsEquipo {
 
     public void setIdEquipo(int idEquipo) {
         this.idEquipo = idEquipo;
-    }
-
-    public int getNroEquipo() {
-        return nroEquipo;
-    }
-
-    public void setNroEquipo(int nroEquipo) {
-        this.nroEquipo = nroEquipo;
     }
 
     public String getNombreEquipo() {
@@ -56,5 +48,11 @@ public class ClsEquipo {
         this.estadoEquipo = estadoEquipo;
     }
 
-   
+    public int getIdAnio() {
+        return idAnio;
+    }
+
+    public void setIdAnio(int idAnio) {
+        this.idAnio = idAnio;
+    }
 }
