@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +38,10 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     ClsCircuitoBasketLog circuitoBasketLog = new ClsCircuitoBasketLog();
     ClsMetodosEquipo metodoEquipo;    
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
-    
+    ArrayList<String> arrayDetalleEquipos = new ArrayList();
+   // ArrayList<Integer> arrayPuntajes = new ArrayList<Integer>();
+    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
+   
     
     public FrmLanzamientoCanasta() {
         initComponents();
@@ -133,6 +137,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnDetener = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
+        btnEmpate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,6 +300,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         LblCarga1.setText("jLabel9");
         getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
 
+        btnEmpate.setText("Empate");
+        btnEmpate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -416,6 +429,18 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         actualizarLabel();
     }//GEN-LAST:event_btnDetenerActionPerformed
 
+    private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
+       
+        try {
+            //1. Verificar que idEquipos tienen el mismo puntaje
+            MtdVerificarPuntajesIguales();
+            //2. Se va a realizar el update del puntaje, de cada idEquipo 
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_btnEmpateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -455,6 +480,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel LblCarga1;
     private javax.swing.JButton btnCanasta;
     private javax.swing.JButton btnDetener;
+    private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
@@ -476,6 +502,43 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JTable tblPosiciones;
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
+
+    private void MtdUpdatePuntaje(){
+        
+    }
+
+     private void MtdVerificarPuntajesIguales() throws SQLException {
+      
+        cmbEquipos.removeAllItems();
+        arrayDetalleEquipos.clear();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+        boolean carga = true;
+        
+        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+        List<ClsCircuitoBasket> listaPuntaje = bsklog.listado();
+
+            for(ClsCircuitoBasket e : listaPuntaje) //recorre equipos con puntaje
+            {
+              for (int i = 0; i < tblPosiciones.getRowCount(); i++) {
+               // almaceno los Id y puntajes de los Equipos en un arrayList
+               int[] idEqyPunt = {(Integer) tblPosiciones.getModel().getValueAt(i, 0),  
+                   (Integer) tblPosiciones.getModel().getValueAt(i, 1)};
+                arrayPuntajes.add(idEqyPunt);      
+              }
+              
+              Iterator<int[]> arrayIterator = arrayPuntajes.iterator();
+               while(arrayIterator.hasNext())
+               {
+                  int[] elemento = arrayIterator.next();
+                  
+ //                dcmEquipos.addElement(e.getDetalleEquipo());
+//                arrayDetalleEquipos.add(e.getIdEquipo());
+////              cmbEquipos.setModel(dcmEquipos);  
+               }          
+            }
+
+        
+    }
 
     private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
         List<ClsEquipo> listaEquipo = circuitoBasketLog.listaEquipos(_idSerie);
@@ -501,19 +564,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 arrayIdEquipos.add(e.getIdEquipo());
             }
             carga = true;
-        }
-            
-        cmbEquipos.setModel(dcmEquipos);
-        
-//        for(int i = 0; i < lista.size(); i++){
-//            cmbEquipos.addItem(lista.get(i).getDetalleEquipo());
-//            /*
-//            try{
-//                if(!(lista.get(i).getIdEquipo() == Integer.parseInt(tblPosiciones.getValueAt(i, 0).toString()))){
-//                    cmbEquipos.addItem(lista.get(i).getDetalleEquipo());
-//                }
-//            }catch(Exception e){}
-//            */
-//        }
+        }    
+        cmbEquipos.setModel(dcmEquipos);  
     }
 }
