@@ -55,8 +55,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         cmbSerie.setEnabled(true);
       //  DeshabilitarControles();
         MtdSerie(); 
-        bsklog = new ClsCircuitoBasketLog();
-       ListarTabla();
+        ListarTabla();
     }
     // Color jtable
      public void setCellRender(JTable table) {
@@ -111,7 +110,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(200);
         
         
-        // tamaño por igual a una tabla
+        // tamaño general a una tabla
 //        for (int i = 0; i < columnModel.getColumnCount(); i++) {
 //        columnModel.getColumn(i).setPreferredWidth(200);
 //        }
@@ -247,8 +246,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, 70));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/jugador-de-baloncesto-anotando.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/jugador-de-baloncesto-anotando-edit.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 70, -1));
 
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
         btnCanasta.addActionListener(new java.awt.event.ActionListener() {

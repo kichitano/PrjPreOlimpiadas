@@ -23,22 +23,22 @@ public class FrmHome extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jpRPelotas = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jpMinifutbol = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jpTenis = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        jpCubilete = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        jpLanzCanasta = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        jpSapito = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -100,13 +100,16 @@ public class FrmHome extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 240));
 
-        jPanel3.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpRPelotas.setBackground(java.awt.SystemColor.controlHighlight);
+        jpRPelotas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel3MouseEntered(evt);
+                jpRPelotasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel3MouseExited(evt);
+                jpRPelotasMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpRPelotasMousePressed(evt);
             }
         });
 
@@ -114,22 +117,22 @@ public class FrmHome extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(45, 118, 232));
         jLabel2.setText("R. de Pelotas");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/mano-de-jugador-de-futbol-americano-que-sostiene-la-pelota.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/lanzamientoPelota.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpRPelotasLayout = new javax.swing.GroupLayout(jpRPelotas);
+        jpRPelotas.setLayout(jpRPelotasLayout);
+        jpRPelotasLayout.setHorizontalGroup(
+            jpRPelotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpRPelotasLayout.createSequentialGroup()
                 .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpRPelotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel8))
                 .addGap(21, 21, 21))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpRPelotasLayout.setVerticalGroup(
+            jpRPelotasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpRPelotasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -137,18 +140,18 @@ public class FrmHome extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, 140, 120));
+        jPanel1.add(jpRPelotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, 140, 120));
 
-        jPanel4.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpMinifutbol.setBackground(java.awt.SystemColor.controlHighlight);
+        jpMinifutbol.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel4MouseEntered(evt);
+                jpMinifutbolMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel4MouseExited(evt);
+                jpMinifutbolMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel4MousePressed(evt);
+                jpMinifutbolMousePressed(evt);
             }
         });
 
@@ -158,20 +161,20 @@ public class FrmHome extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/futbol.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpMinifutbolLayout = new javax.swing.GroupLayout(jpMinifutbol);
+        jpMinifutbol.setLayout(jpMinifutbolLayout);
+        jpMinifutbolLayout.setHorizontalGroup(
+            jpMinifutbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMinifutbolLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpMinifutbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jpMinifutbolLayout.setVerticalGroup(
+            jpMinifutbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpMinifutbolLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -179,18 +182,18 @@ public class FrmHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 140, 120));
+        jPanel1.add(jpMinifutbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 140, 120));
 
-        jPanel5.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpTenis.setBackground(java.awt.SystemColor.controlHighlight);
+        jpTenis.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel5MouseEntered(evt);
+                jpTenisMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel5MouseExited(evt);
+                jpTenisMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel5MousePressed(evt);
+                jpTenisMousePressed(evt);
             }
         });
 
@@ -200,22 +203,22 @@ public class FrmHome extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/tenis-de-mesa.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpTenisLayout = new javax.swing.GroupLayout(jpTenis);
+        jpTenis.setLayout(jpTenisLayout);
+        jpTenisLayout.setHorizontalGroup(
+            jpTenisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTenisLayout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpTenisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(jpTenisLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel1)))
                 .addGap(26, 26, 26))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jpTenisLayout.setVerticalGroup(
+            jpTenisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTenisLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,18 +226,18 @@ public class FrmHome extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 120));
+        jPanel1.add(jpTenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 120));
 
-        jPanel6.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpCubilete.setBackground(java.awt.SystemColor.controlHighlight);
+        jpCubilete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel6MouseEntered(evt);
+                jpCubileteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel6MouseExited(evt);
+                jpCubileteMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel6MousePressed(evt);
+                jpCubileteMousePressed(evt);
             }
         });
 
@@ -244,20 +247,20 @@ public class FrmHome extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/dados.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpCubileteLayout = new javax.swing.GroupLayout(jpCubilete);
+        jpCubilete.setLayout(jpCubileteLayout);
+        jpCubileteLayout.setHorizontalGroup(
+            jpCubileteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCubileteLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jpCubileteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        jpCubileteLayout.setVerticalGroup(
+            jpCubileteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCubileteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,15 +268,18 @@ public class FrmHome extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 140, 120));
+        jPanel1.add(jpCubilete, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 140, 120));
 
-        jPanel7.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpLanzCanasta.setBackground(java.awt.SystemColor.controlHighlight);
+        jpLanzCanasta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel7MouseEntered(evt);
+                jpLanzCanastaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel7MouseExited(evt);
+                jpLanzCanastaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpLanzCanastaMousePressed(evt);
             }
         });
 
@@ -283,23 +289,23 @@ public class FrmHome extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/canasta-de-baloncesto.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpLanzCanastaLayout = new javax.swing.GroupLayout(jpLanzCanasta);
+        jpLanzCanasta.setLayout(jpLanzCanastaLayout);
+        jpLanzCanastaLayout.setHorizontalGroup(
+            jpLanzCanastaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpLanzCanastaLayout.createSequentialGroup()
                 .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGroup(jpLanzCanastaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLanzCanastaLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpLanzCanastaLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(36, 36, 36))))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        jpLanzCanastaLayout.setVerticalGroup(
+            jpLanzCanastaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpLanzCanastaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -307,18 +313,18 @@ public class FrmHome extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 120));
+        jPanel1.add(jpLanzCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 120));
 
-        jPanel8.setBackground(java.awt.SystemColor.controlHighlight);
-        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpSapito.setBackground(java.awt.SystemColor.controlHighlight);
+        jpSapito.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel8MouseEntered(evt);
+                jpSapitoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel8MouseExited(evt);
+                jpSapitoMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel8MousePressed(evt);
+                jpSapitoMousePressed(evt);
             }
         });
 
@@ -328,22 +334,22 @@ public class FrmHome extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/sapito.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpSapitoLayout = new javax.swing.GroupLayout(jpSapito);
+        jpSapito.setLayout(jpSapitoLayout);
+        jpSapitoLayout.setHorizontalGroup(
+            jpSapitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpSapitoLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSapitoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(52, 52, 52))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+        jpSapitoLayout.setVerticalGroup(
+            jpSapitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSapitoLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,7 +357,7 @@ public class FrmHome extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 140, 120));
+        jPanel1.add(jpSapito, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 140, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -372,15 +378,15 @@ public class FrmHome extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMousePressed
 
-    private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
+    private void jpMinifutbolMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMinifutbolMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel4);
-    }//GEN-LAST:event_jPanel4MouseEntered
+        setColor(jpMinifutbol);
+    }//GEN-LAST:event_jpMinifutbolMouseEntered
 
-    private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
+    private void jpMinifutbolMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMinifutbolMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel4);
-    }//GEN-LAST:event_jPanel4MouseExited
+        resetColor(jpMinifutbol);
+    }//GEN-LAST:event_jpMinifutbolMouseExited
      
     
     
@@ -399,87 +405,82 @@ public class FrmHome extends javax.swing.JFrame {
         this.setLocation(x - xx, y - xy);  
     }//GEN-LAST:event_jPanel2MouseDragged
 
-    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
+    private void jpTenisMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTenisMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel5);
-    }//GEN-LAST:event_jPanel5MouseEntered
+        setColor(jpTenis);
+    }//GEN-LAST:event_jpTenisMouseEntered
 
-    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
+    private void jpTenisMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTenisMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel5);
-    }//GEN-LAST:event_jPanel5MouseExited
+        resetColor(jpTenis);
+    }//GEN-LAST:event_jpTenisMouseExited
 
-    private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
+    private void jpCubileteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCubileteMouseEntered
         // TODO add your handling code here
-        setColor(jPanel6);
-    }//GEN-LAST:event_jPanel6MouseEntered
+        setColor(jpCubilete);
+    }//GEN-LAST:event_jpCubileteMouseEntered
 
-    private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
+    private void jpCubileteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCubileteMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel6);
-    }//GEN-LAST:event_jPanel6MouseExited
+        resetColor(jpCubilete);
+    }//GEN-LAST:event_jpCubileteMouseExited
 
-    private void jPanel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseEntered
+    private void jpLanzCanastaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLanzCanastaMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel7);
-    }//GEN-LAST:event_jPanel7MouseEntered
+        setColor(jpLanzCanasta);
+    }//GEN-LAST:event_jpLanzCanastaMouseEntered
 
-    private void jPanel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseExited
+    private void jpLanzCanastaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLanzCanastaMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel7);
+        resetColor(jpLanzCanasta);
         
-    }//GEN-LAST:event_jPanel7MouseExited
+    }//GEN-LAST:event_jpLanzCanastaMouseExited
 
-    private void jPanel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseEntered
+    private void jpSapitoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSapitoMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel8);
-    }//GEN-LAST:event_jPanel8MouseEntered
+        setColor(jpSapito);
+    }//GEN-LAST:event_jpSapitoMouseEntered
 
-    private void jPanel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseExited
+    private void jpSapitoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSapitoMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel8);
-    }//GEN-LAST:event_jPanel8MouseExited
+        resetColor(jpSapito);
+    }//GEN-LAST:event_jpSapitoMouseExited
 
-    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+    private void jpRPelotasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRPelotasMouseEntered
         // TODO add your handling code here:
-        setColor(jPanel3);
-    }//GEN-LAST:event_jPanel3MouseEntered
+        setColor(jpRPelotas);
+    }//GEN-LAST:event_jpRPelotasMouseEntered
 
-    private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
+    private void jpRPelotasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRPelotasMouseExited
         // TODO add your handling code here:
-        resetColor(jPanel3);
-    }//GEN-LAST:event_jPanel3MouseExited
+        resetColor(jpRPelotas);
+    }//GEN-LAST:event_jpRPelotasMouseExited
 
-    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
-        // TODO add your handling code here:
-//        FrmMDI mdi = new FrmMDI();
-//        mdi.show();
-//        this.dispose();
-//        
-//        JIFMiniFutbol mini = new JIFMiniFutbol();
-//
-//        mini.setResizable(true);
-//        mini.setMaximizable(true);
-//        mini.setIconifiable(true);
-//        mini.setClosable(true);
-//
-//        FrmMDI.panelInterno.add(mini);
-//        mini.show();
+    private void jpMinifutbolMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpMinifutbolMousePressed
+
           new FrmMinifutbol().show();
-    }//GEN-LAST:event_jPanel4MousePressed
+    }//GEN-LAST:event_jpMinifutbolMousePressed
 
-    private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
+    private void jpTenisMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTenisMousePressed
     
        new FrmTenisMesa().show();
-    }//GEN-LAST:event_jPanel5MousePressed
+    }//GEN-LAST:event_jpTenisMousePressed
 
-    private void jPanel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MousePressed
+    private void jpCubileteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCubileteMousePressed
        new FrmCubilete().show();
-    }//GEN-LAST:event_jPanel6MousePressed
+    }//GEN-LAST:event_jpCubileteMousePressed
 
-    private void jPanel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MousePressed
+    private void jpSapitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSapitoMousePressed
       new FrmSapito().show();
-    }//GEN-LAST:event_jPanel8MousePressed
+    }//GEN-LAST:event_jpSapitoMousePressed
+
+    private void jpLanzCanastaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLanzCanastaMousePressed
+       new FrmLanzamientoCanasta().show();
+    }//GEN-LAST:event_jpLanzCanastaMousePressed
+
+    private void jpRPelotasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpRPelotasMousePressed
+       new FrmRecogedorPelotas().show();
+    }//GEN-LAST:event_jpRPelotasMousePressed
  public void setColor(JPanel panel)
  {
      panel.setBackground(new java.awt.Color(197, 197, 197));
@@ -545,13 +546,13 @@ public class FrmHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jpCubilete;
+    private javax.swing.JPanel jpLanzCanasta;
+    private javax.swing.JPanel jpMinifutbol;
+    private javax.swing.JPanel jpRPelotas;
+    private javax.swing.JPanel jpSapito;
+    private javax.swing.JPanel jpTenis;
     // End of variables declaration//GEN-END:variables
 }
