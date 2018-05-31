@@ -48,7 +48,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
-        DeshabilitarControles();
+      //  DeshabilitarControles();
         MtdSerie(); 
         bsklog = new ClsCircuitoBasketLog();
         ListarTabla();
@@ -138,6 +138,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         btnEmpate = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -224,7 +225,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, -1, -1));
 
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
-        btnCanasta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnCanasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCanastaActionPerformed(evt);
@@ -308,6 +308,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         });
         getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 100, 40));
 
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 490, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -328,14 +336,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         if (resp == false) {
             JOptionPane.showMessageDialog(null, "Dato Agregdo");
             ListarTabla();
-            
-//            //Obtener el idInsertado
-//            id = Integer.parseInt(lblEquipoParticipante.getText());
-//            System.out.println("idEquipo:" +id) ;
-//            //Obtener Posicion
-//            posicion = ObtenerPosicionEquipo(id);
-//            System.out.println("Posicion:" +posicion) ;
-//            
         
             List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
             
@@ -430,16 +430,21 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDetenerActionPerformed
 
     private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
-       
+        btnCanasta.setEnabled(false);
         try {
             //1. Verificar que idEquipos tienen el mismo puntaje
             MtdVerificarPuntajesIguales();
-            //2. Se va a realizar el update del puntaje, de cada idEquipo 
+          
         } catch (SQLException ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }//GEN-LAST:event_btnEmpateActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        
+        MtdUpdatePuntaje();        
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -482,6 +487,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbSerie;
@@ -503,41 +509,104 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
 
-    private void MtdUpdatePuntaje(){
+    private void MtdUpdatePuntaje(){   
+
+        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(txtPuntaje.getText());
         
+        int exitosa = bsklog.UpdatePuntaje(idEquipo,puntajeEquipo);
+        if(exitosa > 0){
+            JOptionPane.showMessageDialog(null, "Dato Modificado");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            bsklog.BorrarDatosBasket();
+            //validar jtable de posiciones
+            for(PkgEntidad.ClsCircuitoBasket cb : listas)
+            {
+                bsklog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }
+            
+            Limpiar();
+            
+        }else{
+             JOptionPane.showMessageDialog(null, "Dato NO Modificado");
+        }
+       
     }
 
      private void MtdVerificarPuntajesIguales() throws SQLException {
       
         cmbEquipos.removeAllItems();
-        arrayDetalleEquipos.clear();
+        arrayDetalleEquipos.clear();        
+        arrayIdEquipos.clear();
         DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
-        boolean carga = true;
         
         /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+                
         List<ClsCircuitoBasket> listaPuntaje = bsklog.listado();
 
-            for(ClsCircuitoBasket e : listaPuntaje) //recorre equipos con puntaje
-            {
-              for (int i = 0; i < tblPosiciones.getRowCount(); i++) {
-               // almaceno los Id y puntajes de los Equipos en un arrayList
-               int[] idEqyPunt = {(Integer) tblPosiciones.getModel().getValueAt(i, 0),  
-                   (Integer) tblPosiciones.getModel().getValueAt(i, 1)};
-                arrayPuntajes.add(idEqyPunt);      
-              }
-              
-              Iterator<int[]> arrayIterator = arrayPuntajes.iterator();
-               while(arrayIterator.hasNext())
-               {
-                  int[] elemento = arrayIterator.next();
-                  
- //                dcmEquipos.addElement(e.getDetalleEquipo());
-//                arrayDetalleEquipos.add(e.getIdEquipo());
-////              cmbEquipos.setModel(dcmEquipos);  
-               }          
-            }
+        //obtener datos    
+//      for (int i = 0; i < tblPosiciones.getRowCount(); i++) {
+//       // almaceno los Id y puntajes de los Equipos en un arrayList
+//       int[] idEqyPunt = {(Integer) tblPosiciones.getModel().getValueAt(i, 0),  
+//           (Integer) tblPosiciones.getModel().getValueAt(i, 1)};
+//        arrayPuntajes.add(idEqyPunt);      
+//      }
 
-        
+      //int index=0;        
+      //obtener puntajes iguales y su id
+      int puntajeReferenciaOld=0;
+      int puntajeReferenciaNew=0;
+      //boolean primeraIteracion = false;
+      
+      
+      for(int i = 0; i< listaPuntaje.size(); i++)
+      {
+            puntajeReferenciaOld = listaPuntaje.get(i).getPuntajeEquipo();
+            
+            if(puntajeReferenciaOld == puntajeReferenciaNew)// 5-12-2   ::26
+            {
+                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getDetalleEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i).getDetalleEquipo());
+                
+                arrayIdEquipos.add(listaPuntaje.get(i-1).getIdEquipo());
+                arrayIdEquipos.add(listaPuntaje.get(i).getIdEquipo());
+            }
+            
+            puntajeReferenciaNew = listaPuntaje.get(i).getPuntajeEquipo();
+      }
+      
+      for(int j = 0; j < arrayDetalleEquipos.size(); j++)
+      {
+        for(int k = 0; k< arrayDetalleEquipos.size(); k++)
+        {
+            //Permite comparar con valores diferentes
+            if(j != k)
+            {
+                //Si los valores son iguales se eliminan del array
+                if( arrayDetalleEquipos.get(j).equals(arrayDetalleEquipos.get(k)) )
+                {
+                    arrayDetalleEquipos.remove(j);
+                    arrayIdEquipos.remove(j);
+                }
+            }
+        }    
+      }
+      
+      for(String s : arrayDetalleEquipos)
+      {
+          dcmEquipos.addElement(s);
+      }
+      
+      cmbEquipos.setModel(dcmEquipos);  
     }
 
     private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {

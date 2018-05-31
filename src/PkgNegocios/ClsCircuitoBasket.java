@@ -82,19 +82,22 @@ public class ClsCircuitoBasket {
             ex.printStackTrace();
         }
     }
-    public void UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
+    public int UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
         con = conexion.getConecion();
+        int exitosa=0;
         PreparedStatement pst = null;
         String sql = "update tbCircuitoBasket set puntajeEquipo = ? where idEquipo = ?";
         try{
             pst = con.prepareStatement(sql);
-            pst.setInt(_PuntajeEquipo, _IdEquipo);
-            pst.executeQuery();
+            pst.setInt(1, _PuntajeEquipo);
+            pst.setInt(2, _IdEquipo);
+            exitosa= pst.executeUpdate();
         }
         catch(SQLException ex)
         {
             ex.printStackTrace();
         }
+        return exitosa;
     }
    
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
@@ -105,7 +108,10 @@ public class ClsCircuitoBasket {
         try {
             lista = new ArrayList<>();
             con = conexion.getConecion();
-            cstm = con.prepareCall("select * from tbCircuitoBasket order by puntajeEquipo DESC");
+            cstm = con.prepareCall("select cb.idEquipo, cb.posicionEquipo, cb.puntajeEquipo, e.detalleEquipo\n" +
+            "from tbCircuitoBasket as cb inner join tbEquipo as e\n" +
+            "on cb.idEquipo = e.idEquipo\n" +
+            "order by cb.puntajeEquipo DESC");
             rs = cstm.executeQuery();
             PkgEntidad.ClsCircuitoBasket bsk = null;
             while (rs.next()) {
@@ -113,6 +119,7 @@ public class ClsCircuitoBasket {
                 bsk.setIdEquipo(rs.getInt("idEquipo"));
                 bsk.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
                 bsk.setPosicionEquipo(cont+" puesto");
+                bsk.setDetalleEquipo(rs.getString("detalleEquipo"));
                 lista.add(bsk);
                 cont++;
             }
@@ -171,26 +178,5 @@ public class ClsCircuitoBasket {
              rs.close();
         return equipos;
     }
-     public List<ClsEquipo> listaEquipos() throws SQLException{
-        List<ClsEquipo> equipos = new ArrayList<>();
-        con = conexion.getConecion();
-        String sql = "select eq.*\n" +
-                        " from tbEquipo eq \n" +
-                        " inner join tbAnio an on eq.idAnio = an.idAnio\n" +
-                        " inner join tbSerie ser on an.idSerie = ser.idSerie";
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-         while(rs.next()){
-                ClsEquipo equipo = new ClsEquipo();
-                equipo.setIdEquipo(rs.getInt(1));
-                equipo.setNombreEquipo(rs.getString(2));
-                equipo.setDetalleEquipo(rs.getString(3));
-                equipo.setEstadoEquipo(rs.getString(4));
-                equipo.setIdAnio(rs.getInt(5));
-                equipos.add(equipo);
-             }
-             con.close();
-             rs.close();
-        return equipos;
-    }
+   
 }

@@ -13,6 +13,7 @@ public class ClsCircuitoBasket {
     int idEquipo;
     int puntajeEquipo;
     String posicionEquipo;
+    String detalleEquipo;
     
     public ClsCircuitoBasket() {
     }
@@ -22,6 +23,15 @@ public class ClsCircuitoBasket {
         this.puntajeEquipo = puntajeEquipo;
         
     }
+
+    public String getDetalleEquipo() {
+        return detalleEquipo;
+    }
+
+    public void setDetalleEquipo(String detalleEquipo) {
+        this.detalleEquipo = detalleEquipo;
+    }
+    
     public int getIdEquipo() {
         return idEquipo;
     }

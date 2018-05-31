@@ -29,9 +29,7 @@ public class ClsCircuitoBasketLog {
     public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
         return bsk.listaEquipos(_idSerie);
     }
-    public List<ClsEquipo> listaEquipos() throws SQLException {
-        return bsk.listaEquipos();
-    }
+   
     public int BorrarDatosBasket() {
         return bsk.BorrarDatosBasket();
     }
@@ -39,7 +37,7 @@ public class ClsCircuitoBasketLog {
     public void InsertarPosicion(int _IdEquipo,int _PuntajeEquipo,String _PosicionEquipo) {
         bsk.InsertarPosicion(_IdEquipo,_PuntajeEquipo, _PosicionEquipo);
     }
-    public void UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
-        bsk.UpdatePuntaje(_IdEquipo, _PuntajeEquipo);
+    public int UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
+         return bsk.UpdatePuntaje(_IdEquipo, _PuntajeEquipo);
     }
 }
