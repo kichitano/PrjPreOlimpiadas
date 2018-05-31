@@ -387,10 +387,7 @@ public class FrmHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetColor(jpMinifutbol);
     }//GEN-LAST:event_jpMinifutbolMouseExited
-     
-    
-    
-    
+
     int xx,xy;
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
         // TODO add your handling code here:

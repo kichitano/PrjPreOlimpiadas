@@ -11,8 +11,6 @@ import PkgLogico.ClsCircuitoBasketLog;
 import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -44,6 +42,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     ClsMetodosEquipo metodoEquipo;    
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
+    
    // ArrayList<Integer> arrayPuntajes = new ArrayList<Integer>();
 //    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
    
@@ -99,7 +98,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }
     /*-------------------------------------------------------------------------------------------------*/
    private void ListarTabla() {
-        List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
+        List<PkgEntidad.ClsCircuitoBasket> listas = circuitoBasketLog.listado();
         tblPosiciones.setModel(new ModeloTablaCircuitoBasket(listas)); //Lista posicion
         setCellRender(tblPosiciones);
         tblPosiciones.getRowSorter();
@@ -147,7 +146,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         etiquetaTiempo = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         btnCanasta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -162,7 +160,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnDetener = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbParticipantes = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         btnEmpate = new javax.swing.JButton();
@@ -220,7 +219,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 383, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -237,7 +236,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/temporizador.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
@@ -249,16 +248,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, 70));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/jugador-de-baloncesto-anotando-edit.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 70, -1));
-
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
         btnCanasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCanastaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 100, 70));
+        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         jLabel7.setText("Equipo Participante:");
@@ -269,7 +265,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 70));
-        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 100, -1));
+        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 100, -1));
 
         lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
@@ -296,7 +292,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblPosiciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 340, 230));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, 380, 240));
 
         btnPausar.setText("Pausar");
         btnPausar.addActionListener(new java.awt.event.ActionListener() {
@@ -330,11 +326,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel2.setText("Seleccionar Participante:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 180, 20));
+        getContentPane().add(cmbParticipantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 180, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/baloncesto.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 320, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 420));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 870, 420));
 
         LblCarga1.setText("jLabel9");
         getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
@@ -345,7 +343,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnEmpateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 100, 40));
+        getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 100, 40));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -353,7 +351,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 490, 100, 40));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, 100, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -529,18 +527,18 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
+    private javax.swing.JComboBox<String> cmbParticipantes;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
