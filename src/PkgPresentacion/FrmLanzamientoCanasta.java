@@ -11,18 +11,23 @@ import PkgLogico.ClsCircuitoBasketLog;
 import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosEquipo;
 import PkgNegocios.ClsMetodosVariados;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 /**
  *
  * @author Vera
@@ -40,19 +45,28 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
    // ArrayList<Integer> arrayPuntajes = new ArrayList<Integer>();
-    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
+//    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
    
     
     public FrmLanzamientoCanasta() {
-        initComponents();
+        initComponents(); 
         setLocationRelativeTo(null);
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
       //  DeshabilitarControles();
         MtdSerie(); 
         bsklog = new ClsCircuitoBasketLog();
-        ListarTabla();
+       ListarTabla();
     }
+    // Color jtable
+     public void setCellRender(JTable table) {
+        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
+        while (en.hasMoreElements()) {
+            TableColumn tc = en.nextElement();
+            tc.setCellRenderer(new CellRenderer());
+        }
+    }
+    /*-------------------------------------------------------------------------------------*/
     /* ------------- CRONOMETRO ----------------------------------------------------------*/
     private Timer t;
     private int h, m, s, cs;
@@ -88,7 +102,19 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
    private void ListarTabla() {
         List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
         tblPosiciones.setModel(new ModeloTablaCircuitoBasket(listas)); //Lista posicion
+        setCellRender(tblPosiciones);
         tblPosiciones.getRowSorter();
+        TableColumnModel columnModel = tblPosiciones.getColumnModel();
+        // tamaño a cada columna de un jtable
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(200);
+        
+        
+        // tamaño por igual a una tabla
+//        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+//        columnModel.getColumn(i).setPreferredWidth(200);
+//        }
     }
    
     public void Limpiar() {

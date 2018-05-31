@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Vera
  */
 public class ModeloTablaCircuitoBasket  extends AbstractTableModel {
-    String[] columnas = {"ID Equipo", "Ptje.", "Posición"};
+    String[] columnas = {"ID", "Ptje.", "Posición","Detalle"};
     public List<PkgEntidad.ClsCircuitoBasket> bsk = new ArrayList<>();
 
     public ModeloTablaCircuitoBasket(List<PkgEntidad.ClsCircuitoBasket> bsk) {
@@ -44,8 +44,10 @@ public class ModeloTablaCircuitoBasket  extends AbstractTableModel {
         } else {
             if (columnIndex == 1) {
                 resp = bsk.get(rowIndex).getPuntajeEquipo();
-            } else {
-                resp = bsk.get(rowIndex).getPosicionEquipo();
+            }else if (columnIndex == 2) {
+                 resp = bsk.get(rowIndex).getPosicionEquipo();
+            }else {
+                resp = bsk.get(rowIndex).getDetalleEquipo();
             }
         }
         return resp;
