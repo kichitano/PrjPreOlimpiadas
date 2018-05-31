@@ -160,6 +160,9 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnPausar = new javax.swing.JButton();
         btnIniciar = new javax.swing.JButton();
         btnDetener = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         btnEmpate = new javax.swing.JButton();
@@ -255,30 +258,30 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnCanastaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 100, 70));
+        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 470, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jLabel7.setText("Equipo Participante");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
+        jLabel7.setText("Equipo Participante:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, 70));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 70));
-        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 100, -1));
+        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 100, -1));
 
         lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
         lblEquipoParticipante.setText("3");
-        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 40, 20));
+        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 40, 20));
 
         cmbEquipos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbEquiposItemStateChanged(evt);
             }
         });
-        getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 160, -1));
+        getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 160, -1));
 
         tblPosiciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -319,8 +322,19 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         });
         getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/usuario (1).png"))); // NOI18N
+        jButton1.setText("Agregar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, -1, 30));
+
+        jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        jLabel2.setText("Seleccionar Participante:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 180, 30));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 410));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 820, 420));
 
         LblCarga1.setText("jLabel9");
         getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
@@ -517,9 +531,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel etiquetaTiempo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
