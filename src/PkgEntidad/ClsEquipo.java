@@ -16,7 +16,36 @@ public class ClsEquipo {
     String detalleEquipo;
     String estadoEquipo;
     int idAnio;
+    String apePaterno;
+    String apeMaterno;
+    String nombresApoderado;
+    String estadoApoderado;
+    
+    public int getIdApoderado() {
+        return idApoderado;
+    }
 
+    public void setIdApoderado(int idApoderado) {
+        this.idApoderado = idApoderado;
+    }
+    int idApoderado;
+
+    public String getNombresApoderado() {
+        return nombresApoderado;
+    }
+
+    public void setNombresApoderado(String nombresApoderado) {
+        this.nombresApoderado = nombresApoderado;
+    }
+
+    public String getEstadoApoderado() {
+        return estadoApoderado;
+    }
+
+    public void setEstadoApoderado(String estadoApoderado) {
+        this.estadoApoderado = estadoApoderado;
+    }
+    
     public String getApePaterno() {
         return apePaterno;
     }
@@ -32,17 +61,6 @@ public class ClsEquipo {
     public void setApeMaterno(String apeMaterno) {
         this.apeMaterno = apeMaterno;
     }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-    String apePaterno;
-    String apeMaterno;
-    String nombres;
 
     public int getIdAnio() {
         return idAnio;

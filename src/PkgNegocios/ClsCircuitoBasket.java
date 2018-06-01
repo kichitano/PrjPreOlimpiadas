@@ -99,6 +99,24 @@ public class ClsCircuitoBasket {
         }
         return exitosa;
     }
+     public int UpdateEstadoApoderado(int _idApoderado){
+        con = conexion.getConecion();
+        int exitosa=0;
+        PreparedStatement pst = null;
+        String sql = "update tbApoderado \n" +
+        " set estadoApoderado = 'J'\n" +
+        " where idApoderado = ?";
+        try{
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, _idApoderado);
+            exitosa= pst.executeUpdate();
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return exitosa;
+    }
    
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
         int cont=1;
@@ -178,14 +196,14 @@ public class ClsCircuitoBasket {
              rs.close();
         return equipos;
     }
-    public List<ClsEquipo> listsParticipantesEquipo(int _idEquipo) throws SQLException{
+    public List<ClsEquipo> listaParticipantesEquipo(int _idEquipo) throws SQLException{
         List<ClsEquipo> equipos = new ArrayList<>();
         con = conexion.getConecion();
-        String sql = " select eq.*, apo.apePaterno ,apo.apeMaterno , apo.nombres\n" +
+        String sql = "select eq.*, apo.apePaterno ,apo.apeMaterno , apo.nombresApoderado, apo.idApoderado \n" +
                         " from tbEquipo eq\n" +
                         " inner join tbAnio an on eq.idAnio = an.idAnio\n" +
                         " inner join tbApoderado apo on an.idAnio = apo.idAnio\n" +
-                        " where eq.idEquipo = '"+_idEquipo+"'";
+                        " where apo.estadoApoderado = 'A' and apo.idDisciplina = 5 and eq.idEquipo = '"+_idEquipo+"'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
          while(rs.next()){
@@ -197,7 +215,8 @@ public class ClsCircuitoBasket {
                 equipo.setIdAnio(rs.getInt(5));
                 equipo.setApePaterno(rs.getString(6));
                 equipo.setApeMaterno(rs.getString(7));
-                equipo.setApePaterno(rs.getString(8));
+                equipo.setNombresApoderado(rs.getString(8));
+                equipo.setIdApoderado(rs.getInt(9));
                 equipos.add(equipo);
              }
              con.close();
