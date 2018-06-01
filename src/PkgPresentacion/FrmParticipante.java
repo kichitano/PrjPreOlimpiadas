@@ -16,6 +16,7 @@ public class FrmParticipante extends javax.swing.JFrame {
      */
     public FrmParticipante() {
         initComponents();
+        DeshabilitarControles();
     }
 
     /**
@@ -31,23 +32,23 @@ public class FrmParticipante extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jlID = new javax.swing.JLabel();
+        jlAnio = new javax.swing.JLabel();
+        jlDisciplina = new javax.swing.JLabel();
+        jlDNI = new javax.swing.JLabel();
+        jlAP = new javax.swing.JLabel();
+        jlAM = new javax.swing.JLabel();
+        jlNombres = new javax.swing.JLabel();
+        jlEstado = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblIdApoderado = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
         cmbAnios = new javax.swing.JComboBox<>();
-        cmbAnios1 = new javax.swing.JComboBox<>();
-        txtDNI1 = new javax.swing.JTextField();
-        txtDNI2 = new javax.swing.JTextField();
-        cmbAnios2 = new javax.swing.JComboBox<>();
-        txtDNI3 = new javax.swing.JTextField();
+        cmbDisciplinas = new javax.swing.JComboBox<>();
+        txtAP = new javax.swing.JTextField();
+        txtAM = new javax.swing.JTextField();
+        cmbEstados = new javax.swing.JComboBox<>();
+        txtNombres = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,29 +86,29 @@ public class FrmParticipante extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("ID:");
+        jlID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlID.setText("ID:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Año:");
+        jlAnio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlAnio.setText("Año:");
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setText("Disciplina:");
+        jlDisciplina.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlDisciplina.setText("Disciplina:");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("DNI:");
+        jlDNI.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlDNI.setText("DNI:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setText("Apellido Paterno:");
+        jlAP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlAP.setText("Apellido Paterno:");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel8.setText("Apellido Materno:");
+        jlAM.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlAM.setText("Apellido Materno:");
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setText("Nombres:");
+        jlNombres.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlNombres.setText("Nombres:");
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel10.setText("Estado:");
+        jlEstado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jlEstado.setText("Estado:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,36 +117,36 @@ public class FrmParticipante extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlAM)
+                    .addComponent(jlNombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel2)))
+                        .addComponent(jlDNI)
+                        .addComponent(jlAP)
+                        .addComponent(jlDisciplina)
+                        .addComponent(jlAnio)
+                        .addComponent(jlID)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jlID)
                 .addGap(4, 4, 4)
-                .addComponent(jLabel4)
+                .addComponent(jlAnio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(jlDisciplina)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(jlDNI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addComponent(jlAP)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addComponent(jlAM)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addComponent(jlNombres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,12 +155,16 @@ public class FrmParticipante extends javax.swing.JFrame {
         lblIdApoderado.setText("campoId");
 
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbAnios.setEnabled(false);
 
-        cmbAnios1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbDisciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbDisciplinas.setEnabled(false);
 
-        cmbAnios2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbEstados.setEnabled(false);
 
         btnGuardar.setText("Guardar");
+        btnGuardar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -171,11 +176,11 @@ public class FrmParticipante extends javax.swing.JFrame {
                     .addComponent(lblIdApoderado)
                     .addComponent(txtDNI)
                     .addComponent(cmbAnios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbAnios1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDNI1)
-                    .addComponent(txtDNI2)
-                    .addComponent(cmbAnios2, 0, 138, Short.MAX_VALUE)
-                    .addComponent(txtDNI3))
+                    .addComponent(cmbDisciplinas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtAP)
+                    .addComponent(txtAM)
+                    .addComponent(cmbEstados, 0, 138, Short.MAX_VALUE)
+                    .addComponent(txtNombres))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
                 .addContainerGap())
@@ -188,18 +193,18 @@ public class FrmParticipante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbAnios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDNI1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDNI2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDNI3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbAnios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -321,28 +326,50 @@ public class FrmParticipante extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cmbAnios;
-    private javax.swing.JComboBox<String> cmbAnios1;
-    private javax.swing.JComboBox<String> cmbAnios2;
+    private javax.swing.JComboBox<String> cmbDisciplinas;
+    private javax.swing.JComboBox<String> cmbEstados;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel jlAM;
+    private javax.swing.JLabel jlAP;
+    private javax.swing.JLabel jlAnio;
+    private javax.swing.JLabel jlDNI;
+    private javax.swing.JLabel jlDisciplina;
+    private javax.swing.JLabel jlEstado;
+    private javax.swing.JLabel jlID;
+    private javax.swing.JLabel jlNombres;
     private javax.swing.JLabel lblIdApoderado;
+    private javax.swing.JTextField txtAM;
+    private javax.swing.JTextField txtAP;
     private javax.swing.JTextField txtBusquedaDNI;
     private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtDNI1;
-    private javax.swing.JTextField txtDNI2;
-    private javax.swing.JTextField txtDNI3;
+    private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
+    
+    public void DeshabilitarControles(){
+        jPanel2.setEnabled(false);
+        jlID.setEnabled(false);
+        jlAP.setEnabled(false);
+        jlAM.setEnabled(false);
+        jlEstado.setEnabled(false);
+        jlDNI.setEnabled(false);
+        jlNombres.setEnabled(false);
+        jlAnio.setEnabled(false);
+        jlDisciplina.setEnabled(false);
+        lblIdApoderado.setEnabled(false);
+        cmbAnios.setEnabled(false);
+        cmbDisciplinas.setEnabled(false);
+        cmbEstados.setEnabled(false);
+        txtDNI.setEnabled(false);
+        txtAP.setEnabled(false);
+        txtAM.setEnabled(false);
+        txtNombres.setEnabled(false);
+        btnGuardar.setEnabled(false);
+    }
+
 }

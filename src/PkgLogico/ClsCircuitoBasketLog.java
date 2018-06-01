@@ -29,6 +29,9 @@ public class ClsCircuitoBasketLog {
     public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
         return bsk.listaEquipos(_idSerie);
     }
+    public List<ClsEquipo> listsParticipantesEquipo(int _idEquipo) throws SQLException{
+        return bsk.listsParticipantesEquipo(_idEquipo);
+    }
    
     public int BorrarDatosBasket() {
         return bsk.BorrarDatosBasket();

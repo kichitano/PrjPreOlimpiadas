@@ -178,5 +178,33 @@ public class ClsCircuitoBasket {
              rs.close();
         return equipos;
     }
+    public List<ClsEquipo> listsParticipantesEquipo(int _idEquipo) throws SQLException{
+        List<ClsEquipo> equipos = new ArrayList<>();
+        con = conexion.getConecion();
+        String sql = " select eq.*, apo.apePaterno ,apo.apeMaterno , apo.nombres\n" +
+                        " from tbEquipo eq\n" +
+                        " inner join tbAnio an on eq.idAnio = an.idAnio\n" +
+                        " inner join tbApoderado apo on an.idAnio = apo.idAnio\n" +
+                        " where eq.idEquipo = '"+_idEquipo+"'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+         while(rs.next()){
+                ClsEquipo equipo = new ClsEquipo();
+                equipo.setIdEquipo(rs.getInt(1));
+                equipo.setNombreEquipo(rs.getString(2));
+                equipo.setDetalleEquipo(rs.getString(3));
+                equipo.setEstadoEquipo(rs.getString(4));
+                equipo.setIdAnio(rs.getInt(5));
+                equipo.setApePaterno(rs.getString(6));
+                equipo.setApeMaterno(rs.getString(7));
+                equipo.setApePaterno(rs.getString(8));
+                equipos.add(equipo);
+             }
+             con.close();
+             rs.close();
+        return equipos;
+    }
+    
+
    
 }

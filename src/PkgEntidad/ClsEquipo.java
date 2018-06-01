@@ -17,6 +17,33 @@ public class ClsEquipo {
     String estadoEquipo;
     int idAnio;
 
+    public String getApePaterno() {
+        return apePaterno;
+    }
+
+    public void setApePaterno(String apePaterno) {
+        this.apePaterno = apePaterno;
+    }
+
+    public String getApeMaterno() {
+        return apeMaterno;
+    }
+
+    public void setApeMaterno(String apeMaterno) {
+        this.apeMaterno = apeMaterno;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+    String apePaterno;
+    String apeMaterno;
+    String nombres;
+
     public int getIdAnio() {
         return idAnio;
     }
