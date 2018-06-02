@@ -21,8 +21,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -44,6 +47,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<Integer> arrayIdEquiposParticipantes = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
+    
+    private int puntajeTotal=0;
     
    // ArrayList<Integer> arrayPuntajes = new ArrayList<Integer>();
 //    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
@@ -181,6 +186,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnEmpate = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jlIdApoderado = new javax.swing.JLabel();
+        txtPuntajeParticipante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -388,6 +394,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         jlIdApoderado.setText("ID");
         getContentPane().add(jlIdApoderado, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 550, -1, -1));
+        getContentPane().add(txtPuntajeParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 550, 50, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -437,22 +444,35 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCanastaActionPerformed
 
     private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
-       if(cmbSerie.getItemAt(0).equals("Seleccionar opcion")){
+       if(cmbSerie.getItemAt(0).equals("Seleccionar opcion"))
+       {
             opt = 1;
 //            cmbNroPartido.removeAllItems();
 //            cmbNroPartido.addItem("Seleccionar opcion");
 //            cmbNroPartido.setEnabled(false);
-        }
-        try {
+       }
+       try 
+       {
+            //id serie
             LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
  
-            /*Metodo para cargar combo de equipos*/
-          //  PkgNegocios.ClsCircuitoBasket bsk = new PkgNegocios.ClsCircuitoBasket();
+            /*Metodo para cargar combo de equipos*/          
             MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
-            
-            //cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
-           
-            /* ----------------------------------- */
+                      
+            //valida combo vacio
+            if(cmbEquipos.getSelectedIndex() != -1)
+            {
+                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
+                //colocas idEquipo
+                lblEquipoParticipante.setText(String.valueOf(idEquipo));
+
+                //Metodo para cargar combo participante*/
+                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
+                
+                //colocas idParticipante
+                jlIdApoderado.setText(String.valueOf(clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
+            }
+
             opt = 2;
           
         } catch (SQLException ex) {
@@ -542,8 +562,49 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbParticipantesItemStateChanged
 
     private void btnParticiparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParticiparActionPerformed
-        try {        
+        try { 
+            
+            //jugando
             MtdUpdateEstadoParticipante();
+            
+            //Declaracion Custom JOptionPane//
+            
+            //variable
+            int puntajeIndividual;
+            //opciones
+            String [] opciones = new String[]{"AGREGAR PUNTAJE", "CANCELAR"};
+            
+            //contenedor + controles
+            JPanel panel = new JPanel();
+            JLabel lbl = new JLabel("Ingrese puntaje:");
+            JTextField txtPuntajeIndividual = new JTextField(15);
+            panel.add(lbl);panel.add(txtPuntajeIndividual);
+            
+            //Custom JOptionPane
+            int resultado = JOptionPane.showOptionDialog
+                            (
+                                null,  //Parentesco
+                                panel, //contenedor //mensaje
+                                "Ingrese puntaje", //titulo
+                                JOptionPane.NO_OPTION, //sin opciones
+                                JOptionPane.PLAIN_MESSAGE, // es un mensaje plano
+                                null, //icono
+                                opciones, // agrega las opciones
+                                opciones[0] //opcion correcta
+                            );
+            
+            //Resultado de la accion
+            
+            //presionas 
+            if(resultado == 0)
+            {
+                puntajeIndividual = Integer.parseInt(txtPuntajeIndividual.getText());
+                SumarPuntaje(puntajeIndividual);
+            }
+           
+            
+            //suma
+            
         } catch (SQLException ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -584,6 +645,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         });
     }
 
+    private void SumarPuntaje(int _puntajeIndividual)
+    {
+        puntajeTotal = puntajeTotal + _puntajeIndividual;        
+        txtPuntaje.setText(String.valueOf(puntajeTotal));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
     private javax.swing.JButton btnCanasta;
@@ -615,6 +682,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JTable tblPosiciones;
     public static javax.swing.JTextField txtPuntaje;
+    private javax.swing.JTextField txtPuntajeParticipante;
     // End of variables declaration//GEN-END:variables
 
     //Metodo para actualizar el estado del participante o apoderado
@@ -632,7 +700,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Estado de Participante NO Modificado");
         }
     }
-    
+  
     private void MtdUpdatePuntaje(){   
 
         int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 

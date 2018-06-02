@@ -5,17 +5,29 @@
  */
 package PkgPresentacion;
 
+
+import PkgLogico.ClsApoderadoLog;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Vera
  */
 public class FrmParticipante extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FrmApoderado
-     */
+    ClsApoderadoLog apoderadoLog = new ClsApoderadoLog();
+ 
     public FrmParticipante() {
         initComponents();
+        HabilitarControles();
+        CargarComboDisciplinas();
+        CargarComboAnios();
         DeshabilitarControles();
     }
 
@@ -32,7 +44,6 @@ public class FrmParticipante extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jlID = new javax.swing.JLabel();
         jlAnio = new javax.swing.JLabel();
         jlDisciplina = new javax.swing.JLabel();
         jlDNI = new javax.swing.JLabel();
@@ -41,7 +52,6 @@ public class FrmParticipante extends javax.swing.JFrame {
         jlNombres = new javax.swing.JLabel();
         jlEstado = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        lblIdApoderado = new javax.swing.JLabel();
         txtDNI = new javax.swing.JTextField();
         cmbAnios = new javax.swing.JComboBox<>();
         cmbDisciplinas = new javax.swing.JComboBox<>();
@@ -50,10 +60,11 @@ public class FrmParticipante extends javax.swing.JFrame {
         cmbEstados = new javax.swing.JComboBox<>();
         txtNombres = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        jlestado = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtBusquedaDNI = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        btnVerificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,9 +97,6 @@ public class FrmParticipante extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jlID.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jlID.setText("ID:");
-
         jlAnio.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jlAnio.setText("Año:");
 
@@ -117,42 +125,40 @@ public class FrmParticipante extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlAM)
-                    .addComponent(jlNombres, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jlDNI)
-                        .addComponent(jlAP)
-                        .addComponent(jlDisciplina)
-                        .addComponent(jlAnio)
-                        .addComponent(jlID)))
+                    .addComponent(jlAP)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jlAM)
+                        .addComponent(jlNombres, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jlDNI)
+                                .addComponent(jlDisciplina)
+                                .addComponent(jlAnio)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlID)
-                .addGap(4, 4, 4)
+                .addGap(32, 32, 32)
                 .addComponent(jlAnio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlDisciplina)
                 .addGap(18, 18, 18)
                 .addComponent(jlDNI)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jlAP)
                 .addGap(18, 18, 18)
                 .addComponent(jlAM)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNombres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblIdApoderado.setText("campoId");
 
         cmbAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
         cmbAnios.setEnabled(false);
@@ -160,11 +166,24 @@ public class FrmParticipante extends javax.swing.JFrame {
         cmbDisciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
         cmbDisciplinas.setEnabled(false);
 
-        cmbEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción" }));
+        cmbEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar una opción", "Activo", "Inactivo" }));
+        cmbEstados.setToolTipText("");
         cmbEstados.setEnabled(false);
+        cmbEstados.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbEstadosItemStateChanged(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.setEnabled(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        jlestado.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,7 +192,6 @@ public class FrmParticipante extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblIdApoderado)
                     .addComponent(txtDNI)
                     .addComponent(cmbAnios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbDisciplinas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,32 +199,34 @@ public class FrmParticipante extends javax.swing.JFrame {
                     .addComponent(txtAM)
                     .addComponent(cmbEstados, 0, 138, Short.MAX_VALUE)
                     .addComponent(txtNombres))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlestado)
+                    .addComponent(btnGuardar))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblIdApoderado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(cmbAnios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(btnGuardar)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlestado)
+                    .addComponent(cmbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -235,7 +255,12 @@ public class FrmParticipante extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("DNI:");
 
-        btnBuscar.setText("Buscar");
+        btnVerificar.setText("Verificar");
+        btnVerificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -247,7 +272,7 @@ public class FrmParticipante extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtBusquedaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(btnBuscar)
+                .addComponent(btnVerificar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -257,7 +282,7 @@ public class FrmParticipante extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtBusquedaDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnVerificar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -285,6 +310,56 @@ public class FrmParticipante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
+         
+        //busqueda
+        boolean perteneceDisciplina = true;
+        PkgNegocios.ClsApoderado negApo = new  PkgNegocios.ClsApoderado();
+        String dni = txtBusquedaDNI.getText();
+        try {
+            perteneceDisciplina = negApo.verificarPertenenciaDisciplina(dni); ///11111 - false
+            
+            if(perteneceDisciplina){
+                JOptionPane.showMessageDialog(null,"Participante ya esta registrado en una disciplina",
+                        "No se puede agregar",JOptionPane.ERROR_MESSAGE);
+                DeshabilitarControles();
+            }else{     
+                JOptionPane.showMessageDialog(null,"Participante NO esta registrado en una disciplina",
+                        "Se Puede Registrar",JOptionPane.PLAIN_MESSAGE);
+                HabilitarControles();
+             
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmParticipante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnVerificarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+//      InsertarNuevoApoderado();
+      refrescarControles();
+      DeshabilitarControles();
+      
+      //volver a formulario anterior
+      this.dispose(); 
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cmbEstadosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEstadosItemStateChanged
+      String opcion = cmbEstados.getSelectedItem().toString();
+          
+          if(opcion.equals("Activo")){
+             jlestado.setText("A"); 
+             
+          }else if(opcion.equals("Inactivo")){
+             jlestado.setText("I");
+          }        
+//          else{
+//              JOptionPane.showMessageDialog(null, "Seleccione una opción");
+//          }
+    }//GEN-LAST:event_cmbEstadosItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -323,8 +398,8 @@ public class FrmParticipante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<String> cmbAnios;
     private javax.swing.JComboBox<String> cmbDisciplinas;
     private javax.swing.JComboBox<String> cmbEstados;
@@ -341,9 +416,8 @@ public class FrmParticipante extends javax.swing.JFrame {
     private javax.swing.JLabel jlDNI;
     private javax.swing.JLabel jlDisciplina;
     private javax.swing.JLabel jlEstado;
-    private javax.swing.JLabel jlID;
     private javax.swing.JLabel jlNombres;
-    private javax.swing.JLabel lblIdApoderado;
+    private javax.swing.JLabel jlestado;
     private javax.swing.JTextField txtAM;
     private javax.swing.JTextField txtAP;
     private javax.swing.JTextField txtBusquedaDNI;
@@ -351,9 +425,36 @@ public class FrmParticipante extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
     
-    public void DeshabilitarControles(){
+    public void refrescarControles(){
+        cmbAnios.setSelectedIndex(0);
+        cmbDisciplinas.setSelectedIndex(0);
+        cmbEstados.setSelectedIndex(0);
+        txtDNI.setText("");
+        txtAP.setText("");
+        txtAM.setText("");
+        txtNombres.setText("");
+    }
+    
+     public void HabilitarControles(){
+        jPanel2.setEnabled(true);
+        jlAP.setEnabled(true);
+        jlAM.setEnabled(true);
+        jlEstado.setEnabled(true);
+        jlDNI.setEnabled(true);
+        jlNombres.setEnabled(true);
+        jlAnio.setEnabled(true);
+        jlDisciplina.setEnabled(true);
+        cmbAnios.setEnabled(true);
+        cmbDisciplinas.setEnabled(true);
+        cmbEstados.setEnabled(true);
+        txtDNI.setEnabled(true);
+        txtAP.setEnabled(true);
+        txtAM.setEnabled(true);
+        txtNombres.setEnabled(true);
+        btnGuardar.setEnabled(true);
+    }
+     public void DeshabilitarControles(){
         jPanel2.setEnabled(false);
-        jlID.setEnabled(false);
         jlAP.setEnabled(false);
         jlAM.setEnabled(false);
         jlEstado.setEnabled(false);
@@ -361,7 +462,6 @@ public class FrmParticipante extends javax.swing.JFrame {
         jlNombres.setEnabled(false);
         jlAnio.setEnabled(false);
         jlDisciplina.setEnabled(false);
-        lblIdApoderado.setEnabled(false);
         cmbAnios.setEnabled(false);
         cmbDisciplinas.setEnabled(false);
         cmbEstados.setEnabled(false);
@@ -371,5 +471,43 @@ public class FrmParticipante extends javax.swing.JFrame {
         txtNombres.setEnabled(false);
         btnGuardar.setEnabled(false);
     }
-
+     public void CargarComboDisciplinas(){
+        try{
+            for(int i = 0; i < apoderadoLog.listaDisciplinas().size(); i++){
+                cmbDisciplinas.addItem(apoderadoLog.listaDisciplinas().get(i).getDescripcionDisciplina());
+            }
+        }catch(SQLException e){
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
+        }
+      }
+      public void CargarComboAnios(){
+        try{
+            for(int i = 0; i < apoderadoLog.listaAnios().size(); i++){
+                cmbAnios.addItem(apoderadoLog.listaAnios().get(i).getDescripcionAnio());
+            }
+        }catch(SQLException e){
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
+        }
+      }
+      public void InsertarNuevoApoderado(){
+          int idAnio = cmbAnios.getSelectedIndex();
+          int idDisciplina = cmbDisciplinas.getSelectedIndex();
+          String dni = txtDNI.getText();
+          String apeP = txtAP.getText();
+          String apeM = txtAM.getText();
+          String nomb = txtNombres.getText();
+  
+          apoderadoLog.InsertarApoderado(idAnio, idDisciplina, dni, apeP, apeM, nomb, jlestado.getText());
+          JOptionPane.showMessageDialog(null, "Nuevo Participante Agregado");
+      }
+//    private void MtdVerificarEstadoParticipante(String _dnix){
+//        String dni = txtBusquedaDNI.getText();
+//       
+//        if(exitosa > 0){
+//            JOptionPane.showMessageDialog(null,"Participante ya registrado en una disciplina"); 
+//        }else {
+//            JOptionPane.showMessageDialog(null, "Participante NO registrado en ninguna disciplina");  
+//        }
+//    }
+   
 }

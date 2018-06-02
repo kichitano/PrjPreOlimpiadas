@@ -55,7 +55,7 @@ public class ClsMetodosVariados {
                 usuario.setApePaterno(rs.getString(5));
                 usuario.setApeMaterno(rs.getString(6));
                 usuario.setNombresApoderado(rs.getString(7));
-                usuario.setEstadoApoderado(rs.getString(8).charAt(0));
+                usuario.setEstadoApoderado(rs.getString(8));
                 usuario.setIdEquipo(rs.getInt(9));
                 usuario.setIdUsuario(rs.getInt(10));
                 usuario.setNombUsuario(rs.getString(11));

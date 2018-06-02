@@ -18,7 +18,7 @@ public class ClsApoderado {
     String apePaterno;
     String apeMaterno;
     String nombresApoderado;
-    char estadoApoderado;
+    String estadoApoderado;
     int idEquipo;
 
     public int getIdApoderado() {
@@ -77,11 +77,11 @@ public class ClsApoderado {
         this.nombresApoderado = nombresApoderado;
     }
 
-    public char getEstadoApoderado() {
+    public String getEstadoApoderado() {
         return estadoApoderado;
     }
 
-    public void setEstadoApoderado(char estadoApoderado) {
+    public void setEstadoApoderado(String estadoApoderado) {
         this.estadoApoderado = estadoApoderado;
     }
 

@@ -12,6 +12,15 @@ package PkgEntidad;
 public class ClsAnio {
     int idAnio;
     String descripcionAnio;
+    int idSerie;
+
+    public int getIdSerie() {
+        return idSerie;
+    }
+
+    public void setIdSerie(int idSerie) {
+        this.idSerie = idSerie;
+    }
 
     public String getDescripcionAnio() {
         return descripcionAnio;
