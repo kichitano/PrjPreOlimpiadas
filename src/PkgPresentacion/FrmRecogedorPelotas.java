@@ -10,12 +10,15 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.Timer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 /**
@@ -42,7 +45,14 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         MtdSerie();
         ListarTabla();
     }
-
+    // Color jtable
+     public void setCellRender(JTable table) {
+        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
+        while (en.hasMoreElements()) {
+            TableColumn tc = en.nextElement();
+            tc.setCellRenderer(new CellRenderer());
+        }
+    }
     /* ------------- CRONOMETRO ----------------------------------------------------------*/
     private Timer t;
     private int h, m, s, cs;
@@ -606,6 +616,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     private void ListarTabla() {
         List<PkgEntidad.ClsRecogedorPelotas> listas = rplog.listado();
         tblPosiciones.setModel(new ModeloTablaRecogedorPelotas(listas)); //Lista posicion
+        setCellRender(tblPosiciones);
         tblPosiciones.getRowSorter();
         TableColumnModel columnModel = tblPosiciones.getColumnModel();
         // tamaño a cada columna de un jtable
