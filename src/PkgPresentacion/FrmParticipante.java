@@ -29,6 +29,7 @@ public class FrmParticipante extends javax.swing.JFrame {
         CargarComboDisciplinas();
         CargarComboAnios();
         DeshabilitarControles();
+        jlestado.setVisible(false);
     }
 
     /**
@@ -154,7 +155,7 @@ public class FrmParticipante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNombres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -199,11 +200,11 @@ public class FrmParticipante extends javax.swing.JFrame {
                     .addComponent(txtAM)
                     .addComponent(cmbEstados, 0, 138, Short.MAX_VALUE)
                     .addComponent(txtNombres))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardar)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlestado)
-                    .addComponent(btnGuardar))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(jlestado)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,14 +220,13 @@ public class FrmParticipante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar)
-                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlestado)
-                    .addComponent(cmbEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlestado))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -254,6 +254,13 @@ public class FrmParticipante extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("DNI:");
+
+        txtBusquedaDNI.setToolTipText("El # de DNI es de 8 dígitos");
+        txtBusquedaDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBusquedaDNIKeyTyped(evt);
+            }
+        });
 
         btnVerificar.setText("Verificar");
         btnVerificar.addActionListener(new java.awt.event.ActionListener() {
@@ -327,6 +334,7 @@ public class FrmParticipante extends javax.swing.JFrame {
             }else{     
                 JOptionPane.showMessageDialog(null,"Participante NO esta registrado en una disciplina",
                         "Se Puede Registrar",JOptionPane.PLAIN_MESSAGE);
+                txtDNI.setText(dni);
                 HabilitarControles();
              
             }
@@ -360,6 +368,22 @@ public class FrmParticipante extends javax.swing.JFrame {
 //              JOptionPane.showMessageDialog(null, "Seleccione una opción");
 //          }
     }//GEN-LAST:event_cmbEstadosItemStateChanged
+
+    private void txtBusquedaDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaDNIKeyTyped
+       int limite = 8;
+       char validar = evt.getKeyChar();
+       if(txtBusquedaDNI.getText().length() == limite)
+       { 
+           evt.consume();
+       }
+       
+       if(!Character.isDigit(validar))
+       {
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese solo números");
+       }
+ 
+    }//GEN-LAST:event_txtBusquedaDNIKeyTyped
 
     /**
      * @param args the command line arguments
@@ -424,6 +448,7 @@ public class FrmParticipante extends javax.swing.JFrame {
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
+    
     
     public void refrescarControles(){
         cmbAnios.setSelectedIndex(0);

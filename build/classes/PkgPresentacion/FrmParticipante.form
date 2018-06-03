@@ -179,7 +179,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jlNombres" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jlEstado" pref="32" max="32767" attributes="0"/>
+                      <Component id="jlEstado" pref="34" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -267,12 +267,11 @@
                           <Component id="cmbEstados" alignment="0" pref="138" max="32767" attributes="0"/>
                           <Component id="txtNombres" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jlestado" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                      <Component id="jlestado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -290,16 +289,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtAM" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtNombres" min="-2" pref="25" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="cmbEstados" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNombres" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jlestado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jlestado" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbEstados" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -425,6 +422,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBusquedaDNI">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="El # de DNI es de 8 d&#xed;gitos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBusquedaDNIKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnVerificar">
           <Properties>
