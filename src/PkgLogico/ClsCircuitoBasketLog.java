@@ -32,7 +32,9 @@ public class ClsCircuitoBasketLog {
     public List<ClsEquipo> listaParticipantesEquipo(int _idEquipo) throws SQLException{
         return bsk.listaParticipantesEquipo(_idEquipo);
     }
-   
+    public List<ClsEquipo> listaParticipantesEquipoEmpate(int _idEquipo) throws SQLException{
+       return bsk.listaParticipantesEquipoEmpate(_idEquipo);
+    }
     public int BorrarDatosBasket() {
         return bsk.BorrarDatosBasket();
     }

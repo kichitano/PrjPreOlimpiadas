@@ -1,13 +1,22 @@
 package PkgPresentacion;
 
+import PkgEntidad.ClsEquipo;
+import PkgLogico.ClsCircuitoBasketLog;
+import PkgLogico.ClsRecogedorPelotasLog;
+import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosVariados;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -17,13 +26,21 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     //instancias de clases
     ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
-     
+    ClsRecogedorPelotasLog rplog = new ClsRecogedorPelotasLog();
+    PkgEntidad.ClsRecogedorPelotas rpEnt = new PkgEntidad.ClsRecogedorPelotas();
+    ClsCircuitoBasketLog circuitoBasketLog = new ClsCircuitoBasketLog();
+    
+    //variables
+    int opt = 1;
+    //Arrays
+    ArrayList<String> arrayDetalleEquipos = new ArrayList();
+    
     public FrmRecogedorPelotas() {
         initComponents();
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
         MtdSerie();
-      //  ListarTabla();
+        ListarTabla();
     }
 
     /* ------------- CRONOMETRO ----------------------------------------------------------*/
@@ -250,12 +267,27 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
         btnLanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bola.png"))); // NOI18N
         btnLanzar.setText("Lanzar pelota");
+        btnLanzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLanzarActionPerformed(evt);
+            }
+        });
 
         btnEmpate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/igual (4).png"))); // NOI18N
         btnEmpate.setText("Empate");
+        btnEmpate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpateActionPerformed(evt);
+            }
+        });
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/no-es-igual-a.png"))); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -363,27 +395,35 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
-//        if(cmbSerie.getItemAt(0).equals("Seleccionar opcion")){
-//            opt = 1;
-//            //            cmbNroPartido.removeAllItems();
-//            //            cmbNroPartido.addItem("Seleccionar opcion");
-//            //            cmbNroPartido.setEnabled(false);
-//        }
-//        try {
-//            LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
-//
-//            /*Metodo para cargar combo de equipos*/
-//            PkgNegocios.ClsCircuitoBasket bsk = new PkgNegocios.ClsCircuitoBasket();
-//            MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
-//
-//            //cmbEquipos.setModel(bsk.getValues(Integer.valueOf(LblCarga1.getText())));
-//
-//            /* ----------------------------------- */
-//            opt = 2;
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+         if(cmbSerie.getItemAt(0).equals("Seleccionar opcion"))
+       {
+            opt = 1;
+//            cmbNroPartido.removeAllItems();
+//            cmbNroPartido.addItem("Seleccionar opcion");
+//            cmbNroPartido.setEnabled(false);
+       }
+       try 
+       {
+            //id serie
+            LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+ 
+            /*Metodo para cargar combo de equipos*/          
+            MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
+                      
+            //valida combo vacio
+            if(cmbEquipos.getSelectedIndex() != -1)
+            {
+                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
+                //colocas idEquipo
+                lblEquipoParticipante.setText(String.valueOf(idEquipo));   
+            }
+
+            opt = 2;
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmbSerieItemStateChanged
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
@@ -424,9 +464,65 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbEquiposItemStateChanged
+
+    private void btnLanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanzarActionPerformed
+        ClsConexion conexion = new ClsConexion();
+        Connection con = conexion.getConecion();    
+       // PkgEntidad.ClsRecogedorPelotas rpEnt = null;
+        int id;String posicion;
+        try {
+            rpEnt = new PkgEntidad.ClsRecogedorPelotas
+                      (Integer.valueOf(arrayIdEquipos.get(cmbEquipos.getSelectedIndex())),
+                              Integer.valueOf(txtValor.getText())
+                              );
+        } catch (Exception ex) {
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean resp = rplog.AgregarRecogedorPelotas(rpEnt,con);
+        if (resp == false) {
+            JOptionPane.showMessageDialog(null, "Dato Agregdo");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsRecogedorPelotas> listas = rplog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            rplog.BorrarDatosRecogedorPelotas();
+            for(PkgEntidad.ClsRecogedorPelotas cb : listas)
+            {
+                rplog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }  
+            txtValor.setText("");
+            try {
+                MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Dato no Agregdo");
+        }
+        
+    }//GEN-LAST:event_btnLanzarActionPerformed
+
+    private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
+       btnLanzar.setEnabled(false);
+       try{
+           MtdVerificarPuntajesIguales();
+       }catch(SQLException ex){
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_btnEmpateActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+         MtdUpdatePuntaje();        
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -497,8 +593,136 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                 cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
             }
         }catch(SQLException e){
-            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+    private void ListarTabla() {
+        List<PkgEntidad.ClsRecogedorPelotas> listas = rplog.listado();
+        tblPosiciones.setModel(new ModeloTablaRecogedorPelotas(listas)); //Lista posicion
+        tblPosiciones.getRowSorter();
+        TableColumnModel columnModel = tblPosiciones.getColumnModel();
+        // tamaño a cada columna de un jtable
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(200);
+
+    }
+    private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
+        List<ClsEquipo> listaEquipo = circuitoBasketLog.listaEquipos(_idSerie);
+        cmbEquipos.removeAllItems();
+        arrayIdEquipos.clear();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+        boolean carga = true;
+        
+        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+        List<PkgEntidad.ClsRecogedorPelotas> listaPuntaje = rplog.listado();
+        for(ClsEquipo e : listaEquipo) //recorre equipos completo
+        {
+            for(PkgEntidad.ClsRecogedorPelotas cb : listaPuntaje) //recorre equipos con puntaje
+            {
+                if(e.getIdEquipo() == cb.getIdEquipo()) //2 != 4 // 2 = 2
+                {                    
+                    carga = false;                    
+                }          
+            } 
+            if(carga)
+            {
+                dcmEquipos.addElement(e.getDetalleEquipo());
+                arrayIdEquipos.add(e.getIdEquipo());
+            }
+            carga = true;
+        }    
+        cmbEquipos.setModel(dcmEquipos);  
+    }
+    private void MtdVerificarPuntajesIguales() throws SQLException {
+      
+    cmbEquipos.removeAllItems();
+    arrayDetalleEquipos.clear();        
+    arrayIdEquipos.clear();
+    DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+
+    /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+
+    List<PkgEntidad.ClsRecogedorPelotas> listaPuntaje = rplog.listado();
+
+      //int index=0;        
+      //obtener puntajes iguales y su id
+      int puntajeReferenciaOld=0;
+      int puntajeReferenciaNew=0;
+      //boolean primeraIteracion = false;
+      
+      
+      for(int i = 0; i< listaPuntaje.size(); i++)
+      {
+            puntajeReferenciaOld = listaPuntaje.get(i).getPuntajeEquipo();
+            
+            if(puntajeReferenciaOld == puntajeReferenciaNew)// 5-12-2   ::26
+            {
+                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getDetalleEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i).getDetalleEquipo());
+                
+                arrayIdEquipos.add(listaPuntaje.get(i-1).getIdEquipo());
+                arrayIdEquipos.add(listaPuntaje.get(i).getIdEquipo());
+            }
+            
+            puntajeReferenciaNew = listaPuntaje.get(i).getPuntajeEquipo();
+      }
+      
+      for(int j = 0; j < arrayDetalleEquipos.size(); j++)
+      {
+        for(int k = 0; k< arrayDetalleEquipos.size(); k++)
+        {
+            //Permite comparar con valores diferentes
+            if(j != k)
+            {
+                //Si los valores son iguales se eliminan del array
+                if( arrayDetalleEquipos.get(j).equals(arrayDetalleEquipos.get(k)) )
+                {
+                    arrayDetalleEquipos.remove(j);
+                    arrayIdEquipos.remove(j);
+                }
+            }
+        }    
+      }
+      
+      for(String s : arrayDetalleEquipos)
+      {
+          dcmEquipos.addElement(s);
+      }
+      
+      cmbEquipos.setModel(dcmEquipos);  
+    }
+    private void MtdUpdatePuntaje(){   
+
+        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(txtValor.getText());
+        
+        int exitosa = rplog.UpdatePuntaje(idEquipo,puntajeEquipo);
+        if(exitosa > 0){
+            JOptionPane.showMessageDialog(null, "Dato Modificado");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsRecogedorPelotas> listas = rplog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            rplog.BorrarDatosRecogedorPelotas();
+            //validar jtable de posiciones
+            for(PkgEntidad.ClsRecogedorPelotas cb : listas)
+            {
+                rplog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }
+            
+            txtValor.setText("");
+            
+        }else{
+             JOptionPane.showMessageDialog(null, "Dato NO Modificado");
+        }
+       
     }
 }
 

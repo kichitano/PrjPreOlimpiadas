@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package PkgPresentacion;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -12,11 +13,11 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Vera
  */
-public class ModeloTablaCircuitoBasket  extends AbstractTableModel {
+public class ModeloTablaRecogedorPelotas extends AbstractTableModel{
     String[] columnas = {"ID", "Ptje.", "Posición","Detalle"};
-    public List<PkgEntidad.ClsCircuitoBasket> bsk = new ArrayList<>();
+    public List<PkgEntidad.ClsRecogedorPelotas> bsk = new ArrayList<>();
 
-    public ModeloTablaCircuitoBasket(List<PkgEntidad.ClsCircuitoBasket> bsk) {
+    public ModeloTablaRecogedorPelotas(List<PkgEntidad.ClsRecogedorPelotas> bsk) {
         this.bsk = bsk;
     }
 
@@ -52,7 +53,7 @@ public class ModeloTablaCircuitoBasket  extends AbstractTableModel {
         return resp;
     }
 
-    public PkgEntidad.ClsCircuitoBasket DameCircuito(int fila) {
+    public PkgEntidad.ClsRecogedorPelotas DameCircuito(int fila) {
         return bsk.get(fila);
     }
 }

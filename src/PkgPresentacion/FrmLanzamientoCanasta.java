@@ -114,12 +114,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         columnModel.getColumn(1).setPreferredWidth(100);
         columnModel.getColumn(2).setPreferredWidth(100);
         columnModel.getColumn(3).setPreferredWidth(200);
-        
-        
-        // tamaño general a una tabla
-//        for (int i = 0; i < columnModel.getColumnCount(); i++) {
-//        columnModel.getColumn(i).setPreferredWidth(200);
-//        }
+
     }
    
     public void Limpiar() {
@@ -140,18 +135,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-//     public void MtdIdParticipante(){
-//        int i = cmbParticipantes.getSelectedIndex();
-//        try{
-//            if(i!=0){
-//                 int var = clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(i).getIdApoderado();
-//                 jlIdApoderado.setText(String.valueOf(var));
-//            }
-//        }catch(SQLException e){
-//            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, e);
-//        }
-//    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -482,7 +465,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
     private void cmbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEquiposItemStateChanged
         try {
-            
             //valida combo vacio
             if(cmbEquipos.getSelectedIndex() != -1)
             {
@@ -490,7 +472,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 lblEquipoParticipante.setText(String.valueOf(idEquipo));
                 MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
             }
-
         } catch (Exception ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -743,7 +724,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         
         /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
                 
-        List<ClsCircuitoBasket> listaPuntaje = bsklog.listado();
+        List<ClsCircuitoBasket> listaPuntaje = circuitoBasketLog.listado();
 
         //obtener datos    
 //      for (int i = 0; i < tblPosiciones.getRowCount(); i++) {
@@ -831,17 +812,24 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private void MtdLlenarComboParticipantesEquipo(int _idEquipo) throws SQLException {
         List<ClsEquipo> listsParticipantesEquipo = circuitoBasketLog.listaParticipantesEquipo(_idEquipo);
         cmbParticipantes.removeAllItems();
-      //  arrayIdEquiposParticipantes.clear();
         DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
-//        boolean carga = true;
-        
-        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
-    //    List<ClsCircuitoBasket> listaPuntaje = bsklog.listado();
+
         for(ClsEquipo e : listsParticipantesEquipo) //recorre equipos completo
         {
                 dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
 
-//                arrayIdEquiposParticipantes.add(e.getIdApoderado());
+        }    
+        cmbParticipantes.setModel(dcmEquipos);  
+    }
+    private void MtdLlenarComboParticipantesEquipoEmpate(int _idEquipo) throws SQLException {
+        List<ClsEquipo> listaParticipantesEquipoEmpate = circuitoBasketLog.listaParticipantesEquipoEmpate(_idEquipo);
+        cmbParticipantes.removeAllItems();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+
+        for(ClsEquipo e : listaParticipantesEquipoEmpate) //recorre equipos completo
+        {
+                dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
+
         }    
         cmbParticipantes.setModel(dcmEquipos);  
     }

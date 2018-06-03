@@ -450,6 +450,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Lanzar pelota"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLanzarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEmpate">
           <Properties>
@@ -458,6 +461,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Empate"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmpateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnModificar">
           <Properties>
@@ -466,6 +472,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

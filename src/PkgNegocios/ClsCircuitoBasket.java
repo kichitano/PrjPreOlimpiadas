@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-
 /**
  *
  * @author Vera
@@ -149,30 +147,6 @@ public class ClsCircuitoBasket {
         return lista;
     }
 
-    
-    /*
-    public DefaultComboBoxModel getValues(int _idSerie){
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        try{
-             con = conexion.getConecion();
-             String sql = "select eq.detalleEquipo \n" +
-                " from tbEquipo eq \n" +
-                " inner join tbAnio an on eq.idAnio = an.idAnio\n" +
-                " inner join tbSerie ser on an.idSerie = ser.idSerie\n" +
-                " where an.idSerie = '"+_idSerie+"'";
-             Statement st = con.createStatement();
-             ResultSet rs = st.executeQuery(sql);
-             while(rs.next()){
-                 modelo.addElement(rs.getString(1));
-             }
-             con.close();
-             rs.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return modelo;
-    }
-    */
     public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
         List<ClsEquipo> equipos = new ArrayList<>();
         con = conexion.getConecion();
@@ -223,7 +197,35 @@ public class ClsCircuitoBasket {
              rs.close();
         return equipos;
     }
-    
+    public List<ClsEquipo> listaParticipantesEquipoEmpate(int _idEquipo) throws SQLException{
+        List<ClsEquipo> equipos = new ArrayList<>();
+        con = conexion.getConecion();
+        String sql = "select eq.*, apo.apePaterno ,apo.apeMaterno , apo.nombresApoderado, apo.idApoderado, apo.estadoApoderado\n" +
+                     " from tbEquipo eq\n" +
+                     " inner join tbAnio an on eq.idAnio = an.idAnio\n" +
+                     " inner join tbApoderado apo on an.idAnio = apo.idAnio\n" +
+                     " where apo.estadoApoderado = 'J' \n" +
+                     " and apo.idDisciplina = 5\n" +
+                     " and eq.idEquipo = '"+_idEquipo+"'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+         while(rs.next()){
+                ClsEquipo equipo = new ClsEquipo();
+                equipo.setIdEquipo(rs.getInt(1));
+                equipo.setNombreEquipo(rs.getString(2));
+                equipo.setDetalleEquipo(rs.getString(3));
+                equipo.setEstadoEquipo(rs.getString(4));
+                equipo.setIdAnio(rs.getInt(5));
+                equipo.setApePaterno(rs.getString(6));
+                equipo.setApeMaterno(rs.getString(7));
+                equipo.setNombresApoderado(rs.getString(8));
+                equipo.setIdApoderado(rs.getInt(9));
+                equipos.add(equipo);
+             }
+             con.close();
+             rs.close();
+        return equipos;
+    }
 
    
 }
