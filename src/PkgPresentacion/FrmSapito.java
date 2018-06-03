@@ -8,7 +8,9 @@ package PkgPresentacion;
 import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsEquipo;
 import PkgLogico.ClsSapitoLog;
+import PkgNegocios.ClsConexion;
 import PkgNegocios.ClsMetodosVariados;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -27,11 +30,17 @@ import javax.swing.table.TableColumnModel;
 public class FrmSapito extends javax.swing.JFrame {
     ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
     ClsSapitoLog sapitoLog = new ClsSapitoLog();
+    PkgNegocios.ClsSapito sapitoNeg = new PkgNegocios.ClsSapito();
     
     
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<Integer> arrayIdEquiposParticipantes = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
+    
+    // Declaracion de Variables
+    int opt = 1;
+    int puntajeSapito = 0;
+    private int puntajeTotal=0;
     /**
      * Creates new form FrmSapito
      */
@@ -39,7 +48,7 @@ public class FrmSapito extends javax.swing.JFrame {
         initComponents();
         cmbSerie.setEnabled(true);
          //  DeshabilitarControles();
-        MtdSerie(); 
+        MtdLlenarComboSeries(); 
         ListarTabla();
     }
     // Metodos de visualización de formulario
@@ -66,6 +75,7 @@ public class FrmSapito extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         cmbSerie = new javax.swing.JComboBox<>();
+        lblIdSerie = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn1 = new javax.swing.JButton();
         btn2 = new javax.swing.JButton();
@@ -94,12 +104,15 @@ public class FrmSapito extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         cmbParticipantes = new javax.swing.JComboBox<>();
-        lblIdParticipante = new javax.swing.JLabel();
+        btnParticipar = new javax.swing.JButton();
         btnDesempate = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         cmbEq = new javax.swing.JComboBox<>();
         lblIdEquipo = new javax.swing.JLabel();
         btnAgregarParticipante = new javax.swing.JButton();
+        lblPuntaje = new javax.swing.JLabel();
+        lblIdParticipante = new javax.swing.JLabel();
+        txtPuntajeAcumulado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +136,8 @@ public class FrmSapito extends javax.swing.JFrame {
             }
         });
 
+        lblIdSerie.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -130,9 +145,11 @@ public class FrmSapito extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(94, 94, 94)
-                .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(32, 32, 32)
+                .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblIdSerie)
+                .addGap(31, 31, 31))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +157,8 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdSerie))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -153,7 +171,7 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,44 +186,144 @@ public class FrmSapito extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Puntajes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 14))); // NOI18N
 
         btn1.setText("1000");
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
 
         btn2.setText("500");
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
 
         btn3.setText("700");
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
 
         btn4.setText("500");
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
 
         btn5.setText("500");
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
 
         btn6.setText("400");
+        btn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn6ActionPerformed(evt);
+            }
+        });
 
         btn7.setText("600");
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
 
         btn8.setText("400");
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
 
         btn9.setText("2000");
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
 
         btn10.setText("600");
+        btn10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn10ActionPerformed(evt);
+            }
+        });
 
         btn11.setText("4000");
+        btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn11ActionPerformed(evt);
+            }
+        });
 
         btn15.setText("600");
+        btn15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn15ActionPerformed(evt);
+            }
+        });
 
         btn14.setText("400");
+        btn14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn14ActionPerformed(evt);
+            }
+        });
 
         btn13.setText("500");
+        btn13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn13ActionPerformed(evt);
+            }
+        });
 
         btn12.setText("300");
+        btn12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn12ActionPerformed(evt);
+            }
+        });
 
         btn16.setText("400");
+        btn16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn16ActionPerformed(evt);
+            }
+        });
 
         btn17.setText("1000");
+        btn17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn17ActionPerformed(evt);
+            }
+        });
 
         btn18.setText("500");
+        btn18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn18ActionPerformed(evt);
+            }
+        });
 
         btn19.setText("700");
+        btn19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn19ActionPerformed(evt);
+            }
+        });
 
         btn20.setText("500");
+        btn20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn20ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -330,7 +448,7 @@ public class FrmSapito extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/check.png"))); // NOI18N
@@ -351,9 +469,14 @@ public class FrmSapito extends javax.swing.JFrame {
             }
         });
 
-        lblIdParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        lblIdParticipante.setForeground(new java.awt.Color(0, 51, 204));
-        lblIdParticipante.setText("id");
+        btnParticipar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/checkParticipacion.png"))); // NOI18N
+        btnParticipar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnParticipar.setBorderPainted(false);
+        btnParticipar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnParticiparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -362,18 +485,19 @@ public class FrmSapito extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cmbParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnParticipar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cmbParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(btnParticipar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         btnDesempate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/no-es-igual-a.png"))); // NOI18N
@@ -428,29 +552,50 @@ public class FrmSapito extends javax.swing.JFrame {
             }
         });
 
+        lblPuntaje.setText("ID Serie");
+
+        lblIdParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        lblIdParticipante.setForeground(new java.awt.Color(0, 51, 204));
+        lblIdParticipante.setText("idParticipante");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(66, 66, 66))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(8, 8, 8)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblPuntaje)
+                                .addGap(40, 40, 40)
+                                .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -460,99 +605,276 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblPuntaje)
+                                    .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
+        btnGuardar.setEnabled(false);
+        try {
+            //1. Verificar que idEquipos tienen el mismo puntaje
+            MtdVerificarPuntajesIguales();
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_btnEmpateActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        ClsConexion conexion = new ClsConexion();
+        Connection con = conexion.getConecion();    
+        PkgEntidad.ClsSapito sap = null;
+        int id;
+        String posicion;
+        
+        try {
+            sap = new PkgEntidad.ClsSapito
+                      (Integer.valueOf(arrayIdEquipos.get(cmbEq.getSelectedIndex())),
+                              Integer.valueOf(lblPuntaje.getText())
+                              );
+        } catch (Exception ex) {
+            Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean resp = sapitoLog.AgregarPuntajeSapito(sap,con);
+        if (resp == false) {
+            JOptionPane.showMessageDialog(null, "Dato Agregdo");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsSapito> listas = sapitoLog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            sapitoLog.BorrarDatosSapito();
+            for(PkgEntidad.ClsSapito cb : listas)
+            {
+                sapitoLog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }
+            
+            lblPuntaje.setText("");
+            try {
+                MtdLlenarComboEquipos(Integer.valueOf(lblIdSerie.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Dato no Agregdo");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cmbParticipantesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbParticipantesItemStateChanged
-//        try {
-//
-//            //valida combo vacio
-//            if(cmbEquipos.getSelectedIndex() != -1)
-//            {
-//                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
-//                lblEquipoParticipante.setText(String.valueOf(idEquipo));
-//            }
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+
+            //valida combo vacio
+            if(cmbParticipantes.getSelectedIndex() != -1)
+            {
+                lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmbParticipantesItemStateChanged
 
     private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
-        // TODO add your handling code here:
+        MtdUpdatePuntaje();        
     }//GEN-LAST:event_btnDesempateActionPerformed
 
     private void cmbEqItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEqItemStateChanged
-        // TODO add your handling code here:
+        try{    
+        //valida combo vacio
+            if(cmbEq.getSelectedIndex() != -1)
+            {
+                int idEquipo = arrayIdEquipos.get(cmbEq.getSelectedIndex());
+                lblIdEquipo.setText(String.valueOf(idEquipo));
+                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmbEqItemStateChanged
 
     private void cmbSerieItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSerieItemStateChanged
-//        if(cmbSerie.getItemAt(0).equals("Seleccionar opcion"))
-//        {
-//            opt = 1;
-//            //            cmbNroPartido.removeAllItems();
-//            //            cmbNroPartido.addItem("Seleccionar opcion");
-//            //            cmbNroPartido.setEnabled(false);
-//        }
-//        try
-//        {
-//            //id serie
-//            LblCarga1.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
-//
-//            /*Metodo para cargar combo de equipos*/
-//            MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
-//
-//            //valida combo vacio
-//            if(cmbEquipos.getSelectedIndex() != -1)
-//            {
-//                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
-//                //colocas idEquipo
-//                lblEquipoParticipante.setText(String.valueOf(idEquipo));
-//
-//                //Metodo para cargar combo participante*/
-//                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
-//
-//                //colocas idParticipante
-//                jlIdApoderado.setText(String.valueOf(clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
-//            }
-//
-//            opt = 2;
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        if(cmbSerie.getItemAt(0).equals("Seleccionar opcion"))
+        {
+            opt = 1;
+            //            cmbNroPartido.removeAllItems();
+            //            cmbNroPartido.addItem("Seleccionar opcion");
+            //            cmbNroPartido.setEnabled(false);
+        }
+        try
+        {
+            //id serie
+            lblIdSerie.setText(String.valueOf(metodosVariados.listaSerie().get(cmbSerie.getSelectedIndex()-1).getIdSerie()));
+
+            /*Metodo para cargar combo de equipos*/
+            MtdLlenarComboEquipos(Integer.valueOf(lblIdSerie.getText()));
+
+            //valida combo vacio
+            if(cmbEq.getSelectedIndex() != -1)
+            {
+                int idEquipo = arrayIdEquipos.get(cmbEq.getSelectedIndex());
+                //colocas idEquipo
+                lblIdEquipo.setText(String.valueOf(idEquipo));
+
+                //Metodo para cargar combo participante*/
+                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText()));
+
+                //colocas idParticipante
+               // lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
+                lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
+            }
+
+            opt = 2;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_cmbSerieItemStateChanged
 
     private void btnAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipanteActionPerformed
-        // TODO add your handling code here:
+      FrmParticipante participante = new FrmParticipante();
+      participante.show();
     }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        puntajeSapito = 1000;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        puntajeSapito = 500;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        puntajeSapito = 700;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        puntajeSapito = 500;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        puntajeSapito = 500;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
+       puntajeSapito = 400;
+       lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn6ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        puntajeSapito = 600;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        puntajeSapito = 400;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        puntajeSapito = 2000;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+        puntajeSapito = 600;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn10ActionPerformed
+
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
+        puntajeSapito = 4000;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn11ActionPerformed
+
+    private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
+      puntajeSapito = 300;
+      lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn12ActionPerformed
+
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
+        puntajeSapito = 500;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn13ActionPerformed
+
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
+        puntajeSapito = 400;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn14ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+         puntajeSapito = 600;
+         lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn15ActionPerformed
+
+    private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
+       puntajeSapito = 400;
+       lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn16ActionPerformed
+
+    private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn17ActionPerformed
+         puntajeSapito = 1000;
+         lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn17ActionPerformed
+
+    private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn18ActionPerformed
+         puntajeSapito = 500;
+         lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn18ActionPerformed
+
+    private void btn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn19ActionPerformed
+         puntajeSapito = 700;
+         lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn19ActionPerformed
+
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
+        puntajeSapito = 500;
+        lblPuntaje.setText(String.valueOf(puntajeSapito));
+    }//GEN-LAST:event_btn20ActionPerformed
+
+    private void btnParticiparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParticiparActionPerformed
+        try{
+              MtdUpdateEstadoParticipante();
+              int puntajeIndividual;
+              puntajeIndividual = Integer.parseInt(lblPuntaje.getText());
+              SumarPuntaje(puntajeIndividual);
+        }catch (SQLException ex) {
+            Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnParticiparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -588,6 +910,11 @@ public class FrmSapito extends javax.swing.JFrame {
             }
         });
     }
+    private void SumarPuntaje(int _puntajeIndividual)
+    {
+        puntajeTotal = puntajeTotal + _puntajeIndividual;        
+        txtPuntajeAcumulado.setText(String.valueOf(puntajeTotal));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
@@ -614,6 +941,7 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnParticipar;
     private javax.swing.JComboBox<String> cmbEq;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbParticipantes;
@@ -631,18 +959,118 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JLabel lblIdEquipo;
     private javax.swing.JLabel lblIdParticipante;
+    private javax.swing.JLabel lblIdSerie;
+    private javax.swing.JLabel lblPuntaje;
     private javax.swing.JTable tblPosiciones;
+    private javax.swing.JTextField txtPuntajeAcumulado;
     // End of variables declaration//GEN-END:variables
     
-    public void MtdSerie(){
-          try{
-              for(int i = 0; i < metodosVariados.listaSerie().size(); i++){
-                  cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
-              }
-          }catch(SQLException e){
-              Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, e);
-          }
-     }
+    /* METODO PARA ACTUALIZAR ESTADOS Y PUNTAJES */
+     private void MtdUpdateEstadoParticipante() throws SQLException{
+        int idParticipante = Integer.valueOf(lblIdParticipante.getText());
+      
+        int exitosa = sapitoLog.UpdateEstadoApoderado(idParticipante);
+        if(exitosa > 0){
+            JOptionPane.showMessageDialog(null, "Estado de Participante Modificado");
+            cmbParticipantes.removeAllItems();
+            MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText()));
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(null, "Estado de Participante NO Modificado");
+        }
+    }
+      private void MtdUpdatePuntaje(){   
+
+        int idEquipo = arrayIdEquipos.get(cmbEq.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(lblPuntaje.getText());
+        
+        int exitosa = sapitoLog.UpdatePuntaje(idEquipo,puntajeEquipo);
+        if(exitosa > 0){
+            JOptionPane.showMessageDialog(null, "Dato Modificado");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsSapito> listas = sapitoLog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            sapitoLog.BorrarDatosSapito();
+            //validar jtable de posiciones
+            for(PkgEntidad.ClsSapito cb : listas)
+            {
+                sapitoLog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }
+//            
+//            Limpiar();
+            
+        }else{
+             JOptionPane.showMessageDialog(null, "Dato NO Modificado");
+        }
+       
+    }
+
+     private void MtdVerificarPuntajesIguales() throws SQLException {
+      
+        cmbEq.removeAllItems();
+        arrayDetalleEquipos.clear();        
+        arrayIdEquipos.clear();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+        
+        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+                
+        List<PkgEntidad.ClsSapito> listaPuntaje = sapitoLog.listado();
+
+    
+      //obtener puntajes iguales y su id
+      int puntajeReferenciaOld=0;
+      int puntajeReferenciaNew=0;    
+      
+      for(int i = 0; i< listaPuntaje.size(); i++)
+      {
+            puntajeReferenciaOld = listaPuntaje.get(i).getPuntajeEquipo();
+            
+            if(puntajeReferenciaOld == puntajeReferenciaNew)// 5-12-2   ::26
+            {
+                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getDetalleEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i).getDetalleEquipo());
+                
+                arrayIdEquipos.add(listaPuntaje.get(i-1).getIdEquipo());
+                arrayIdEquipos.add(listaPuntaje.get(i).getIdEquipo());
+            }
+            
+            puntajeReferenciaNew = listaPuntaje.get(i).getPuntajeEquipo();
+      }
+      
+      for(int j = 0; j < arrayDetalleEquipos.size(); j++)
+      {
+        for(int k = 0; k< arrayDetalleEquipos.size(); k++)
+        {
+            //Permite comparar con valores diferentes
+            if(j != k)
+            {
+                //Si los valores son iguales se eliminan del array
+                if( arrayDetalleEquipos.get(j).equals(arrayDetalleEquipos.get(k)) )
+                {
+                    arrayDetalleEquipos.remove(j);
+                    arrayIdEquipos.remove(j);
+                }
+            }
+        }    
+      }
+      
+      for(String s : arrayDetalleEquipos)
+      {
+          dcmEquipos.addElement(s);
+      }
+      
+      cmbEq.setModel(dcmEquipos);  
+    }
+
+    /* METODO PARA LLENAR EL JTABLE */
     private void ListarTabla() {
         List<PkgEntidad.ClsSapito> listas = sapitoLog.listado();
         tblPosiciones.setModel(new ModeloTablaSapito(listas)); //Lista posicion
@@ -655,9 +1083,19 @@ public class FrmSapito extends javax.swing.JFrame {
         columnModel.getColumn(3).setPreferredWidth(200);
 
     }
-     private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
+    /* METODOS PARA LLENAR COMBOBOX */
+    public void MtdLlenarComboSeries(){
+          try{
+              for(int i = 0; i < metodosVariados.listaSerie().size(); i++){
+                  cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
+              }
+          }catch(SQLException e){
+              Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, e);
+          }
+     }
+    private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
         List<ClsEquipo> listaEquipo = sapitoLog.listaEquipos(_idSerie);
-        cmbEquipos.removeAllItems();
+        cmbEq.removeAllItems();
         arrayIdEquipos.clear();
         DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
         boolean carga = true;
@@ -681,6 +1119,30 @@ public class FrmSapito extends javax.swing.JFrame {
             carga = true;
         }    
         cmbEq.setModel(dcmEquipos);  
+    }
+      private void MtdLlenarComboParticipantesEquipo(int _idEquipo) throws SQLException {
+        List<ClsEquipo> listsParticipantesEquipo = sapitoLog.listaParticipantesEquipo(_idEquipo);
+        cmbParticipantes.removeAllItems();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+
+        for(ClsEquipo e : listsParticipantesEquipo) //recorre equipos completo
+        {
+                dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
+
+        }    
+        cmbParticipantes.setModel(dcmEquipos);  
+    }
+    private void MtdLlenarComboParticipantesEquipoEmpate(int _idEquipo) throws SQLException {
+        List<ClsEquipo> listaParticipantesEquipoEmpate = sapitoLog.listaParticipantesEquipoEmpate(_idEquipo);
+        cmbParticipantes.removeAllItems();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+
+        for(ClsEquipo e : listaParticipantesEquipoEmpate) //recorre equipos completo
+        {
+                dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
+
+        }    
+        cmbParticipantes.setModel(dcmEquipos);  
     }
 }
 

@@ -15,6 +15,16 @@ public class ClsSapito {
     String posicionEquipo;
     String detalleEquipo;
 
+    
+    public ClsSapito() {
+    }
+
+    public ClsSapito(int idEquipo, int puntajeEquipo) {
+        this.idEquipo = idEquipo;
+        this.puntajeEquipo = puntajeEquipo;
+        
+    }
+    
     public int getIdEquipo() {
         return idEquipo;
     }
