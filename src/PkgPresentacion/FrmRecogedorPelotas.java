@@ -513,6 +513,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
     private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
        btnLanzar.setEnabled(false);
+       
        try{
            MtdVerificarPuntajesIguales();
        }catch(SQLException ex){
@@ -521,7 +522,13 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmpateActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-         MtdUpdatePuntaje();        
+         MtdUpdatePuntaje();
+        try {
+            MtdVerificarPuntajesIguales();
+            btnLanzar.setEnabled(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
