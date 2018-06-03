@@ -5,20 +5,53 @@
  */
 package PkgPresentacion;
 
+import PkgEntidad.ClsCircuitoBasket;
+import PkgEntidad.ClsEquipo;
+import PkgLogico.ClsSapitoLog;
+import PkgNegocios.ClsMetodosVariados;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Vera
  */
 public class FrmSapito extends javax.swing.JFrame {
-
+    ClsMetodosVariados metodosVariados = new ClsMetodosVariados();
+    ClsSapitoLog sapitoLog = new ClsSapitoLog();
+    
+    
+    ArrayList<Integer> arrayIdEquipos = new ArrayList();
+    ArrayList<Integer> arrayIdEquiposParticipantes = new ArrayList();
+    ArrayList<String> arrayDetalleEquipos = new ArrayList();
     /**
      * Creates new form FrmSapito
      */
     public FrmSapito() {
         initComponents();
-   
+        cmbSerie.setEnabled(true);
+         //  DeshabilitarControles();
+        MtdSerie(); 
+        ListarTabla();
     }
+    // Metodos de visualización de formulario
 
+    // Color jtable
+     public void setCellRender(JTable table) {
+        Enumeration<TableColumn> en = table.getColumnModel().getColumns();
+        while (en.hasMoreElements()) {
+            TableColumn tc = en.nextElement();
+            tc.setCellRenderer(new CellRenderer());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +90,7 @@ public class FrmSapito extends javax.swing.JFrame {
         btnEmpate = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPosiciones = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         cmbParticipantes = new javax.swing.JComboBox<>();
@@ -66,6 +99,7 @@ public class FrmSapito extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         cmbEq = new javax.swing.JComboBox<>();
         lblIdEquipo = new javax.swing.JLabel();
+        btnAgregarParticipante = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -269,7 +303,7 @@ public class FrmSapito extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 14))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPosiciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -280,7 +314,7 @@ public class FrmSapito extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPosiciones);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -385,6 +419,15 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnAgregarParticipante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add-user-symbol-of-interface.png"))); // NOI18N
+        btnAgregarParticipante.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnAgregarParticipante.setBorderPainted(false);
+        btnAgregarParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarParticipanteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -395,13 +438,15 @@ public class FrmSapito extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,8 +460,8 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -426,11 +471,12 @@ public class FrmSapito extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -504,6 +550,10 @@ public class FrmSapito extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_cmbSerieItemStateChanged
 
+    private void btnAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -560,6 +610,7 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnAgregarParticipante;
     private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnGuardar;
@@ -577,9 +628,59 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JLabel lblIdEquipo;
     private javax.swing.JLabel lblIdParticipante;
+    private javax.swing.JTable tblPosiciones;
     // End of variables declaration//GEN-END:variables
+    
+    public void MtdSerie(){
+          try{
+              for(int i = 0; i < metodosVariados.listaSerie().size(); i++){
+                  cmbSerie.addItem(metodosVariados.listaSerie().get(i).getDescripcionSerie());
+              }
+          }catch(SQLException e){
+              Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, e);
+          }
+     }
+    private void ListarTabla() {
+        List<PkgEntidad.ClsSapito> listas = sapitoLog.listado();
+        tblPosiciones.setModel(new ModeloTablaSapito(listas)); //Lista posicion
+        setCellRender(tblPosiciones);
+        tblPosiciones.getRowSorter();
+        TableColumnModel columnModel = tblPosiciones.getColumnModel();
+        // tamaño a cada columna de un jtable
+        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(3).setPreferredWidth(200);
+
+    }
+     private void MtdLlenarComboEquipos(int _idSerie) throws SQLException {
+        List<ClsEquipo> listaEquipo = sapitoLog.listaEquipos(_idSerie);
+        cmbEquipos.removeAllItems();
+        arrayIdEquipos.clear();
+        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
+        boolean carga = true;
+        
+        /*Metodo para verificar que idEquipo se encuentran ya registrados en el jtable*/
+        List<PkgEntidad.ClsSapito> listaPuntaje = sapitoLog.listado();
+        for(ClsEquipo e : listaEquipo) //recorre equipos completo
+        {
+            for(PkgEntidad.ClsSapito cb : listaPuntaje) //recorre equipos con puntaje
+            {
+                if(e.getIdEquipo() == cb.getIdEquipo()) //2 != 4 // 2 = 2
+                {                    
+                    carga = false;                    
+                }          
+            } 
+            if(carga)
+            {
+                dcmEquipos.addElement(e.getDetalleEquipo());
+                arrayIdEquipos.add(e.getIdEquipo());
+            }
+            carga = true;
+        }    
+        cmbEq.setModel(dcmEquipos);  
+    }
 }
+
