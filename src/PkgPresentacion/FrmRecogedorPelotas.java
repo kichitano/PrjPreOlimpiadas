@@ -113,7 +113,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnLanzar = new javax.swing.JButton();
         btnEmpate = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
+        btnDesempate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -276,7 +276,6 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         jLabel6.setText("Puntaje:");
 
         btnLanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bola.png"))); // NOI18N
-        btnLanzar.setText("Lanzar pelota");
         btnLanzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLanzarActionPerformed(evt);
@@ -284,18 +283,16 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         });
 
         btnEmpate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/igual (4).png"))); // NOI18N
-        btnEmpate.setText("Empate");
         btnEmpate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmpateActionPerformed(evt);
             }
         });
 
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/no-es-igual-a.png"))); // NOI18N
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnDesempate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/no-es-igual-a.png"))); // NOI18N
+        btnDesempate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnDesempateActionPerformed(evt);
             }
         });
 
@@ -315,7 +312,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(btnEmpate)
                 .addGap(10, 10, 10)
-                .addComponent(btnModificar)
+                .addComponent(btnDesempate)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -329,7 +326,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLanzar)
                     .addComponent(btnEmpate)
-                    .addComponent(btnModificar))
+                    .addComponent(btnDesempate))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -531,7 +528,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_btnEmpateActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
          MtdUpdatePuntaje();
         try {
             MtdVerificarPuntajesIguales();
@@ -539,7 +536,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnModificarActionPerformed
+    }//GEN-LAST:event_btnDesempateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -578,11 +575,11 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
+    private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnLanzar;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbSerie;

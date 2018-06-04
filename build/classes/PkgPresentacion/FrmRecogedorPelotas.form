@@ -411,7 +411,7 @@
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Component id="btnEmpate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDesempate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -428,7 +428,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnLanzar" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEmpate" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnModificar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDesempate" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
@@ -448,7 +448,6 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Recursos/bola.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Lanzar pelota"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLanzarActionPerformed"/>
@@ -459,21 +458,19 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Recursos/igual (4).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Empate"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmpateActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnModificar">
+        <Component class="javax.swing.JButton" name="btnDesempate">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Recursos/no-es-igual-a.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDesempateActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

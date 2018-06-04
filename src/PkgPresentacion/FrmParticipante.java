@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +23,10 @@ import javax.swing.JOptionPane;
  */
 public class FrmParticipante extends javax.swing.JFrame {
     ClsApoderadoLog apoderadoLog = new ClsApoderadoLog();
- 
+    
+    FrmSapito claseSapito;
+    JFrame clase;
+    
     public FrmParticipante() {
         initComponents();
         HabilitarControles();
@@ -350,15 +354,14 @@ public class FrmParticipante extends javax.swing.JFrame {
       refrescarControles();
       DeshabilitarControles();
       
-      //recargar combobox participantes frm Sapito
-//      FrmSapito frmsapito = new FrmSapito();
-//      String idEquipo = frmsapito.lblIdEquipo.getText();
-//        try {
-//            frmsapito.MtdLlenarComboParticipantesEquipo(Integer.valueOf(idEquipo));
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FrmParticipante.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-      //volver a formulario anterior
+        try 
+        {
+            //CargamosCombos de la clase sapito
+            claseSapito.CargarComboEquipoParticipante();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmParticipante.class.getName()).log(Level.SEVERE, null, ex);
+        }
       this.dispose(); 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -429,6 +432,7 @@ public class FrmParticipante extends javax.swing.JFrame {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVerificar;
@@ -457,6 +461,16 @@ public class FrmParticipante extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     // End of variables declaration//GEN-END:variables
     
+    //Permite usar metetodos de la clase FrmSapito    
+    public void FormularioFrmSapito(FrmSapito _FrmSapito)
+    {
+        claseSapito = _FrmSapito;        
+    }
+    
+//    public void RecibeFormulario(JFrame _Formulario)
+//    {
+//        clase = _Formulario;        
+//    }
     
     public void refrescarControles(){
         cmbAnios.setSelectedIndex(0);
