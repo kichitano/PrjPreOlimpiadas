@@ -5,7 +5,6 @@
  */
 package PkgPresentacion;
 
-import PkgEntidad.ClsCircuitoBasket;
 import PkgEntidad.ClsEquipo;
 import PkgLogico.ClsSapitoLog;
 import PkgNegocios.ClsConexion;
@@ -146,8 +145,8 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(32, 32, 32)
-                .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cmbSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblIdSerie)
                 .addGap(31, 31, 31))
         );
@@ -552,11 +551,11 @@ public class FrmSapito extends javax.swing.JFrame {
             }
         });
 
-        lblPuntaje.setText("ID Serie");
+        lblPuntaje.setText("Puntaje");
 
         lblIdParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblIdParticipante.setForeground(new java.awt.Color(0, 51, 204));
-        lblIdParticipante.setText("idParticipante");
+        lblIdParticipante.setText("idP");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -749,7 +748,6 @@ public class FrmSapito extends javax.swing.JFrame {
                 MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText()));
 
                 //colocas idParticipante
-               // lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
                 lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
             }
 
@@ -943,7 +941,6 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnParticipar;
     private javax.swing.JComboBox<String> cmbEq;
-    private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbParticipantes;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel jLabel15;
@@ -952,12 +949,10 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblEquipoParticipante;
-    private javax.swing.JLabel lblIdEquipo;
+    public static javax.swing.JLabel lblIdEquipo;
     private javax.swing.JLabel lblIdParticipante;
     private javax.swing.JLabel lblIdSerie;
     private javax.swing.JLabel lblPuntaje;
@@ -1120,7 +1115,7 @@ public class FrmSapito extends javax.swing.JFrame {
         }    
         cmbEq.setModel(dcmEquipos);  
     }
-      private void MtdLlenarComboParticipantesEquipo(int _idEquipo) throws SQLException {
+      public void MtdLlenarComboParticipantesEquipo(int _idEquipo) throws SQLException {
         List<ClsEquipo> listsParticipantesEquipo = sapitoLog.listaParticipantesEquipo(_idEquipo);
         cmbParticipantes.removeAllItems();
         DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        

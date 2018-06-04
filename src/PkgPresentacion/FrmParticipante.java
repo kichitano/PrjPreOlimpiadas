@@ -346,10 +346,18 @@ public class FrmParticipante extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//      InsertarNuevoApoderado();
+      InsertarNuevoApoderado();
       refrescarControles();
       DeshabilitarControles();
       
+      //recargar combobox participantes frm Sapito
+//      FrmSapito frmsapito = new FrmSapito();
+//      String idEquipo = frmsapito.lblIdEquipo.getText();
+//        try {
+//            frmsapito.MtdLlenarComboParticipantesEquipo(Integer.valueOf(idEquipo));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(FrmParticipante.class.getName()).log(Level.SEVERE, null, ex);
+//        }
       //volver a formulario anterior
       this.dispose(); 
 
@@ -524,15 +532,5 @@ public class FrmParticipante extends javax.swing.JFrame {
   
           apoderadoLog.InsertarApoderado(idAnio, idDisciplina, dni, apeP, apeM, nomb, jlestado.getText());
           JOptionPane.showMessageDialog(null, "Nuevo Participante Agregado");
-      }
-//    private void MtdVerificarEstadoParticipante(String _dnix){
-//        String dni = txtBusquedaDNI.getText();
-//       
-//        if(exitosa > 0){
-//            JOptionPane.showMessageDialog(null,"Participante ya registrado en una disciplina"); 
-//        }else {
-//            JOptionPane.showMessageDialog(null, "Participante NO registrado en ninguna disciplina");  
-//        }
-//    }
-   
+      }  
 }
