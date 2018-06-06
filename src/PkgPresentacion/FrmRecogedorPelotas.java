@@ -44,6 +44,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         cmbSerie.setEnabled(true);
         MtdSerie();
         ListarTabla();
+        DeshabilitarControles();
     }
     // Color jtable
      public void setCellRender(JTable table) {
@@ -85,6 +86,10 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         etiquetaTiempo.setText(tiempo);
     }
     /*-------------------------------------------------------------------------------------------------*/
+    public void DeshabilitarControles(){
+        lblEquipoParticipante.setVisible(false);
+        LblCarga1.setVisible(false);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -530,12 +535,8 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
     private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
          MtdUpdatePuntaje();
-        try {
-            MtdVerificarPuntajesIguales();
-            btnLanzar.setEnabled(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(FrmRecogedorPelotas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         btnLanzar.setEnabled(true);
+      
     }//GEN-LAST:event_btnDesempateActionPerformed
 
     /**

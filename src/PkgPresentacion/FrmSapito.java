@@ -46,7 +46,7 @@ public class FrmSapito extends javax.swing.JFrame {
     public FrmSapito() {
         initComponents();
         cmbSerie.setEnabled(true);
-         //  DeshabilitarControles();
+        esconderControles();
         MtdLlenarComboSeries(); 
         ListarTabla();
     }
@@ -55,6 +55,7 @@ public class FrmSapito extends javax.swing.JFrame {
         lblIdParticipante.setVisible(false);
         lblIdEquipo.setVisible(false);
         lblIdSerie.setVisible(false);
+        lblPuntaje.setVisible(false);
      }
     // Color jtable
      public void setCellRender(JTable table) {
@@ -112,6 +113,7 @@ public class FrmSapito extends javax.swing.JFrame {
         lblPuntaje = new javax.swing.JLabel();
         lblIdParticipante = new javax.swing.JLabel();
         txtPuntajeAcumulado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -410,7 +412,6 @@ public class FrmSapito extends javax.swing.JFrame {
         );
 
         btnEmpate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/igual (3).png"))); // NOI18N
-        btnEmpate.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnEmpate.setBorderPainted(false);
         btnEmpate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,7 +452,6 @@ public class FrmSapito extends javax.swing.JFrame {
         );
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/check.png"))); // NOI18N
-        btnGuardar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnGuardar.setBorderPainted(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,7 +469,6 @@ public class FrmSapito extends javax.swing.JFrame {
         });
 
         btnParticipar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/checkParticipacion.png"))); // NOI18N
-        btnParticipar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnParticipar.setBorderPainted(false);
         btnParticipar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -500,7 +499,6 @@ public class FrmSapito extends javax.swing.JFrame {
         );
 
         btnDesempate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/no-es-igual-a.png"))); // NOI18N
-        btnDesempate.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnDesempate.setBorderPainted(false);
         btnDesempate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -543,7 +541,6 @@ public class FrmSapito extends javax.swing.JFrame {
         );
 
         btnAgregarParticipante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add-user-symbol-of-interface.png"))); // NOI18N
-        btnAgregarParticipante.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnAgregarParticipante.setBorderPainted(false);
         btnAgregarParticipante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,6 +553,10 @@ public class FrmSapito extends javax.swing.JFrame {
         lblIdParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblIdParticipante.setForeground(new java.awt.Color(0, 51, 204));
         lblIdParticipante.setText("idP");
+
+        jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
+        jLabel1.setText("Ptje. Acumulado:");
+        jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -581,13 +582,16 @@ public class FrmSapito extends javax.swing.JFrame {
                                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(8, 8, 8)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(lblPuntaje)
-                                .addGap(40, 40, 40)
-                                .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -613,7 +617,8 @@ public class FrmSapito extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblPuntaje)
-                                    .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -1001,6 +1006,7 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbEq;
     private javax.swing.JComboBox<String> cmbParticipantes;
     private javax.swing.JComboBox<String> cmbSerie;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

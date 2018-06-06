@@ -59,7 +59,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         t = new Timer(10, acciones);
         cmbSerie.setEnabled(true);
-      //  DeshabilitarControles();
+        DeshabilitarControles();
         MtdSerie(); 
         ListarTabla();
     }
@@ -124,6 +124,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     public void DeshabilitarControles(){
         lblEquipoParticipante.setVisible(false);
         LblCarga1.setVisible(false);
+        jlIdApoderado.setVisible(false);
     }
    
     public void MtdSerie(){
@@ -169,7 +170,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnEmpate = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         jlIdApoderado = new javax.swing.JLabel();
-        txtPuntajeParticipante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -377,7 +377,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         jlIdApoderado.setText("ID");
         getContentPane().add(jlIdApoderado, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 550, -1, -1));
-        getContentPane().add(txtPuntajeParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 550, 50, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -663,7 +662,6 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JLabel lblEquipoParticipante;
     private javax.swing.JTable tblPosiciones;
     public static javax.swing.JTextField txtPuntaje;
-    private javax.swing.JTextField txtPuntajeParticipante;
     // End of variables declaration//GEN-END:variables
 
     //Metodo para actualizar el estado del participante o apoderado
