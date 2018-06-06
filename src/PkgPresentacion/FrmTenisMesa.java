@@ -557,7 +557,7 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
                     String[] partes = String.valueOf(list.getSelectedValue()).split(" ");
                     String  dni = partes[0];
                     
-                    if(){
+                    if(jugador.size() <= 0){
                         
                     }
                     
