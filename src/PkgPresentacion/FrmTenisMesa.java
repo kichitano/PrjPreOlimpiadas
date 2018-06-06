@@ -11,12 +11,16 @@ import PkgEntidad.ClsPartidoTenisMesa;
 import PkgNegocios.ClsMetodoEquipo;
 import PkgNegocios.ClsMetodosVariados;
 import PkgNegocios.ClsTenisMesa;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,7 +33,9 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
     ClsEquipo equipo;
     ClsTenisMesa clstenisMesa = new ClsTenisMesa();
     ClsMetodoEquipo metodoEquipo;
-    List<ClsApoderado> participante = new ArrayList<>();
+    List<ClsApoderado> participante = new ArrayList<>();    
+    int lugar1 = 0, lugar2 = 0;
+    ClsApoderado jugador1,jugador2,jugador3,jugador4;
     
     /**
      * Creates new form Home_Data
@@ -68,8 +74,8 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
         jLabel9 = new javax.swing.JLabel();
         btnValidarEquipo2 = new javax.swing.JButton();
         btnValidarEquipo1 = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        LblP12 = new javax.swing.JLabel();
+        LblP11 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -234,9 +240,9 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
         btnValidarEquipo1.setText("1er Equipo");
         btnValidarEquipo1.setBorder(null);
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-futbol-local.png"))); // NOI18N
+        LblP12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-futbol-local.png"))); // NOI18N
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-futbol-local.png"))); // NOI18N
+        LblP11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-futbol-local.png"))); // NOI18N
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-futbol-visita.png"))); // NOI18N
 
@@ -372,7 +378,7 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(BtnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
+                                        .addComponent(LblP12)
                                         .addGap(99, 99, 99)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -391,14 +397,14 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
                                                 .addComponent(jLabel9)))))
                                 .addGap(18, 18, 18)
                                 .addComponent(btnValidarEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel19))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(LblP11))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,9 +423,9 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LblP11, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(LblP12, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -531,13 +537,69 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
         //</editor-fold>
     }
     
+    
     // BLOQUEAR COMPONENTES
     
     public void BloquearControles(){
         cmbNroPartido.setEnabled(false);
         LstEquipoLocal.setEnabled(false);
         LstEquipoVisita.setEnabled(false);
-        
+        LstEquipoLocal.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent evt) {
+            JList list = (JList)evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    // Double-click detectado
+                    // EQUIPO 1
+                    // OBTENER DNI
+                    String[] partes = String.valueOf(list.getSelectedValue()).split(" ");
+                    String  dni = partes[0];
+                    
+                    if( jugador1 != null && jugador2 != null){
+                        if((dni.equals(jugador1.getDni())) && !(dni.equals(jugador2.getDni()))){
+                            lugar1 = 1;
+                        }else if(!(dni.equals(jugador1.getDni())) && (dni.equals(jugador2.getDni()))){
+                            lugar1 = 0;
+                        }else{
+                            lugar1 = 3;
+                        }
+                    }
+                    
+                    
+                    if(lugar1 < 3){
+                        for(int i = 0; i < participante.size(); i++){
+                            if(dni.equals(participante.get(i).getDni())){
+                                if(lugar1 == 0){
+                                    jugador1 = participante.get(i);
+                                    LblP11.setText(jugador1.getNombres() + " " + jugador1.getApePaterno() + " " + jugador1.getApeMaterno());
+                                    lugar1++;
+                                    break;
+                                }else if(lugar1 == 1){
+                                    jugador2 = participante.get(i);
+                                    LblP12.setText(jugador2.getNombres() + " " + jugador2.getApePaterno() + " " + jugador2.getApeMaterno());
+                                    lugar1--;
+                                    break;
+                                }
+
+                            }
+                        } 
+                    }
+                    
+                                        
+                    
+                }
+            }
+        });
+        LstEquipoVisita.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent evt) {
+            JList list = (JList)evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    // Double-click detectado
+                    // EQUIPO 2
+                }
+            }
+        });
         txtArbitro.setEnabled(false);
         txtP1E1.setEnabled(false);
         txtP2E1.setEnabled(false);
@@ -568,6 +630,8 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
     private java.awt.Label LblCarga1;
     private java.awt.Label LblCarga2;
     private javax.swing.JLabel LblIdDisciplina;
+    private javax.swing.JLabel LblP11;
+    private javax.swing.JLabel LblP12;
     private javax.swing.JList<String> LstEquipoLocal;
     private javax.swing.JList<String> LstEquipoVisita;
     private javax.swing.JButton btnValidarEquipo1;
@@ -580,8 +644,6 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -649,15 +711,19 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
             participante.addAll(metodoEquipo.listaParticipantesEquipo(Integer.parseInt(LblIdDisciplina.getText()),equipos.get(i).getIdAnio()));
         }
         DefaultListModel lista1 = new DefaultListModel(),lista2 = new DefaultListModel();
-        for(int i=0; i < participante.size(); i++){
+        for(int i = 0; i < participante.size(); i++){
             if(participante.get(i).getIdAnio() == equipos.get(0).getIdAnio()){
                 lista1.addElement(participante.get(i).getDni() + " " + participante.get(i).getNombres() + " " + participante.get(i).getApePaterno());
-                //participante.get(i).getIdApoderado()
             }else{
                 lista2.addElement(participante.get(i).getDni() + " " + participante.get(i).getNombres() + " " + participante.get(i).getApePaterno());
             }
         }
         LstEquipoLocal.setModel(lista1);
         LstEquipoVisita.setModel(lista2);
+        LstEquipoLocal.setSelectionMode(0);
+        LstEquipoVisita.setSelectionMode(0);    
     }
+    
+    // EVENTOS LISTENER EN JLIST
+    
 }
