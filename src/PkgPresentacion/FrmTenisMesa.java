@@ -35,7 +35,9 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
     ClsMetodoEquipo metodoEquipo;
     List<ClsApoderado> participante = new ArrayList<>();    
     int lugar1 = 0, lugar2 = 0;
-    ClsApoderado jugador1,jugador2,jugador3,jugador4;
+    int limEquipo = 2;
+    ArrayList<ClsApoderado> jugador = new ArrayList<>();
+    ClsApoderado jugador1,jugador2,jugador3,jugador4; // CAMBIANDO FORMA DE COLOCAR JUGADORES POR LINEA DE ARRIBA
     
     /**
      * Creates new form Home_Data
@@ -555,6 +557,16 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
                     String[] partes = String.valueOf(list.getSelectedValue()).split(" ");
                     String  dni = partes[0];
                     
+                    if(){
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     if( jugador1 != null && jugador2 != null){
                         if((dni.equals(jugador1.getDni())) && !(dni.equals(jugador2.getDni()))){
                             lugar1 = 1;
@@ -722,8 +734,5 @@ public final class FrmTenisMesa extends javax.swing.JFrame{
         LstEquipoVisita.setModel(lista2);
         LstEquipoLocal.setSelectionMode(0);
         LstEquipoVisita.setSelectionMode(0);    
-    }
-    
-    // EVENTOS LISTENER EN JLIST
-    
+    }    
 }
