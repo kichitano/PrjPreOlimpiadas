@@ -248,15 +248,16 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, 70));
 
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
+        btnCanasta.setText("Lanzar Canasta");
         btnCanasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCanastaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 100, 70));
+        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 180, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jLabel7.setText("Equipo Participante:");
+        jLabel7.setText("Equipos:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
@@ -264,7 +265,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, 70));
-        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 100, -1));
+        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 70, -1));
 
         lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
@@ -318,13 +319,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
 
         cmbAgregarParticipante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/usuario (1).png"))); // NOI18N
-        cmbAgregarParticipante.setText("Agregar");
+        cmbAgregarParticipante.setText("Agregar Participante");
         cmbAgregarParticipante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbAgregarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbAgregarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 100, 40));
+        getContentPane().add(cmbAgregarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/baloncesto.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, -1, -1));
