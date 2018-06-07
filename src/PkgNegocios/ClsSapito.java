@@ -116,8 +116,63 @@ public class ClsSapito {
         }
         return exitosa;
     }
+     
+     public int puntajeEquipo(int _idEquipo)
+     {
+         String sqlQuery = "select sa.puntajeEquipo from tbSapito where sa.idEquipo = '"+_idEquipo+"'";
+         con = conexion.getConecion();
+         Statement st = null;
+         ResultSet rs = null;
+         int puntaje = 0;
+        try 
+        {
+            st = con.createStatement();
+            rs = st.executeQuery(sqlQuery);
+            while(rs.next())
+            {
+                puntaje = rs.getInt("puntajeEquipo");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClsSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return puntaje;
+     }
+     
+      public List<PkgEntidad.ClsSapito> listadoDesempate() {
+        int cont=1;
+        CallableStatement cstm = null;
+        ResultSet rs = null;
+        List<PkgEntidad.ClsSapito> lista = null;
+        try {
+            lista = new ArrayList<>();
+            con = conexion.getConecion();
+            cstm = con.prepareCall("select sa.idEquipo, e.nombreEquipo, sa.posicionEquipo \n" +
+            "from tbSapito as sa inner join tbEquipo as e\n" +
+            "on sa.idEquipo = e.idEquipo");
+            rs = cstm.executeQuery();
+            PkgEntidad.ClsSapito sap = null;
+            while (rs.next()) {
+                sap = new PkgEntidad.ClsSapito();
+                sap.setIdEquipo(rs.getInt("idEquipo"));
+                sap.setNombreEquipo(rs.getString("nombreEquipo"));
+                sap.setPosicionEquipo(cont+" puesto");
+                lista.add(sap);
+                cont++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            conexion.Cerrar2(cstm, rs);
+        }
+        return lista;
+    }
+    
     public List<PkgEntidad.ClsSapito> listado() {
         int cont=1;
+        int puntajeNuevo=0;
+        int puntajeAnterior=0;
         CallableStatement cstm = null;
         ResultSet rs = null;
         List<PkgEntidad.ClsSapito> lista = null;
@@ -131,13 +186,27 @@ public class ClsSapito {
             rs = cstm.executeQuery();
             PkgEntidad.ClsSapito sap = null;
             while (rs.next()) {
+                //tomamos el puntaje
+                puntajeNuevo = rs.getInt("puntajeEquipo");
                 sap = new PkgEntidad.ClsSapito();
                 sap.setIdEquipo(rs.getInt("idEquipo"));
                 sap.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
-                sap.setPosicionEquipo(cont+" puesto");
+                
+                //si los puntajes son iguales, asigna la misma posicion
+                if(puntajeNuevo == puntajeAnterior)
+                {
+                    sap.setPosicionEquipo(cont-1+" puesto");
+                    cont = cont - 1 ;
+                }
+                else //de lo contrario la posicion sigue corriendo.
+                {
+                    sap.setPosicionEquipo(cont+" puesto");
+                }
+                
                 sap.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(sap);
                 cont++;
+                puntajeAnterior = puntajeNuevo;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,6 +215,7 @@ public class ClsSapito {
         }
         return lista;
     }
+    
      public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
         List<ClsEquipo> equipos = new ArrayList<>();
         con = conexion.getConecion();

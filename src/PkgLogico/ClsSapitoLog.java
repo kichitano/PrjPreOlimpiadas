@@ -32,11 +32,19 @@ public class ClsSapitoLog {
     public int UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
           return sapitoNeg.UpdatePuntaje(_IdEquipo, _PuntajeEquipo);
     }
+    
+    public int PuntajeSapito(int _IdEquipo){
+        return sapitoNeg.puntajeEquipo(_IdEquipo);
+    }
+            
     public int UpdateEstadoApoderado(int _idApoderado){
         return sapitoNeg.UpdateEstadoApoderado(_idApoderado);
     }
     public List<PkgEntidad.ClsSapito> listado() {
         return sapitoNeg.listado();
+    }
+    public List<PkgEntidad.ClsSapito> listadoDesempate() {
+        return sapitoNeg.listadoDesempate();
     }
     public List<ClsEquipo> listaEquipos(int _idSerie) throws SQLException{
         return sapitoNeg.listaEquipos(_idSerie);
