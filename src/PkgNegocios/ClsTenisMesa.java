@@ -70,4 +70,25 @@ public class ClsTenisMesa {
         }
         return lista;
     }
+    
+    public void guardarPartido(int[][] datos, char ganador) throws SQLException{
+        try (Connection connection = metodosVariados.MtdConexion()){
+            PreparedStatement pst1,pst2;
+            String sql1 = "update tbPartidoTenisMesa set estadoPartido = 'F' where idPartidoTenisMesa = ?";
+            String sql2 = "insert into tbSetPartidoTenisMesa values (?,?,?,?,?)";
+            
+            pst1 = connection.prepareStatement(sql1);
+            pst1.setInt(1,datos[0][0]);
+            pst1.executeUpdate();
+            
+            for (int[] dato : datos) {
+                pst2 = connection.prepareStatement(sql2);
+                pst2.setInt(1, dato[0]);
+                pst2.setInt(2, dato[1]);
+                pst2.setInt(3, dato[2]);
+                pst2.setInt(4, dato[3]);
+                pst2.setInt(5, dato[4]);
+            }
+        }
+    }
 }
