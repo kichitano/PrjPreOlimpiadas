@@ -13,9 +13,16 @@ public class ClsSapito {
     int idEquipo;
     int puntajeEquipo;
     String posicionEquipo;
-    String detalleEquipo;
+    String nombreEquipo;
 
-    
+    public String getNombreEquipo() {
+        return nombreEquipo;
+    }
+
+    public void setNombreEquipo(String nombreEquipo) {
+        this.nombreEquipo = nombreEquipo;
+    }
+ 
     public ClsSapito() {
     }
 
@@ -47,13 +54,5 @@ public class ClsSapito {
 
     public void setPosicionEquipo(String posicionEquipo) {
         this.posicionEquipo = posicionEquipo;
-    }
-
-    public String getDetalleEquipo() {
-        return detalleEquipo;
-    }
-
-    public void setDetalleEquipo(String detalleEquipo) {
-        this.detalleEquipo = detalleEquipo;
     }
 }

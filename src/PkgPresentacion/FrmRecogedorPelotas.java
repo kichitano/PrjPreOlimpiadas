@@ -110,15 +110,16 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         cmbEquipos = new javax.swing.JComboBox<>();
         lblEquipoParticipante = new javax.swing.JLabel();
+        btnAgregarParticipante = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtValor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        btnLanzar = new javax.swing.JButton();
         btnEmpate = new javax.swing.JButton();
         btnDesempate = new javax.swing.JButton();
+        btnLanzar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -246,16 +247,25 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
         lblEquipoParticipante.setText("id");
 
+        btnAgregarParticipante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add-user-symbol-of-interface.png"))); // NOI18N
+        btnAgregarParticipante.setBorderPainted(false);
+        btnAgregarParticipante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarParticipanteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cmbEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(lblEquipoParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,6 +275,9 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                     .addComponent(cmbEquipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEquipoParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -280,13 +293,6 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
         jLabel6.setText("Puntaje:");
 
-        btnLanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bola.png"))); // NOI18N
-        btnLanzar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLanzarActionPerformed(evt);
-            }
-        });
-
         btnEmpate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/igual (4).png"))); // NOI18N
         btnEmpate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,6 +307,13 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             }
         });
 
+        btnLanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bola.png"))); // NOI18N
+        btnLanzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLanzarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -312,13 +325,13 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(btnLanzar)
-                .addGap(6, 6, 6)
+                .addGap(18, 18, 18)
                 .addComponent(btnEmpate)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addComponent(btnDesempate)
-                .addContainerGap())
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,10 +342,10 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLanzar)
                     .addComponent(btnEmpate)
-                    .addComponent(btnDesempate))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(btnDesempate)
+                    .addComponent(btnLanzar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,18 +367,19 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                         .addComponent(btnPausar)
                         .addGap(15, 15, 15)
                         .addComponent(btnDetener)))
-                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(119, 119, 119)
                         .addComponent(jLabel3)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5))))
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -390,10 +404,10 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
+                                .addGap(37, 37, 37)
                                 .addComponent(jLabel2))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(20, 20, 20)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel3))))))
@@ -539,6 +553,17 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
       
     }//GEN-LAST:event_btnDesempateActionPerformed
 
+    private void btnAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipanteActionPerformed
+
+        //Instancias la clase participante
+        FrmParticipante participante = new FrmParticipante();
+        //envias FrmSapito a FrmParticipante a traves del metodo FormularioFrmSapito
+        participante.FormularioFrmRecogedorPelotas(this);
+        // participante.RecibeFormulario(this);
+        //muestras el formulario
+        participante.show();
+    }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -576,6 +601,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
+    private javax.swing.JButton btnAgregarParticipante;
     private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnEmpate;
@@ -643,7 +669,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             } 
             if(carga)
             {
-                dcmEquipos.addElement(e.getDetalleEquipo());
+                dcmEquipos.addElement(e.getNombreEquipo());
                 arrayIdEquipos.add(e.getIdEquipo());
             }
             carga = true;
@@ -674,8 +700,8 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             
             if(puntajeReferenciaOld == puntajeReferenciaNew)// 5-12-2   ::26
             {
-                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getDetalleEquipo());
-                arrayDetalleEquipos.add(listaPuntaje.get(i).getDetalleEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getNombreEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i).getNombreEquipo());
                 
                 arrayIdEquipos.add(listaPuntaje.get(i-1).getIdEquipo());
                 arrayIdEquipos.add(listaPuntaje.get(i).getIdEquipo());

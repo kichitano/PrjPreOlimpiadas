@@ -124,7 +124,7 @@ public class ClsCircuitoBasket {
         try {
             lista = new ArrayList<>();
             con = conexion.getConecion();
-            cstm = con.prepareCall("select cb.idEquipo, cb.posicionEquipo, cb.puntajeEquipo, e.detalleEquipo\n" +
+            cstm = con.prepareCall("select cb.idEquipo, cb.posicionEquipo, cb.puntajeEquipo, e.nombreEquipo\n" +
             "from tbCircuitoBasket as cb inner join tbEquipo as e\n" +
             "on cb.idEquipo = e.idEquipo\n" +
             "order by cb.puntajeEquipo DESC");
@@ -135,7 +135,7 @@ public class ClsCircuitoBasket {
                 bsk.setIdEquipo(rs.getInt("idEquipo"));
                 bsk.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
                 bsk.setPosicionEquipo(cont+" puesto");
-                bsk.setDetalleEquipo(rs.getString("detalleEquipo"));
+                bsk.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(bsk);
                 cont++;
             }

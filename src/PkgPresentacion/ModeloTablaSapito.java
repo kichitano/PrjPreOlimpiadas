@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Vera
  */
 public class ModeloTablaSapito extends AbstractTableModel {
-     String[] columnas = {"ID", "Ptje.", "Posición","Detalle"};
+     String[] columnas = {"ID", "Ptje.", "Posición","Nombre"};
     public List<PkgEntidad.ClsSapito> sap = new ArrayList<>();
 
     public ModeloTablaSapito(List<PkgEntidad.ClsSapito> sap) {
@@ -46,7 +46,7 @@ public class ModeloTablaSapito extends AbstractTableModel {
             }else if (columnIndex == 2) {
                  resp = sap.get(rowIndex).getPosicionEquipo();
             }else {
-                resp = sap.get(rowIndex).getDetalleEquipo();
+                resp = sap.get(rowIndex).getNombreEquipo();
             }
         }
         return resp;

@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Vera
  */
 public class ModeloTablaRecogedorPelotas extends AbstractTableModel{
-    String[] columnas = {"ID", "Ptje.", "Posición","Detalle"};
+    String[] columnas = {"ID", "Ptje.", "Posición","Nombre"};
     public List<PkgEntidad.ClsRecogedorPelotas> bsk = new ArrayList<>();
 
     public ModeloTablaRecogedorPelotas(List<PkgEntidad.ClsRecogedorPelotas> bsk) {
@@ -47,7 +47,7 @@ public class ModeloTablaRecogedorPelotas extends AbstractTableModel{
             }else if (columnIndex == 2) {
                  resp = bsk.get(rowIndex).getPosicionEquipo();
             }else {
-                resp = bsk.get(rowIndex).getDetalleEquipo();
+                resp = bsk.get(rowIndex).getNombreEquipo();
             }
         }
         return resp;

@@ -7,11 +7,7 @@ package PkgPresentacion;
 
 
 import PkgLogico.ClsApoderadoLog;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -25,6 +21,8 @@ public class FrmParticipante extends javax.swing.JFrame {
     ClsApoderadoLog apoderadoLog = new ClsApoderadoLog();
     
     FrmSapito claseSapito;
+    FrmRecogedorPelotas claseRecogedorPelotas;
+    FrmLanzamientoCanasta claseLanzamientoCanasta;
     JFrame clase;
     
     public FrmParticipante() {
@@ -466,11 +464,15 @@ public class FrmParticipante extends javax.swing.JFrame {
     {
         claseSapito = _FrmSapito;        
     }
-    
-//    public void RecibeFormulario(JFrame _Formulario)
-//    {
-//        clase = _Formulario;        
-//    }
+   public void FormularioFrmRecogedorPelotas(FrmRecogedorPelotas _FrmRecogedorPelotas)
+    {
+        claseRecogedorPelotas = _FrmRecogedorPelotas;        
+    }
+   
+    public void FormularioFrmLanzamientoCanasta(FrmLanzamientoCanasta _FrmLanzamientoCanasta)
+    {
+        claseLanzamientoCanasta = _FrmLanzamientoCanasta;        
+    }
     
     public void refrescarControles(){
         cmbAnios.setSelectedIndex(0);

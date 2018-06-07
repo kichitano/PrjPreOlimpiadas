@@ -13,7 +13,16 @@ public class ClsRecogedorPelotas {
     int idEquipo;
     int puntajeEquipo;
     String posicionEquipo;
-    String detalleEquipo;
+   // String detalleEquipo;
+    String nombreEquipo;
+
+    public String getNombreEquipo() {
+        return nombreEquipo;
+    }
+
+    public void setNombreEquipo(String nombreEquipo) {
+        this.nombreEquipo = nombreEquipo;
+    }
 
     public ClsRecogedorPelotas() {
     }
@@ -24,14 +33,14 @@ public class ClsRecogedorPelotas {
         
     }
     
-    public String getDetalleEquipo() {
-        return detalleEquipo;
-    }
-
-    public void setDetalleEquipo(String detalleEquipo) {
-        this.detalleEquipo = detalleEquipo;
-    }
-    
+//    public String getDetalleEquipo() {
+//        return detalleEquipo;
+//    }
+//
+//    public void setDetalleEquipo(String detalleEquipo) {
+//        this.detalleEquipo = detalleEquipo;
+//    }
+//    
     public int getIdEquipo() {
         return idEquipo;
     }

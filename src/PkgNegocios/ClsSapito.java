@@ -124,7 +124,7 @@ public class ClsSapito {
         try {
             lista = new ArrayList<>();
             con = conexion.getConecion();
-            cstm = con.prepareCall("select sa.idEquipo, sa.posicionEquipo, sa.puntajeEquipo, e.detalleEquipo\n" +
+            cstm = con.prepareCall("select sa.idEquipo, sa.posicionEquipo, sa.puntajeEquipo, e.nombreEquipo\n" +
             "from tbSapito as sa inner join tbEquipo as e\n" +
             "on sa.idEquipo = e.idEquipo\n" +
             "order by sa.puntajeEquipo DESC");
@@ -135,7 +135,7 @@ public class ClsSapito {
                 sap.setIdEquipo(rs.getInt("idEquipo"));
                 sap.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
                 sap.setPosicionEquipo(cont+" puesto");
-                sap.setDetalleEquipo(rs.getString("detalleEquipo"));
+                sap.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(sap);
                 cont++;
             }

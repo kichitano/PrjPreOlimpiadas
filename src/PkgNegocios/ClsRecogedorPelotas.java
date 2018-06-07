@@ -86,7 +86,7 @@ public class ClsRecogedorPelotas {
         try {
             lista = new ArrayList<>();
             con = conexion.getConecion();
-            cstm = con.prepareCall("select rp.idEquipo, rp.posicionEquipo, rp.puntajeEquipo, e.detalleEquipo\n" +
+            cstm = con.prepareCall("select rp.idEquipo, rp.posicionEquipo, rp.puntajeEquipo, e.nombreEquipo\n" +
             "from tbRecogedorPelotas as rp inner join tbEquipo as e\n" +
             "on rp.idEquipo = e.idEquipo\n" +
             "order by rp.puntajeEquipo DESC");
@@ -97,7 +97,7 @@ public class ClsRecogedorPelotas {
                 rp.setIdEquipo(rs.getInt("idEquipo"));
                 rp.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
                 rp.setPosicionEquipo(cont+" puesto");
-                rp.setDetalleEquipo(rs.getString("detalleEquipo"));
+                rp.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(rp);
                 cont++;
             }

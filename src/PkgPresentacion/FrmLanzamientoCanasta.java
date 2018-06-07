@@ -21,11 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -34,7 +31,7 @@ import javax.swing.table.TableColumnModel;
  * @author Vera
  */
 public class FrmLanzamientoCanasta extends javax.swing.JFrame {
-    PkgLogico.ClsCircuitoBasketLog bsklog;
+  //  PkgLogico.ClsCircuitoBasketLog bsklog;
     PkgEntidad.ClsCircuitoBasket bskent;
     
     PkgNegocios.ClsCircuitoBasket clscbsk = new PkgNegocios.ClsCircuitoBasket();
@@ -161,10 +158,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         btnIniciar = new javax.swing.JButton();
         btnDetener = new javax.swing.JButton();
         cmbAgregarParticipante = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        cmbParticipantes = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        btnParticipar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         btnEmpate = new javax.swing.JButton();
@@ -237,20 +232,20 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/temporizador.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         etiquetaTiempo.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         etiquetaTiempo.setText("00:00:00:00");
-        getContentPane().add(etiquetaTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
+        getContentPane().add(etiquetaTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, 70));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, 70));
 
         btnCanasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pelota-de-basket.png"))); // NOI18N
         btnCanasta.addActionListener(new java.awt.event.ActionListener() {
@@ -258,30 +253,30 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnCanastaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 460, 100, 70));
+        getContentPane().add(btnCanasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 430, 100, 70));
 
         jLabel7.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         jLabel7.setText("Equipo Participante:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, 70));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, 70));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/camiseta-de-baloncesto.png"))); // NOI18N
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 70));
-        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, 100, -1));
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, 70));
+        getContentPane().add(txtPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 100, -1));
 
         lblEquipoParticipante.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         lblEquipoParticipante.setForeground(new java.awt.Color(0, 51, 204));
         lblEquipoParticipante.setText("3");
-        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 40, 20));
+        getContentPane().add(lblEquipoParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 40, 20));
 
         cmbEquipos.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbEquiposItemStateChanged(evt);
             }
         });
-        getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 160, 30));
+        getContentPane().add(cmbEquipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 160, 30));
 
         tblPosiciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,7 +291,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblPosiciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 160, 380, 240));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 120, 380, 370));
 
         btnPausar.setText("Pausar");
         btnPausar.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +299,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnPausarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPausar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, -1, -1));
+        getContentPane().add(btnPausar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
 
         btnIniciar.setText("Iniciar");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -312,7 +307,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
         btnDetener.setText("Detener");
         btnDetener.addActionListener(new java.awt.event.ActionListener() {
@@ -320,7 +315,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnDetenerActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
+        getContentPane().add(btnDetener, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
 
         cmbAgregarParticipante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/usuario (1).png"))); // NOI18N
         cmbAgregarParticipante.setText("Agregar");
@@ -329,35 +324,20 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 cmbAgregarParticipanteActionPerformed(evt);
             }
         });
-        getContentPane().add(cmbAgregarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, 100, 40));
-
-        jLabel2.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        jLabel2.setText("Seleccionar Participante:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
-
-        cmbParticipantes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbParticipantesItemStateChanged(evt);
-            }
-        });
-        getContentPane().add(cmbParticipantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 180, 30));
+        getContentPane().add(cmbAgregarParticipante, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 100, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/baloncesto.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 320, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 300, -1, -1));
 
-        btnParticipar.setText("Participar");
-        btnParticipar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnParticiparActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnParticipar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, 40));
+        jLabel5.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
+        jLabel5.setText("Puntaje:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 870, 430));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 870, 430));
 
         LblCarga1.setText("jLabel9");
-        getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 410, -1, -1));
+        getContentPane().add(LblCarga1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 520, -1, -1));
 
         btnEmpate.setText("Empate");
         btnEmpate.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +345,7 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnEmpateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 440, 100, 40));
+        getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 500, 100, 40));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -373,10 +353,10 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 490, 100, 40));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, 100, 40));
 
         jlIdApoderado.setText("ID");
-        getContentPane().add(jlIdApoderado, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 550, -1, -1));
+        getContentPane().add(jlIdApoderado, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 520, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,18 +374,18 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        boolean resp = bsklog.AgregarCircuitoBasket(bskent,con);
+        boolean resp = circuitoBasketLog.AgregarCircuitoBasket(bskent,con);
         if (resp == false) {
             JOptionPane.showMessageDialog(null, "Dato Agregdo");
             ListarTabla();
         
-            List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
+            List<PkgEntidad.ClsCircuitoBasket> listas = circuitoBasketLog.listado();
             
             //Borrar datos de la tabla puntaje.
-            bsklog.BorrarDatosBasket();
+            circuitoBasketLog.BorrarDatosBasket();
             for(PkgEntidad.ClsCircuitoBasket cb : listas)
             {
-                bsklog.InsertarPosicion
+                circuitoBasketLog.InsertarPosicion
                     (
                         cb.getIdEquipo(),
                         cb.getPuntajeEquipo(),
@@ -442,18 +422,18 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             MtdLlenarComboEquipos(Integer.valueOf(LblCarga1.getText()));
                       
             //valida combo vacio
-            if(cmbEquipos.getSelectedIndex() != -1)
-            {
-                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
-                //colocas idEquipo
-                lblEquipoParticipante.setText(String.valueOf(idEquipo));
-
-                //Metodo para cargar combo participante*/
-                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
-                
-                //colocas idParticipante
-                jlIdApoderado.setText(String.valueOf(clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
-            }
+//            if(cmbEquipos.getSelectedIndex() != -1)
+//            {
+//                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
+//                //colocas idEquipo
+//                lblEquipoParticipante.setText(String.valueOf(idEquipo));
+//
+//                //Metodo para cargar combo participante*/
+//                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
+//                
+//                //colocas idParticipante
+//                jlIdApoderado.setText(String.valueOf(clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
+//            }
 
             opt = 2;
           
@@ -463,17 +443,17 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbSerieItemStateChanged
 
     private void cmbEquiposItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEquiposItemStateChanged
-        try {
-            //valida combo vacio
-            if(cmbEquipos.getSelectedIndex() != -1)
-            {
-                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
-                lblEquipoParticipante.setText(String.valueOf(idEquipo));
-                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            //valida combo vacio
+//            if(cmbEquipos.getSelectedIndex() != -1)
+//            {
+//                int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex());
+//                lblEquipoParticipante.setText(String.valueOf(idEquipo));
+//                MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_cmbEquiposItemStateChanged
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
@@ -521,74 +501,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void cmbAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAgregarParticipanteActionPerformed
-        FrmParticipante part = new FrmParticipante();
-        part.show();
+     
+        FrmParticipante participante = new FrmParticipante();
+        //envias FrmSapito a FrmParticipante a traves del metodo FormularioFrmSapito
+        participante.FormularioFrmLanzamientoCanasta(this);
+        // participante.RecibeFormulario(this);
+        //muestras el formulario
+        participante.show();
     }//GEN-LAST:event_cmbAgregarParticipanteActionPerformed
-
-    private void cmbParticipantesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbParticipantesItemStateChanged
-
-     try {
-            
-            //valida combo vacio
-            if(cmbParticipantes.getSelectedIndex() != -1)
-            {
-                jlIdApoderado.setText(String.valueOf(clscbsk.listaParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
-
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_cmbParticipantesItemStateChanged
-
-    private void btnParticiparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParticiparActionPerformed
-        try { 
-            
-            //jugando
-            MtdUpdateEstadoParticipante();
-            
-            //Declaracion Custom JOptionPane//
-            
-            //variable
-            int puntajeIndividual;
-            //opciones
-            String [] opciones = new String[]{"AGREGAR PUNTAJE", "CANCELAR"};
-            
-            //contenedor + controles
-            JPanel panel = new JPanel();
-            JLabel lbl = new JLabel("Ingrese puntaje:");
-            JTextField txtPuntajeIndividual = new JTextField(15);
-            panel.add(lbl);panel.add(txtPuntajeIndividual);
-            
-            //Custom JOptionPane
-            int resultado = JOptionPane.showOptionDialog
-                            (
-                                null,  //Parentesco
-                                panel, //contenedor //mensaje
-                                "Ingrese puntaje", //titulo
-                                JOptionPane.NO_OPTION, //sin opciones
-                                JOptionPane.PLAIN_MESSAGE, // es un mensaje plano
-                                null, //icono
-                                opciones, // agrega las opciones
-                                opciones[0] //opcion correcta
-                            );
-            
-            //Resultado de la accion
-            
-            //presionas 
-            if(resultado == 0)
-            {
-                puntajeIndividual = Integer.parseInt(txtPuntajeIndividual.getText());
-                SumarPuntaje(puntajeIndividual);
-            }
-           
-            
-            //suma
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FrmLanzamientoCanasta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnParticiparActionPerformed
 
     /**
      * @param args the command line arguments
@@ -638,21 +558,19 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnParticipar;
     private javax.swing.JButton btnPausar;
     private javax.swing.JButton cmbAgregarParticipante;
     private javax.swing.JComboBox<String> cmbEquipos;
-    private javax.swing.JComboBox<String> cmbParticipantes;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -663,41 +581,25 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     private javax.swing.JTable tblPosiciones;
     public static javax.swing.JTextField txtPuntaje;
     // End of variables declaration//GEN-END:variables
-
-    //Metodo para actualizar el estado del participante o apoderado
-    private void MtdUpdateEstadoParticipante() throws SQLException{
-        int idParticipante = Integer.valueOf(jlIdApoderado.getText());
-      
-        int exitosa = circuitoBasketLog.UpdateEstadoApoderado(idParticipante);
-        if(exitosa > 0){
-            JOptionPane.showMessageDialog(null, "Estado de Participante Modificado");
-            cmbParticipantes.removeAllItems();
-            MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblEquipoParticipante.getText()));
-        }
-        else
-        {
-             JOptionPane.showMessageDialog(null, "Estado de Participante NO Modificado");
-        }
-    }
-  
+ 
     private void MtdUpdatePuntaje(){   
 
         int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
         int puntajeEquipo = Integer.valueOf(txtPuntaje.getText());
         
-        int exitosa = bsklog.UpdatePuntaje(idEquipo,puntajeEquipo);
+        int exitosa = circuitoBasketLog.UpdatePuntaje(idEquipo,puntajeEquipo);
         if(exitosa > 0){
             JOptionPane.showMessageDialog(null, "Dato Modificado");
             ListarTabla();
         
-            List<PkgEntidad.ClsCircuitoBasket> listas = bsklog.listado();
+            List<PkgEntidad.ClsCircuitoBasket> listas = circuitoBasketLog.listado();
             
             //Borrar datos de la tabla puntaje.
-            bsklog.BorrarDatosBasket();
+            circuitoBasketLog.BorrarDatosBasket();
             //validar jtable de posiciones
             for(PkgEntidad.ClsCircuitoBasket cb : listas)
             {
-                bsklog.InsertarPosicion
+                circuitoBasketLog.InsertarPosicion
                     (
                         cb.getIdEquipo(),
                         cb.getPuntajeEquipo(),
@@ -745,8 +647,8 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             
             if(puntajeReferenciaOld == puntajeReferenciaNew)// 5-12-2   ::26
             {
-                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getDetalleEquipo());
-                arrayDetalleEquipos.add(listaPuntaje.get(i).getDetalleEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i-1).getNombreEquipo());
+                arrayDetalleEquipos.add(listaPuntaje.get(i).getNombreEquipo());
                 
                 arrayIdEquipos.add(listaPuntaje.get(i-1).getIdEquipo());
                 arrayIdEquipos.add(listaPuntaje.get(i).getIdEquipo());
@@ -800,35 +702,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
             } 
             if(carga)
             {
-                dcmEquipos.addElement(e.getDetalleEquipo());
+                dcmEquipos.addElement(e.getNombreEquipo());
                 arrayIdEquipos.add(e.getIdEquipo());
             }
             carga = true;
         }    
         cmbEquipos.setModel(dcmEquipos);  
     }
-    private void MtdLlenarComboParticipantesEquipo(int _idEquipo) throws SQLException {
-        List<ClsEquipo> listsParticipantesEquipo = circuitoBasketLog.listaParticipantesEquipo(_idEquipo);
-        cmbParticipantes.removeAllItems();
-        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
-
-        for(ClsEquipo e : listsParticipantesEquipo) //recorre equipos completo
-        {
-                dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
-
-        }    
-        cmbParticipantes.setModel(dcmEquipos);  
-    }
-    private void MtdLlenarComboParticipantesEquipoEmpate(int _idEquipo) throws SQLException {
-        List<ClsEquipo> listaParticipantesEquipoEmpate = circuitoBasketLog.listaParticipantesEquipoEmpate(_idEquipo);
-        cmbParticipantes.removeAllItems();
-        DefaultComboBoxModel dcmEquipos = new DefaultComboBoxModel();        
-
-        for(ClsEquipo e : listaParticipantesEquipoEmpate) //recorre equipos completo
-        {
-                dcmEquipos.addElement(e.getApePaterno() + " " + e.getApeMaterno() + ", " + e.getNombresApoderado());
-
-        }    
-        cmbParticipantes.setModel(dcmEquipos);  
-    }
+   
 }
