@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -80,6 +81,8 @@ public class ClsRecogedorPelotas {
     }
     public List<PkgEntidad.ClsRecogedorPelotas> listado() {
         int cont=1;
+        int puntajeNuevo=0;
+        int puntajeAnterior=0;
         CallableStatement cstm = null;
         ResultSet rs = null;
         List<PkgEntidad.ClsRecogedorPelotas> lista = null;
@@ -93,13 +96,28 @@ public class ClsRecogedorPelotas {
             rs = cstm.executeQuery();
             PkgEntidad.ClsRecogedorPelotas rp = null;
             while (rs.next()) {
+                  //tomamos el puntaje
+                puntajeNuevo = rs.getInt("puntajeEquipo");
+                
                 rp = new PkgEntidad.ClsRecogedorPelotas();
                 rp.setIdEquipo(rs.getInt("idEquipo"));
                 rp.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
-                rp.setPosicionEquipo(cont+" puesto");
+               
+                //si los puntajes son iguales, asigna la misma posicion
+                if(puntajeNuevo == puntajeAnterior)
+                {
+                    rp.setPosicionEquipo(cont-1+" puesto");
+                    cont = cont - 1 ;
+                }
+                else //de lo contrario la posicion sigue corriendo.
+                {
+                    rp.setPosicionEquipo(cont+" puesto");
+                }
+                
                 rp.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(rp);
                 cont++;
+                puntajeAnterior = puntajeNuevo;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,4 +143,27 @@ public class ClsRecogedorPelotas {
         }
         return exitosa;
     }
+     public int puntajeEquipo(int _idEquipo)
+     {
+         String sqlQuery = "select sa.puntajeEquipo from tbRecogedorPelotas as sa where sa.idEquipo = '"+_idEquipo+"'";
+         con = conexion.getConecion();
+         Statement st = null;
+         ResultSet rs = null;
+         int puntaje = 0;
+        try 
+        {
+            st = con.createStatement();
+            rs = st.executeQuery(sqlQuery);
+            while(rs.next())
+            {
+                puntaje = rs.getInt("puntajeEquipo");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClsSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return puntaje;
+     }
+     
 }

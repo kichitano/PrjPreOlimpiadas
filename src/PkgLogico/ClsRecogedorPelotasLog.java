@@ -31,4 +31,7 @@ public class ClsRecogedorPelotasLog {
     public int UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
         return rpneg.UpdatePuntaje(_IdEquipo, _PuntajeEquipo);
     }
+     public int puntajeEquipo(int _idEquipo){
+          return rpneg.puntajeEquipo(_idEquipo);
+     }
 }

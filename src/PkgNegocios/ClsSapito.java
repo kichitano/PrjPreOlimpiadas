@@ -119,7 +119,7 @@ public class ClsSapito {
      
      public int puntajeEquipo(int _idEquipo)
      {
-         String sqlQuery = "select sa.puntajeEquipo from tbSapito where sa.idEquipo = '"+_idEquipo+"'";
+         String sqlQuery = "select sa.puntajeEquipo from tbSapito as sa where sa.idEquipo = '"+_idEquipo+"'";
          con = conexion.getConecion();
          Statement st = null;
          ResultSet rs = null;

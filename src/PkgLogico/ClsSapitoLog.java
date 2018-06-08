@@ -32,10 +32,6 @@ public class ClsSapitoLog {
     public int UpdatePuntaje(int _IdEquipo, int _PuntajeEquipo){
           return sapitoNeg.UpdatePuntaje(_IdEquipo, _PuntajeEquipo);
     }
-    
-    public int PuntajeSapito(int _IdEquipo){
-        return sapitoNeg.puntajeEquipo(_IdEquipo);
-    }
             
     public int UpdateEstadoApoderado(int _idApoderado){
         return sapitoNeg.UpdateEstadoApoderado(_idApoderado);
@@ -54,5 +50,9 @@ public class ClsSapitoLog {
     }
     public List<ClsEquipo> listaParticipantesEquipoEmpate(int _idEquipo) throws SQLException{
         return sapitoNeg.listaParticipantesEquipoEmpate(_idEquipo);
+    }
+    
+     public int PuntajeSapito(int _IdEquipo){
+        return sapitoNeg.puntajeEquipo(_IdEquipo);
     }
 }

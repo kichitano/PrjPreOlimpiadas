@@ -34,14 +34,17 @@ public class FrmSapito extends javax.swing.JFrame {
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<Integer> arrayIdEquiposParticipantes = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
-    ArrayList<PkgEntidad.ClsSapitoDesempate> arraySapitoDesempate = new ArrayList();
+    
+    //Arrays que trabajan con desempate
+    ArrayList<Integer> arrayIdEquipoDesempate = new ArrayList();
+    ArrayList<Integer> arrayPuntajeEquipoDesempate = new ArrayList();
     
     // Declaracion de Variables
     boolean participanteJugando = false;
     int opt = 1;
     int puntajeSapito = 0;
     private int puntajeTotal=0;
-    int contador = 0;
+    int contadorFichas = 0;
     /**
      * Creates new form FrmSapito
      */
@@ -51,7 +54,7 @@ public class FrmSapito extends javax.swing.JFrame {
       //  esconderControles();
         MtdLlenarComboSeries(); 
         ListarTabla();
-        ListarTablaDesempate();
+     
     }
     // Metodos de visualización de formulario
      public void esconderControles(){
@@ -119,9 +122,7 @@ public class FrmSapito extends javax.swing.JFrame {
         txtPuntajeAcumulado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblFichas = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblPosicionesDesempate = new javax.swing.JTable();
+        btnGuardarPuntaje = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -582,37 +583,12 @@ public class FrmSapito extends javax.swing.JFrame {
 
         lblFichas.setText("10");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resultados Desempate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Narrow", 1, 14))); // NOI18N
-
-        tblPosicionesDesempate.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btnGuardarPuntaje.setText("Guardar Puntaje");
+        btnGuardarPuntaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPuntajeActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(tblPosicionesDesempate);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -621,11 +597,7 @@ public class FrmSapito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnEmpate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                     .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -637,19 +609,27 @@ public class FrmSapito extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblPuntaje)
-                        .addGap(34, 34, 34)
-                        .addComponent(lblFichas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(lblPuntaje)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblFichas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnGuardarPuntaje)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(30, 30, 30)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -659,35 +639,36 @@ public class FrmSapito extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPuntaje)
-                            .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblFichas)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblPuntaje)
+                                    .addComponent(txtPuntajeAcumulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lblFichas)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(lblIdParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btnAgregarParticipante, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEmpate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDesempate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnGuardarPuntaje)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
@@ -695,7 +676,7 @@ public class FrmSapito extends javax.swing.JFrame {
 
     private void btnEmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpateActionPerformed
         participanteJugando = false;
-        contador = 1;
+        contadorFichas = 1;
       //  btnGuardar.setEnabled(false);
         try {
             //1. Verificar que idEquipos tienen el mismo puntaje
@@ -780,14 +761,15 @@ public class FrmSapito extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(FrmSapito.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(contador == 1){
+        if(contadorFichas == 1){
             lblFichas.setText(String.valueOf(6));
         }
     }//GEN-LAST:event_cmbParticipantesItemStateChanged
 
     private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
         MtdUpdatePuntaje();       
-        contador = 0;
+        contadorFichas = 0;
+        txtPuntajeAcumulado.setText(String.valueOf(0));
     }//GEN-LAST:event_btnDesempateActionPerformed
 
     private void cmbEqItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEqItemStateChanged
@@ -806,7 +788,7 @@ public class FrmSapito extends javax.swing.JFrame {
                     if(cmbParticipantes.getSelectedIndex() != -1)
                     {
                     lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipoEmpate(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
-                  
+                     habilitarBotones();
                     }
                 }
                 else // NO se presiono el btnEmpate
@@ -816,10 +798,9 @@ public class FrmSapito extends javax.swing.JFrame {
                      if(cmbParticipantes.getSelectedIndex() != -1)
                      {
                      lblIdParticipante.setText(String.valueOf(sapitoNeg.listaParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText())).get(cmbParticipantes.getSelectedIndex()).getIdApoderado()));
-                     }
-                     if(cmbParticipantes.getItemCount()>0){
                      habilitarBotones();
                      }
+                     
                 }
             }
         } catch (Exception ex) {
@@ -1008,6 +989,18 @@ public class FrmSapito extends javax.swing.JFrame {
          contabilizarIntentosDeFichas(puntajeSapito);
     }//GEN-LAST:event_btn0ActionPerformed
 
+    private void btnGuardarPuntajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPuntajeActionPerformed
+       
+        int idEquipo = arrayIdEquipos.get(cmbEq.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(lblPuntaje.getText());
+        
+        arrayIdEquipoDesempate.add(idEquipo);
+        arrayPuntajeEquipoDesempate.add(puntajeEquipo);
+        
+        JOptionPane.showMessageDialog(null, "Se guardo correctamente el puntaje");
+        txtPuntajeAcumulado.setText(String.valueOf(0));
+    }//GEN-LAST:event_btnGuardarPuntajeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1165,6 +1158,7 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarPuntaje;
     private javax.swing.JButton btnParticipar;
     private javax.swing.JComboBox<String> cmbEq;
     private javax.swing.JComboBox<String> cmbParticipantes;
@@ -1175,19 +1169,16 @@ public class FrmSapito extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFichas;
     public static javax.swing.JLabel lblIdEquipo;
     private javax.swing.JLabel lblIdParticipante;
     private javax.swing.JLabel lblIdSerie;
     private javax.swing.JLabel lblPuntaje;
     private javax.swing.JTable tblPosiciones;
-    private javax.swing.JTable tblPosicionesDesempate;
     private javax.swing.JTextField txtPuntajeAcumulado;
     // End of variables declaration//GEN-END:variables
     
@@ -1198,7 +1189,7 @@ public class FrmSapito extends javax.swing.JFrame {
         int exitosa = sapitoLog.UpdateEstadoApoderado(idParticipante);
         if(exitosa > 0){
             JOptionPane.showMessageDialog(null, "Estado de Participante Modificado");
-            contador = 0;
+            contadorFichas = 0;
             lblFichas.setText(String.valueOf(10));
             cmbParticipantes.removeAllItems();
             MtdLlenarComboParticipantesEquipo(Integer.valueOf(lblIdEquipo.getText()));
@@ -1209,15 +1200,90 @@ public class FrmSapito extends javax.swing.JFrame {
         }
     }
       private void MtdUpdatePuntaje(){   
-
-        //calcula puntaje individual
-        int idEquipo = arrayIdEquipos.get(cmbEq.getSelectedIndex()); 
-        int puntajeEquipo = Integer.valueOf(lblPuntaje.getText());
-        int puntajeAntiguo = sapitoLog.PuntajeSapito(idEquipo);
         
-        txtPuntajeAcumulado.setText(String.valueOf(puntajeEquipo));
-        lblPuntaje.setText(String.valueOf(puntajeEquipo));
+        int puntajeAntiguo=0;
+        int puntajeNuevo=0;
+        int exitosa=0;
+        int puntajeBd = 0 ;
+        //100
+        //200
                 
+        for(int i = 0; i<arrayPuntajeEquipoDesempate.size();i++)
+        {
+            puntajeNuevo = arrayPuntajeEquipoDesempate.get(i); // puntajeNuevo = 200
+            
+            //Saltamos primera iteracion
+            if(i > 0)
+            {
+                if(puntajeNuevo > puntajeAntiguo) // 200 > 100
+                {
+                    puntajeBd = sapitoLog.PuntajeSapito(arrayIdEquipoDesempate.get(i));
+                    exitosa = sapitoLog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd+1
+                                );
+                }
+                else if(puntajeNuevo < puntajeAntiguo) // 2 < 25
+                {
+                    puntajeBd = sapitoLog.PuntajeSapito(arrayIdEquipoDesempate.get(i));
+                    exitosa = sapitoLog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd-1
+                                );
+                }
+            }            
+            puntajeAntiguo = puntajeNuevo; // puntajeAntiguo = 100
+        }
+        
+        if(exitosa > 0)
+        {
+            JOptionPane.showMessageDialog(null, "Se actualizo el puntaje");
+            ListarTabla();
+        
+            List<PkgEntidad.ClsSapito> listas = sapitoLog.listado();
+            
+            //Borrar datos de la tabla puntaje.
+            sapitoLog.BorrarDatosSapito();
+            //validar jtable de posiciones
+            for(PkgEntidad.ClsSapito cb : listas)
+            {
+                sapitoLog.InsertarPosicion
+                    (
+                        cb.getIdEquipo(),
+                        cb.getPuntajeEquipo(),
+                        cb.getPosicionEquipo()
+                    ); 
+            }
+        }
+         else{
+             JOptionPane.showMessageDialog(null, "NO se modifico el puntaje");
+             
+        }   
+        
+        arrayPuntajeEquipoDesempate.clear();
+        arrayIdEquipoDesempate.clear();
+        
+//            Limpiar();
+        
+        
+        
+        
+        //Recorremos equipos filtrados
+//        for( int puntaje : arrayPuntajeEquipoDesempate ) //puntaje = 100
+//        {            
+//            puntajeAntiguo = puntaje; // puntajeAntiguo = 100
+//            
+//            if(puntajeAntiguo > puntajeNuevo) // 100 > 0
+//            {
+//                int exitosa = sapitoLog.UpdatePuntaje(idEquipo,puntaje+1);
+//            }
+//            
+//            puntajeAntiguo = puntajeNuevo;
+//        }
+        
+        
         
         
 //        int exitosa = sapitoLog.UpdatePuntaje(idEquipo,puntajeEquipo);
@@ -1326,17 +1392,7 @@ public class FrmSapito extends javax.swing.JFrame {
         columnModel.getColumn(2).setPreferredWidth(100);
         columnModel.getColumn(3).setPreferredWidth(200);
     }
-    private void ListarTablaDesempate() {
-        List<PkgEntidad.ClsSapito> listas = sapitoLog.listadoDesempate();
-        tblPosicionesDesempate.setModel(new ModeloTablaDesempate(listas)); //Lista posicion
-        setCellRender(tblPosicionesDesempate);
-        tblPosicionesDesempate.getRowSorter();
-        TableColumnModel columnModel = tblPosicionesDesempate.getColumnModel();
-        // tamaño a cada columna de un jtable
-        columnModel.getColumn(1).setPreferredWidth(100);
-        columnModel.getColumn(2).setPreferredWidth(100);
- 
-    }
+  
     /* METODOS PARA LLENAR COMBOBOX */
     public void MtdLlenarComboSeries(){
           try{

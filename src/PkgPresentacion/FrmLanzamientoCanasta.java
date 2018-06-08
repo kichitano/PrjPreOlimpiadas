@@ -44,8 +44,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     ArrayList<Integer> arrayIdEquipos = new ArrayList();
     ArrayList<Integer> arrayIdEquiposParticipantes = new ArrayList();
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
-    
+
     private int puntajeTotal=0;
+    
+     //Arrays que trabajan con desempate
+    ArrayList<Integer> arrayIdEquipoDesempate = new ArrayList();
+    ArrayList<Integer> arrayPuntajeEquipoDesempate = new ArrayList();
     
    // ArrayList<Integer> arrayPuntajes = new ArrayList<Integer>();
 //    ArrayList<int[]> arrayPuntajes = new ArrayList<int[]>();
@@ -160,10 +164,11 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         cmbAgregarParticipante = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnRegPtje = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         LblCarga1 = new javax.swing.JLabel();
         btnEmpate = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
+        btnDesempate = new javax.swing.JButton();
         jlIdApoderado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -334,6 +339,14 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         jLabel5.setText("Puntaje:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 510, -1, -1));
 
+        btnRegPtje.setText("Registrar Ptje.");
+        btnRegPtje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegPtjeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegPtje, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 510, -1, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/medidas-cancha-basquetbol.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 870, 430));
 
@@ -348,13 +361,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         });
         getContentPane().add(btnEmpate, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 500, 100, 40));
 
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnDesempate.setText("Desempate");
+        btnDesempate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnDesempateActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, 100, 40));
+        getContentPane().add(btnDesempate, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 500, 100, 40));
 
         jlIdApoderado.setText("ID");
         getContentPane().add(jlIdApoderado, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 520, -1, -1));
@@ -496,10 +509,13 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnEmpateActionPerformed
 
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
         
-        MtdUpdatePuntaje();        
-    }//GEN-LAST:event_btnModificarActionPerformed
+        MtdUpdatePuntaje(); 
+        txtPuntaje.setText(String.valueOf(0));
+        btnCanasta.setEnabled(true);
+        
+    }//GEN-LAST:event_btnDesempateActionPerformed
 
     private void cmbAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAgregarParticipanteActionPerformed
      
@@ -510,6 +526,17 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
         //muestras el formulario
         participante.show();
     }//GEN-LAST:event_cmbAgregarParticipanteActionPerformed
+
+    private void btnRegPtjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPtjeActionPerformed
+        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(txtPuntaje.getText());
+        
+        arrayIdEquipoDesempate.add(idEquipo);
+        arrayPuntajeEquipoDesempate.add(puntajeEquipo);
+        
+        JOptionPane.showMessageDialog(null, "Se guardo correctamente el puntaje");
+        txtPuntaje.setText(String.valueOf(0));
+    }//GEN-LAST:event_btnRegPtjeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,11 +582,12 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LblCarga1;
     private javax.swing.JButton btnCanasta;
+    private javax.swing.JButton btnDesempate;
     private javax.swing.JButton btnDetener;
     private javax.swing.JButton btnEmpate;
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnPausar;
+    private javax.swing.JButton btnRegPtje;
     private javax.swing.JButton cmbAgregarParticipante;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbSerie;
@@ -585,12 +613,45 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
  
     private void MtdUpdatePuntaje(){   
 
-        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
-        int puntajeEquipo = Integer.valueOf(txtPuntaje.getText());
+        int puntajeAntiguo=0;
+        int puntajeNuevo=0;
+        int exitosa=0;
+        int puntajeBd = 0 ;
+        //100
+        //200
+                
+        for(int i = 0; i<arrayPuntajeEquipoDesempate.size();i++)
+        {
+            puntajeNuevo = arrayPuntajeEquipoDesempate.get(i); // puntajeNuevo = 200
+            
+            //Saltamos primera iteracion
+            if(i > 0)
+            {
+                if(puntajeNuevo > puntajeAntiguo) // 2 > 25
+                {
+                    puntajeBd = circuitoBasketLog.puntajeEquipo(arrayIdEquipoDesempate.get(i));
+                    exitosa = circuitoBasketLog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd+1
+                                );
+                }
+                else if(puntajeNuevo < puntajeAntiguo) // 2 < 25
+                {
+                    puntajeBd = circuitoBasketLog.puntajeEquipo(arrayIdEquipoDesempate.get(i));
+                    exitosa = circuitoBasketLog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd-1
+                                );
+                }
+            }            
+            puntajeAntiguo = puntajeNuevo; // puntajeAntiguo = 100
+        }
         
-        int exitosa = circuitoBasketLog.UpdatePuntaje(idEquipo,puntajeEquipo);
-        if(exitosa > 0){
-            JOptionPane.showMessageDialog(null, "Dato Modificado");
+        if(exitosa > 0)
+        {
+            JOptionPane.showMessageDialog(null, "Se actualizo el puntaje");
             ListarTabla();
         
             List<PkgEntidad.ClsCircuitoBasket> listas = circuitoBasketLog.listado();
@@ -607,13 +668,15 @@ public class FrmLanzamientoCanasta extends javax.swing.JFrame {
                         cb.getPosicionEquipo()
                     ); 
             }
-            
-            Limpiar();
-            
-        }else{
-             JOptionPane.showMessageDialog(null, "Dato NO Modificado");
         }
-       
+         else{
+             JOptionPane.showMessageDialog(null, "NO se modifico el puntaje");
+             
+        }   
+        
+        arrayPuntajeEquipoDesempate.clear();
+        arrayIdEquipoDesempate.clear();
+    
     }
 
      private void MtdVerificarPuntajesIguales() throws SQLException {

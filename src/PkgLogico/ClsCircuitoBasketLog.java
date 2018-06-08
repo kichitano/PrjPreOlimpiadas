@@ -48,4 +48,7 @@ public class ClsCircuitoBasketLog {
     public int UpdateEstadoApoderado(int _idApoderado){
         return bsk.UpdateEstadoApoderado(_idApoderado);
     }
+     public int puntajeEquipo(int _idEquipo){
+          return bsk.puntajeEquipo(_idEquipo);
+     }
 }

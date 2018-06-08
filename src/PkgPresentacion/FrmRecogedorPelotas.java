@@ -35,8 +35,13 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     
     //variables
     int opt = 1;
+
     //Arrays
     ArrayList<String> arrayDetalleEquipos = new ArrayList();
+    
+    //Arrays que trabajan con desempate
+    ArrayList<Integer> arrayIdEquipoDesempate = new ArrayList();
+    ArrayList<Integer> arrayPuntajeEquipoDesempate = new ArrayList();
     
     public FrmRecogedorPelotas() {
         initComponents();
@@ -120,6 +125,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         btnEmpate = new javax.swing.JButton();
         btnDesempate = new javax.swing.JButton();
         btnLanzar = new javax.swing.JButton();
+        btnRegistrarPuntaje = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -317,6 +323,13 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             }
         });
 
+        btnRegistrarPuntaje.setText("Registrar Puntaje");
+        btnRegistrarPuntaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPuntajeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -324,17 +337,20 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnLanzar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnLanzar)
-                        .addGap(18, 18, 18)
                         .addComponent(btnEmpate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDesempate)))
+                        .addComponent(btnDesempate))
+                    .addComponent(btnRegistrarPuntaje))
                 .addGap(0, 33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -343,7 +359,8 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarPuntaje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEmpate)
@@ -416,7 +433,6 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                             .addComponent(btnPausar)
                             .addComponent(btnDetener))
                         .addGap(17, 17, 17)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -555,8 +571,8 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
 
     private void btnDesempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesempateActionPerformed
          MtdUpdatePuntaje();
-         btnLanzar.setEnabled(true);
-      
+      //   btnLanzar.setEnabled(true);
+        txtValor.setText(String.valueOf(0));
     }//GEN-LAST:event_btnDesempateActionPerformed
 
     private void btnAgregarParticipanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarParticipanteActionPerformed
@@ -569,6 +585,17 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
         //muestras el formulario
         participante.show();
     }//GEN-LAST:event_btnAgregarParticipanteActionPerformed
+
+    private void btnRegistrarPuntajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPuntajeActionPerformed
+        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
+        int puntajeEquipo = Integer.valueOf(txtValor.getText());
+        
+        arrayIdEquipoDesempate.add(idEquipo);
+        arrayPuntajeEquipoDesempate.add(puntajeEquipo);
+        
+        JOptionPane.showMessageDialog(null, "Se guardo correctamente el puntaje");
+        txtValor.setText(String.valueOf(0));
+    }//GEN-LAST:event_btnRegistrarPuntajeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -614,6 +641,7 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnLanzar;
     private javax.swing.JButton btnPausar;
+    private javax.swing.JButton btnRegistrarPuntaje;
     private javax.swing.JComboBox<String> cmbEquipos;
     private javax.swing.JComboBox<String> cmbSerie;
     private javax.swing.JLabel etiquetaTiempo;
@@ -742,12 +770,45 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
     }
     private void MtdUpdatePuntaje(){   
 
-        int idEquipo = arrayIdEquipos.get(cmbEquipos.getSelectedIndex()); 
-        int puntajeEquipo = Integer.valueOf(txtValor.getText());
+        int puntajeAntiguo=0;
+        int puntajeNuevo=0;
+        int exitosa=0;
+        int puntajeBd = 0 ;
+        //100
+        //200
+                
+        for(int i = 0; i<arrayPuntajeEquipoDesempate.size();i++)
+        {
+            puntajeNuevo = arrayPuntajeEquipoDesempate.get(i); // puntajeNuevo = 200
+            
+            //Saltamos primera iteracion
+            if(i > 0)
+            {
+                if(puntajeNuevo > puntajeAntiguo) // 2 > 25
+                {
+                    puntajeBd = rplog.puntajeEquipo(arrayIdEquipoDesempate.get(i));
+                    exitosa = rplog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd+1
+                                );
+                }
+                else if(puntajeNuevo < puntajeAntiguo) // 2 < 25
+                {
+                    puntajeBd = rplog.puntajeEquipo(arrayIdEquipoDesempate.get(i));
+                    exitosa = rplog.UpdatePuntaje
+                                (
+                                    arrayIdEquipoDesempate.get(i),
+                                    puntajeBd-1
+                                );
+                }
+            }            
+            puntajeAntiguo = puntajeNuevo; // puntajeAntiguo = 100
+        }
         
-        int exitosa = rplog.UpdatePuntaje(idEquipo,puntajeEquipo);
-        if(exitosa > 0){
-            JOptionPane.showMessageDialog(null, "Dato Modificado");
+        if(exitosa > 0)
+        {
+            JOptionPane.showMessageDialog(null, "Se actualizo el puntaje");
             ListarTabla();
         
             List<PkgEntidad.ClsRecogedorPelotas> listas = rplog.listado();
@@ -764,13 +825,14 @@ public class FrmRecogedorPelotas extends javax.swing.JFrame {
                         cb.getPosicionEquipo()
                     ); 
             }
-            
-            txtValor.setText("");
-            
-        }else{
-             JOptionPane.showMessageDialog(null, "Dato NO Modificado");
         }
-       
-    }
+         else{
+             JOptionPane.showMessageDialog(null, "NO se modifico el puntaje");
+             
+        }   
+        
+        arrayPuntajeEquipoDesempate.clear();
+        arrayIdEquipoDesempate.clear();
+}
 }
 

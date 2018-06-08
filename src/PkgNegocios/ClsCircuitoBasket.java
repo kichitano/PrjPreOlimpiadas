@@ -118,6 +118,8 @@ public class ClsCircuitoBasket {
    
     public List<PkgEntidad.ClsCircuitoBasket> listado() {
         int cont=1;
+        int puntajeNuevo=0;
+        int puntajeAnterior=0;
         CallableStatement cstm = null;
         ResultSet rs = null;
         List<PkgEntidad.ClsCircuitoBasket> lista = null;
@@ -131,13 +133,27 @@ public class ClsCircuitoBasket {
             rs = cstm.executeQuery();
             PkgEntidad.ClsCircuitoBasket bsk = null;
             while (rs.next()) {
+                 //tomamos el puntaje
+                puntajeNuevo = rs.getInt("puntajeEquipo");
                 bsk = new PkgEntidad.ClsCircuitoBasket();
                 bsk.setIdEquipo(rs.getInt("idEquipo"));
                 bsk.setPuntajeEquipo(rs.getInt("puntajeEquipo"));
-                bsk.setPosicionEquipo(cont+" puesto");
+               
+                //si los puntajes son iguales, asigna la misma posicion
+                if(puntajeNuevo == puntajeAnterior)
+                {
+                    bsk.setPosicionEquipo(cont-1+" puesto");
+                    cont = cont - 1 ;
+                }
+                else //de lo contrario la posicion sigue corriendo.
+                {
+                    bsk.setPosicionEquipo(cont+" puesto");
+                }
+                
                 bsk.setNombreEquipo(rs.getString("nombreEquipo"));
                 lista.add(bsk);
                 cont++;
+                puntajeAnterior = puntajeNuevo;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -227,5 +243,27 @@ public class ClsCircuitoBasket {
         return equipos;
     }
 
-   
+   public int puntajeEquipo(int _idEquipo)
+     {
+         String sqlQuery = "select sa.puntajeEquipo from tbCircuitoBasket as sa where sa.idEquipo = '"+_idEquipo+"'";
+         con = conexion.getConecion();
+         Statement st = null;
+         ResultSet rs = null;
+         int puntaje = 0;
+        try 
+        {
+            st = con.createStatement();
+            rs = st.executeQuery(sqlQuery);
+            while(rs.next())
+            {
+                puntaje = rs.getInt("puntajeEquipo");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClsSapito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return puntaje;
+     }
+     
 }
